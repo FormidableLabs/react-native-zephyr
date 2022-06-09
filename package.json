@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.12",
+    "@types/react-native": "^0.67.8",
     "prettier": "^2.6.2",
     "react": "^18.1.0",
     "react-native": "^0.68.2",
