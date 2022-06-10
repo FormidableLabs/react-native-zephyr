@@ -1,14 +1,25 @@
 import * as React from "react";
-import { useColorScheme } from "react-native";
+import { ColorSchemeName, useColorScheme } from "react-native";
 
-export const StyleContext = React.createContext({ isDarkMode: false });
+export const StyleContext = React.createContext({
+  isDarkMode: false,
+});
 
-export const StyleProvider = ({ children }: React.PropsWithChildren) => {
-  const colorScheme = useColorScheme();
+type StyleProviderProps = {
+  colorScheme?: "light" | "dark" | "auto";
+};
 
-  const value = React.useMemo(() => {
+export const StyleProvider = ({
+  children,
+  colorScheme = "auto",
+}: React.PropsWithChildren<StyleProviderProps>) => {
+  const systemColorScheme = useColorScheme();
+
+  const value = React.useMemo<React.ContextType<typeof StyleContext>>(() => {
     return {
-      isDarkMode: colorScheme === "dark",
+      isDarkMode:
+        colorScheme === "dark" ||
+        (colorScheme === "auto" && systemColorScheme === "dark"),
     };
   }, [colorScheme]);
 

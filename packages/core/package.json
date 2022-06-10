@@ -1,12 +1,17 @@
 {
   "name": "rn-styler-core",
   "version": "0.0.1",
-  "main": "src/createStyleBuilder.tsx",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "license": "MIT",
+  "files": [
+    "dist/"
+  ],
   "devDependencies": {
-    "tsup": "^6.1.0"
+    "nodemon": "^2.0.16"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc"
+    "build": "rm -rf dist && tsc",
+    "dev": "tsc --watch"
   }
 }

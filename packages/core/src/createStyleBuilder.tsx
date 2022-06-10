@@ -1,17 +1,11 @@
 import * as React from "react";
-import {
-  BeefedStyleHandlerSet,
-  StyleHandlerSet,
-  StyleProps,
-  Undarken,
-} from "./types";
+import { BeefedStyleHandlerSet, StyleHandlerSet, StyleProps } from "./types";
 import type { JSXElementConstructor } from "react";
 import { StyleContext } from "./StyleProvider";
+import { colorStringToRgb } from "./utils/colorStringToRgb";
 
 const darkReg = /^(.*)__dark$/;
 const isDark = <T extends string>(name: T) => darkReg.test(name);
-const undarken = <T extends string>(name: T) =>
-  name.replace(darkReg, "$1") as Undarken<T>;
 
 export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
   handlers: _handlers,
@@ -44,7 +38,22 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
         }
       }
 
-      return Object.assign(baseStyles, isDarkMode ? darkStyles : {});
+      const styles = Object.assign(
+        baseStyles,
+        isDarkMode ? darkStyles : {}
+      ) as Record<string, unknown>;
+
+      // Massage for bg-opacity
+      if (
+        typeof styles["--bg-opacity"] === "number" &&
+        typeof styles.backgroundColor === "string"
+      ) {
+        const { r, g, b } = colorStringToRgb(styles.backgroundColor);
+        styles.backgroundColor = `rgba(${r}, ${g}, ${b}, ${styles["--bg-opacity"]})`;
+      }
+      delete styles["--bg-opacity"];
+
+      return styles;
     }, [styleProps]);
   };
 

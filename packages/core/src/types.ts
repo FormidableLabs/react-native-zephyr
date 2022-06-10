@@ -8,7 +8,7 @@ export type BeefedStyleHandlerSet<S extends StyleHandlerSet> = {
 };
 
 export type Undarken<T> = T extends `${infer C}__dark` ? C : T;
-type NonSymbol<T> = Exclude<T, symbol>;
+export type NonSymbol<T> = Exclude<T, symbol>;
 
 export type StyleProps<P extends StyleHandlerSet> = {
   [K in keyof P | `${NonSymbol<keyof P>}__dark`]?: Parameters<
@@ -17,3 +17,5 @@ export type StyleProps<P extends StyleHandlerSet> = {
     ? boolean
     : Parameters<P[Undarken<K>]>[0];
 };
+
+export type BgOpacityRecord = { "--bg-opacity"?: number };

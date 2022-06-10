@@ -1,26 +1,42 @@
-import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, Text, View, ViewStyle } from "react-native";
-import { createStyleBuilder } from "../core/src/createStyleBuilder";
-import { StyleProvider } from "../core/src/StyleProvider";
+import { SafeAreaView, Text, View } from "react-native";
+import {
+  createStyleBuilder,
+  defaultHandlers,
+  StyleProvider,
+} from "rn-styler-core";
 
 const { makeStyledComponent } = createStyleBuilder({
-  handlers: {
-    p: (x: "1" | "2") => ({ padding: 10 * +x } as ViewStyle),
-    bgColor: (c: "red" | "blue") => ({ backgroundColor: c } as ViewStyle),
-  },
+  handlers: defaultHandlers,
 });
 
 const StyledView = makeStyledComponent(View);
+const StyledText = makeStyledComponent(Text);
+const StyledSafeAreaView = makeStyledComponent(SafeAreaView);
 
 export default function App() {
   return (
-    <StyleProvider>
-      <SafeAreaView>
-        <StyledView p="2" bgColor="red" bgColor__dark="blue">
-          <Text>Open up App.tsx to start working on your app!</Text>
-          <StatusBar style="auto" />
+    <StyleProvider colorScheme="auto">
+      <StyledSafeAreaView
+        bg="red-300"
+        bg__dark="red-800"
+        flex="1"
+        items="center"
+        justify="center"
+        p="6"
+      >
+        <StyledView
+          p="6"
+          bg="blue-400"
+          bg-opacity="80"
+          rounded="lg"
+          border="1"
+          border-color="red-500"
+          shadow="xl"
+          accessibilityHint="Just to show you the rest of props are here"
+        >
+          <StyledText>Open up App.tsx to start working on your app!</StyledText>
         </StyledView>
-      </SafeAreaView>
+      </StyledSafeAreaView>
     </StyleProvider>
   );
 }
