@@ -1,6 +1,6 @@
 # PROTO: RN Styling Library
 
-Okay, so here me out. What if you could write RN markup like this:
+Okay, so hear me out. What if you could write RN markup like this:
 
 ```tsx
 <StyleProvider>
