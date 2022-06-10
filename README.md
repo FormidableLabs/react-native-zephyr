@@ -3,7 +3,7 @@
 Okay, so here me out. What if you could write RN markup like this:
 
 ```tsx
-<StyleProvider colorScheme={colorScheme}>
+<StyleProvider>
   <StyledSafeAreaView
     bg="red-200"
     bg__dark="red-800"
@@ -22,9 +22,6 @@ Okay, so here me out. What if you could write RN markup like this:
       border-color="red-500"
       shadow="2xl"
       accessibilityHint="Just to show you the rest of props are here"
-      onPress={() => {
-        setColorScheme((v) => (v === "light" ? "dark" : "light"));
-      }}
     >
       <StyledText color="gray-800" color__dark="gray-300">
         Open up App.tsx to start working on your app!
