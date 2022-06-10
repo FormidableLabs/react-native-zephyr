@@ -1,6 +1,12 @@
 {
   "name": "rn-styler-core",
   "version": "0.0.1",
-  "main": "createStyleBuilder.tsx",
-  "license": "MIT"
+  "main": "src/createStyleBuilder.tsx",
+  "license": "MIT",
+  "devDependencies": {
+    "tsup": "^6.1.0"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc"
+  }
 }

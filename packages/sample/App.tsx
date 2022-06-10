@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, Text, View, ViewStyle } from "react-native";
-import { createStyleBuilder } from "rn-styler-core";
-import { StyleProvider } from "rn-styler-core/StyleProvider";
+import { createStyleBuilder } from "../core/src/createStyleBuilder";
+import { StyleProvider } from "../core/src/StyleProvider";
 
 const { makeStyledComponent } = createStyleBuilder({
   handlers: {

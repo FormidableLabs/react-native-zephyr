@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "target": "ES2015",
+    "declaration": true,
+    "jsx": "react-native",
+    "outDir": "./dist",
+    "strict": true,
+    "baseUrl": "./src",
+    "rootDirs": ["./src"],
+    "skipLibCheck": true,
+    "downlevelIteration": true,
+    "allowSyntheticDefaultImports": true
+  }
+}
