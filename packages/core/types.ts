@@ -3,11 +3,15 @@ export type StyleHandlerSet = {
   [key: string]: StyleHandler;
 };
 
-export type Undarken<T> = T extends `dark:${infer C}` ? C : T;
+export type BeefedStyleHandlerSet<S extends StyleHandlerSet> = {
+  [K in keyof S | `${NonSymbol<keyof S>}__dark`]: S[K];
+};
+
+export type Undarken<T> = T extends `${infer C}__dark` ? C : T;
 type NonSymbol<T> = Exclude<T, symbol>;
 
 export type StyleProps<P extends StyleHandlerSet> = {
-  [K in keyof P | `dark:${NonSymbol<keyof P>}`]?: Parameters<
+  [K in keyof P | `${NonSymbol<keyof P>}__dark`]?: Parameters<
     P[Undarken<K>]
   >[0] extends undefined
     ? boolean

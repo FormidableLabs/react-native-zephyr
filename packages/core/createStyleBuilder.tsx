@@ -1,15 +1,52 @@
-import { StyleHandlerSet, StyleProps, Undarken } from "./types";
+import * as React from "react";
+import {
+  BeefedStyleHandlerSet,
+  StyleHandlerSet,
+  StyleProps,
+  Undarken,
+} from "./types";
 import type { JSXElementConstructor } from "react";
+import { StyleContext } from "./StyleProvider";
 
+const darkReg = /^(.*)__dark$/;
+const isDark = <T extends string>(name: T) => darkReg.test(name);
 const undarken = <T extends string>(name: T) =>
-  name.replace(/^dark:/, "") as Undarken<T>;
+  name.replace(darkReg, "$1") as Undarken<T>;
 
 export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
-  handlers,
+  handlers: _handlers,
 }: {
   handlers: StyleHandlers;
 }) => {
-  const useStyle = <P extends StyleProps<StyleHandlers>>(args: P) => {};
+  const handlers = Object.assign(
+    {},
+    _handlers
+  ) as BeefedStyleHandlerSet<StyleHandlers>;
+
+  for (const key in _handlers) {
+    // @ts-ignore
+    handlers[`${key}__dark`] = handlers[key];
+  }
+
+  const useStyle = <P extends StyleProps<StyleHandlers>>(styleProps: P) => {
+    const { isDarkMode } = React.useContext(StyleContext);
+
+    return React.useMemo(() => {
+      const baseStyles = {};
+      const darkStyles = {};
+
+      for (const key in styleProps) {
+        if (key in handlers) {
+          Object.assign(
+            isDark(key) ? darkStyles : baseStyles,
+            handlers[key](styleProps[key])
+          );
+        }
+      }
+
+      return Object.assign(baseStyles, isDarkMode ? darkStyles : {});
+    }, [styleProps]);
+  };
 
   // Utility to make a styled component
   const makeStyledComponent = <T,>(
@@ -19,22 +56,17 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
       style,
       ...rest
     }: Omit<T, keyof P> & P) => {
-      const aggedStyles = (() => {
-        const keys = [];
-        for (const key in rest) {
-          const ukey = undarken(key);
-          if (ukey in handlers) {
-            keys.push(key);
-          }
-        }
-
-        return keys;
-      })();
-
-      console.log(aggedStyles);
-
+      // TODO: Filter out non-applicable props?
       // @ts-ignore
-      return <WrappedComponent {...rest} />;
+      const addedStyles = useStyle(rest);
+
+      return (
+        // @ts-ignore
+        <WrappedComponent
+          {...rest}
+          style={[addedStyles, ...[Array.isArray(style) ? style : [style]]]}
+        />
+      );
     };
 
     return ComponentWithStyles;

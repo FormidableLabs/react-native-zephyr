@@ -1,21 +1,26 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import { foo } from "rn-styler-core/foo";
+import { SafeAreaView, Text, View, ViewStyle } from "react-native";
+import { createStyleBuilder } from "rn-styler-core";
+import { StyleProvider } from "rn-styler-core/StyleProvider";
+
+const { makeStyledComponent } = createStyleBuilder({
+  handlers: {
+    p: (x: "1" | "2") => ({ padding: 10 * +x } as ViewStyle),
+    bgColor: (c: "red" | "blue") => ({ backgroundColor: c } as ViewStyle),
+  },
+});
+
+const StyledView = makeStyledComponent(View);
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app! {foo}</Text>
-      <StatusBar style="auto" />
-    </View>
+    <StyleProvider>
+      <SafeAreaView>
+        <StyledView p="2" bgColor="red" bgColor__dark="blue">
+          <Text>Open up App.tsx to start working on your app!</Text>
+          <StatusBar style="auto" />
+        </StyledView>
+      </SafeAreaView>
+    </StyleProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
