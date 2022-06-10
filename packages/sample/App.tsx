@@ -20,8 +20,6 @@ export default function App() {
     "light" as "light" | "dark"
   );
 
-  console.log(colorScheme);
-
   return (
     <StyleProvider colorScheme={colorScheme}>
       <StyledSafeAreaView
