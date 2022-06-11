@@ -46,7 +46,13 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
     const { isDarkMode } = React.useContext(StyleContext);
 
     return React.useMemo(() => {
-      let styles = {} as ReturnStyle<
+      const baseStyles = {} as ReturnStyle<
+        StyleHandlers,
+        InvertClassName<StyleHandlers, Cn>
+      > & {
+        "--bg-opacity"?: number;
+      };
+      const darkStyles = {} as ReturnStyle<
         StyleHandlers,
         InvertClassName<StyleHandlers, Cn>
       > & {
@@ -54,6 +60,21 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
       };
 
       for (let c of baseClasses || []) {
+        const m = c.match(/^(.+):(.+)$/); // TODO: Extract regex out of fn
+        const prop = m?.[1];
+        const value = m?.[2];
+        const handler =
+          handlers?.[prop as NonSymbol<keyof typeof handlers>] || handlers?.[c];
+
+        // TODO: BUTTON THIS SHIT UP
+        if (handler) {
+          // @ts-ignore
+          Object.assign(baseStyles, handler(value));
+        }
+      }
+
+      // TODO: DEDUP THIS CODE FROM ABOVE!
+      for (let c of darkClasses) {
         const m = c.match(/^(.+):(.+)$/);
         const prop = m?.[1];
         const value = m?.[2];
@@ -63,9 +84,11 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
         // TODO: BUTTON THIS SHIT UP
         if (handler) {
           // @ts-ignore
-          Object.assign(styles, handler(value));
+          Object.assign(darkStyles, handler(value));
         }
       }
+
+      const styles = Object.assign(baseStyles, isDarkMode ? darkStyles : {});
 
       // TODO: BUTTON THIS SHIT UP
       // Massage for bg-opacity
@@ -83,7 +106,7 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
       delete styles["--bg-opacity"];
 
       return styles;
-    }, [baseClasses.join(","), darkClasses.join(",")]);
+    }, [baseClasses.join(","), darkClasses.join(","), isDarkMode]);
   };
 
   /**
