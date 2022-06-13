@@ -14,6 +14,7 @@ This library is heavily inspired by TailwindCSS, and follows the following philo
 - Provide helpers for building your own style helpers based on your own theme constraints.
 - Provide default style constraints for quick styling out of the box.
 - Dark mode support, out of the box.
+- Strong-typing for added confidence and ease-of-development.
 
 Here's a quick sample to whet your appetite.
 
@@ -53,6 +54,110 @@ export const App = () => {
 }
 ```
 
-## API
+## API & Usage
 
-...
+### Step 1: Provide styling "handlers"
+
+First, provide some styling "handlers" to the `createStyleBuilder` function to build some styling utilities:
+
+```ts
+import { createStyleBuilder } from 'rn-styled';
+
+export const { makeStyledComponent } = createStyleBuilder({
+  handlers: {
+    flex1: () => ({ flex: 1 }),
+    bg: (color: "blue" | "red") => ({ backgroundColor: color }),
+  }
+});
+```
+
+Each "handler" is a function, with 0 or 1 parameters, that returns a style object. Each handler will map to a style "class name" that can be applied to styled components. In our example here, the following "classes" will be available
+
+- `flex1`: from the `flex1` handler (with 0 arguments)
+- `bg:blue` and `bg:red`: from the `bg` handler.
+
+### Step 2: Create styled components
+
+Next, generate some "styled components" that will make use of your style handlers.
+
+```ts
+import { createStyleBuilder } from 'rn-styled';
+import { View } from 'react-native';
+
+export const { makeStyledComponent } = createStyleBuilder({ /* ... */ });
+
+export const StyledView = makeStyledComponent(View);
+```
+
+Each of these components now have a `styled` and `darkStyled` prop that will allow you to apply your handlers.
+
+### Step 3: Wrap your app in a `StyleProvider`
+
+Next, wrap your app in a `StyleProvider` to support dark mode (and, in the future, other features) out of the box.
+
+```tsx
+import { StyleProvider } from 'rn-styled';
+
+export const App = () => {
+  return (
+    <StyleProvider>
+      {/* ... */}
+    </StyleProvider>
+  )
+}
+```
+
+### Step 4: Get to styling!
+
+Now, you're ready to start making easy-use of your styling handlers.
+
+```tsx
+import { StyleProvider } from 'rn-styled';
+import { StyledView } from './styled';
+
+export const App = () => {
+  return (
+    <StyleProvider>
+      <StyledView
+        styled={['flex:1', 'bg:red']}
+        darkStyled={['bg:blue']}
+      >
+        {/* ... */}
+      </StyledView>
+    </StyleProvider>
+  )
+}
+```
+
+## Out-of-the-box Styling
+
+RN Styled, by default, is style-agnostic. You can provide all of your own handlers, and it'll just help you make use of them.
+
+However, we also offer a suite of default handlers to make your styling journey even easier. Just use (or extend) the `defaultHandlers` object as your `handlers` config!
+
+```tsx
+import { createStyleBuilder, defaultHandlers } from "rn-styled";
+import { View } from 'react-native';
+
+const { makeStyledComponent } = createStyleBuilder({
+  handlers: defaultHandlers, // <- your life, on easy mode
+});
+const StyledView = makeStyledComponent(View);
+
+export const MyComponent = () => {
+  return (
+    <StyledView
+      styled={['flex:1', 'p:3', 'bg:red-200']}
+      darkStyled={['bg:red-800']}
+    >
+      {/* ... */}
+    </StyledView>
+  )
+}
+```
+
+These `flex:1`, `p:3`, `bg:red-200` and `bg:red-800` style classes are just a few examples from the many classes provided to you by default when using the default handlers.
+
+### Default handlers, custom constraints
+
+TODO: document using constraint-builders.
