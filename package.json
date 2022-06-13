@@ -1,8 +1,5 @@
 {
-  "name": "rn-styler",
-  "version": "0.0.1",
-  "description": "RN styler",
-  "main": "index.js",
+  "description": "Styling library for React Native",
   "license": "MIT",
   "private": "true",
   "workspaces": {

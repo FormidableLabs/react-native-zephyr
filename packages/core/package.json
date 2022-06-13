@@ -1,17 +1,33 @@
 {
-  "name": "rn-styler-core",
+  "name": "react-native-styled",
+  "author": "Formidable",
+  "description": "Styling library for React Native",
+  "keywords": ["react", "react-native", "styling"],
   "version": "0.0.1",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
-  "files": [
-    "dist/"
-  ],
-  "devDependencies": {
-    "nodemon": "^2.0.16"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/formidablelabs/smol-range.git"
+  },
+  "exports": {
+    ".": [
+      {
+        "imports": "./dist/index.js",
+        "types": "./dist/index.d.ts"
+      },
+      "./dist/index.js"
+    ]
   },
   "scripts": {
     "build": "rm -rf dist && tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "test": "vitest run",
+    "prepare": "yarn test && yarn build"
+  },
+  "peerDependencies": {
+    "react": ">=16.0.0",
+    "react-native": ">=0.66.4"
   }
 }
