@@ -1,4 +1,4 @@
-# React Native Styled
+# React Native Style Buddy
 
 This repo contains a **prototype** for a React Native styling library. Here's a peak in action (strongly typed 🤤).
 
@@ -28,7 +28,7 @@ import {
   createStyleBuilder,
   defaultHandlers,
   StyleProvider,
-} from "rn-styler-core";
+} from "react-native-style-buddy";
 
 // Provide style "handlers", get some goodies back
 const { makeStyledComponent } = createStyleBuilder({
@@ -65,7 +65,7 @@ export const App = () => {
 First, provide some styling "handlers" to the `createStyleBuilder` function to build some styling utilities:
 
 ```ts
-import { createStyleBuilder } from 'rn-styler-core';
+import { createStyleBuilder } from 'react-native-style-buddy';
 
 export const { makeStyledComponent } = createStyleBuilder({
   handlers: {
@@ -85,7 +85,7 @@ Each "handler" is a function, with 0 or 1 parameters, that returns a style objec
 Next, generate some "styled components" that will make use of your style handlers.
 
 ```ts
-import { createStyleBuilder } from 'rn-styler-core';
+import { createStyleBuilder } from 'react-native-style-buddy';
 import { View } from 'react-native';
 
 export const { makeStyledComponent } = createStyleBuilder({ /* ... */ });
@@ -100,7 +100,7 @@ Each of these components now have a `styled` and `darkStyled` prop that will all
 Next, wrap your app in a `StyleProvider` to support dark mode (and, in the future, other features) out of the box.
 
 ```tsx
-import { StyleProvider } from 'rn-styler-core';
+import { StyleProvider } from 'react-native-style-buddy';
 
 export const App = () => {
   return (
@@ -116,7 +116,7 @@ export const App = () => {
 Now, you're ready to start making easy-use of your styling handlers.
 
 ```tsx
-import { StyleProvider } from 'rn-styler-core';
+import { StyleProvider } from 'react-native-style-buddy';
 import { StyledView } from './styled';
 
 export const App = () => {
@@ -140,7 +140,7 @@ RN Styled, by default, is style-agnostic. You can provide all of your own handle
 However, we also offer a suite of default handlers to make your styling journey even easier. Just use (or extend) the `defaultHandlers` object as your `handlers` config!
 
 ```tsx
-import { createStyleBuilder, defaultHandlers } from 'rn-styler-core';
+import { createStyleBuilder, defaultHandlers } from 'react-native-style-buddy';
 import { View } from 'react-native';
 
 const { makeStyledComponent } = createStyleBuilder({
