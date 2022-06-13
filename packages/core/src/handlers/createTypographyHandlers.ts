@@ -1,15 +1,12 @@
 import { TextStyle } from "react-native";
 
-type TypographyConstraints = {
-  fontSizes: Record<string | number, readonly [number, number]>;
-  fontWeights: Record<string | number, TextStyle["fontWeight"]>;
-};
-
 export const createTypographyHandlers = <
-  Constraints extends TypographyConstraints
->(
-  constraints: Constraints
-) => {
+  FontSizeKey extends string | number,
+  FontWeightKey extends string | number
+>(constraints: {
+  fontSizes: Record<FontSizeKey, readonly [number, number]>;
+  fontWeights: Record<FontWeightKey, TextStyle["fontWeight"]>;
+}) => {
   return {
     italic: () => <TextStyle>{ fontStyle: "italic" },
     uppercase: () => <TextStyle>{ textTransform: "uppercase" },
@@ -21,11 +18,11 @@ export const createTypographyHandlers = <
       <TextStyle>{ textDecorationLine: "underline line-through" },
     "text-align": (textAlign: NonNullable<TextStyle["textAlign"]>) =>
       <TextStyle>{ textAlign },
-    text: (inp: keyof typeof constraints.fontSizes) => {
+    text: (inp: FontSizeKey) => {
       const [fontSize, lineHeight] = constraints.fontSizes[inp];
       return <TextStyle>{ fontSize, lineHeight };
     },
-    "font-weight": (inp: keyof typeof constraints.fontWeights) => {
+    "font-weight": (inp: FontWeightKey) => {
       const fontWeight = constraints.fontWeights[inp];
       return <TextStyle>{ fontWeight };
     },
