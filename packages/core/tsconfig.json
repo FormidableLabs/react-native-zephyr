@@ -11,5 +11,6 @@
     "skipLibCheck": true,
     "downlevelIteration": true,
     "allowSyntheticDefaultImports": true
-  }
+  },
+  "exclude": ["src/**/*.test.ts"]
 }
