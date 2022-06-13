@@ -99,29 +99,38 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
    * Utility to make a styled component
    */
   // TODO: forwardRef, and maybe try to memoize
-  const makeStyledComponent = <T, Cn extends ClassName<StyleHandlers>>(
+  const makeStyledComponent = <T, Cn extends ClassName<StyleHandlers>, Ref>(
     WrappedComponent: JSXElementConstructor<T>
   ) => {
-    const ComponentWithStyles = ({
-      styled,
-      darkStyled,
-      // @ts-ignore
-      style,
-      ...rest
-    }: T & { styled?: Cn[]; darkStyled?: Cn[] }) => {
-      const addedStyles = useStyled({
-        baseClasses: styled,
-        darkClasses: darkStyled,
-      });
+    const ComponentWithStyles = React.forwardRef<
+      Ref,
+      T & { styled?: Cn[]; darkStyled?: Cn[] }
+    >(
+      (
+        {
+          styled,
+          darkStyled,
+          // @ts-ignore
+          style,
+          ...rest
+        },
+        ref
+      ) => {
+        const addedStyles = useStyled({
+          baseClasses: styled,
+          darkClasses: darkStyled,
+        });
 
-      return (
-        // @ts-ignore
-        <WrappedComponent
-          {...rest}
-          style={[addedStyles, ...[Array.isArray(style) ? style : [style]]]}
-        />
-      );
-    };
+        return (
+          // @ts-ignore
+          <WrappedComponent
+            ref={ref}
+            {...rest}
+            style={[addedStyles, ...[Array.isArray(style) ? style : [style]]]}
+          />
+        );
+      }
+    );
 
     // TODO: Probably give component a displayName
 
