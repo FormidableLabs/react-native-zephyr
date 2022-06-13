@@ -6,14 +6,14 @@ import {
   NonSymbol,
   ReturnStyle,
   StyleHandlerSet,
-  StyleProps,
 } from "./types";
 import type { JSXElementConstructor } from "react";
 import { StyleContext } from "./StyleProvider";
 import { colorStringToRgb } from "./utils/colorStringToRgb";
+import { SimpleConstrainedCache } from "./utils/SimpleConstrainedCache";
 
-const darkReg = /^dark:(.*)$/;
-const isDark = <T extends string>(name: T) => darkReg.test(name);
+// const darkReg = /^dark:(.*)$/;
+// const isDark = <T extends string>(name: T) => darkReg.test(name);
 
 /**
  * Core builder fn. Takes in a set of handlers, and gives back a hook and component-builder.
@@ -27,6 +27,7 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
     {},
     _handlers
   ) as BeefedStyleHandlerSet<StyleHandlers>;
+  const cache = new SimpleConstrainedCache({ maxNumRecords: 200 });
 
   for (const key in _handlers) {
     // @ts-ignore
@@ -45,7 +46,14 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
   }) => {
     const { isDarkMode } = React.useContext(StyleContext);
 
+    const baseKey = baseClasses.join(",");
+    const darkKey = darkClasses.join(",");
+    const cacheKey = isDarkMode ? `${baseKey},${darkKey}` : baseKey;
+
     return React.useMemo(() => {
+      // First, check the cache
+      if (cache.has(cacheKey)) return cache.get(cacheKey);
+
       const baseStyles = {} as ReturnStyle<
         StyleHandlers,
         InvertClassName<StyleHandlers, Cn>
@@ -105,8 +113,11 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
       }
       delete styles["--bg-opacity"];
 
+      // Add in the cache
+      cache.set(cacheKey, styles);
+
       return styles;
-    }, [baseClasses.join(","), darkClasses.join(","), isDarkMode]);
+    }, [cacheKey]);
   };
 
   /**
