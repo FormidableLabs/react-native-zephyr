@@ -26,11 +26,6 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
   ) as BeefedStyleHandlerSet<StyleHandlers>;
   const cache = new SimpleConstrainedCache({ maxNumRecords: 200 });
 
-  for (const key in _handlers) {
-    // @ts-ignore
-    handlers[`dark:${key}`] = handlers[key];
-  }
-
   /**
    * Fundamental styling function, used by the useStyle hook
    */

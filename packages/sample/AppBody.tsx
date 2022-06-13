@@ -15,6 +15,7 @@ export const AppBody = () => {
           "bg:pink-200",
           "opacity:75",
         ]}
+        darkStyled={["bg:pink-800"]}
       >
         <StyledText
           styled={["text:4xl", "color:purple-600", "font-weight:bold"]}
