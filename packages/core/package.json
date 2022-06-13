@@ -2,8 +2,12 @@
   "name": "react-native-style-buddy",
   "author": "Formidable",
   "description": "Styling library for React Native",
-  "keywords": ["react", "react-native", "styling"],
-  "version": "0.0.1",
+  "keywords": [
+    "react",
+    "react-native",
+    "styling"
+  ],
+  "version": "0.0.2",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "license": "MIT",
