@@ -6,6 +6,10 @@ export class SimpleConstrainedCache {
     this.__maxNumRecords = maxNumRecords;
   }
 
+  get size() {
+    return this.__records.size;
+  }
+
   has = (key: string) => this.__records.has(key);
 
   get = (key: string) => this.__records.get(key);
