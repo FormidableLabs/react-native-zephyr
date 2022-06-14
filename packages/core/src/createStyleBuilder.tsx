@@ -42,60 +42,61 @@ export const createStyleBuilder = <
   const cache = new SimpleConstrainedCache({ maxNumRecords: 200 });
   const mergedTheme = mergeThemes({ theme, extendTheme });
 
-  // TODO: DRY this up.
-  type SpacingKey = NonSymbol<
-    keyof ((Theme["spacing"] extends object
-      ? Theme["spacing"]
-      : typeof DefaultConstraints.spacing) &
-      ThemeExt["spacing"])
+  type GetKey<
+    UserThemeConstraints,
+    DefaultThemeConstraints,
+    ConstraintsExtension
+  > = NonSymbol<
+    keyof ((UserThemeConstraints extends object
+      ? UserThemeConstraints
+      : DefaultThemeConstraints) &
+      ConstraintsExtension)
   >;
-  type AspectRatioKey = NonSymbol<
-    keyof ((Theme["aspectRatios"] extends object
-      ? Theme["aspectRatios"]
-      : typeof DefaultConstraints.aspectRatios) &
-      ThemeExt["aspectRatios"])
+
+  type SpacingKey = GetKey<
+    Theme["spacing"],
+    typeof DefaultConstraints.spacing,
+    ThemeExt["spacing"]
   >;
-  type ColorKey = NonSymbol<
-    keyof ((Theme["colors"] extends object
-      ? Theme["colors"]
-      : typeof DefaultConstraints.colors) &
-      ThemeExt["colors"])
+  type AspectRatioKey = GetKey<
+    Theme["aspectRatios"],
+    typeof DefaultConstraints.aspectRatios,
+    ThemeExt["aspectRatios"]
   >;
-  type OpacityKey = NonSymbol<
-    keyof ((Theme["opacities"] extends object
-      ? Theme["opacities"]
-      : typeof DefaultConstraints.opacities) &
-      ThemeExt["opacities"])
+  type ColorKey = GetKey<
+    Theme["colors"],
+    typeof DefaultConstraints.colors,
+    ThemeExt["colors"]
   >;
-  type BorderSizeKey = NonSymbol<
-    keyof ((Theme["borderSizes"] extends object
-      ? Theme["borderSizes"]
-      : typeof DefaultConstraints.borderSizes) &
-      ThemeExt["borderSizes"])
+  type OpacityKey = GetKey<
+    Theme["opacities"],
+    typeof DefaultConstraints.opacities,
+    ThemeExt["opacities"]
   >;
-  type BorderRadiiKey = NonSymbol<
-    keyof ((Theme["borderRadii"] extends object
-      ? Theme["borderRadii"]
-      : typeof DefaultConstraints.borderRadii) &
-      ThemeExt["borderRadii"])
+  type BorderSizeKey = GetKey<
+    Theme["borderSizes"],
+    typeof DefaultConstraints.borderSizes,
+    ThemeExt["borderSizes"]
   >;
-  type ShadowKey = NonSymbol<
-    keyof ((Theme["shadows"] extends object
-      ? Theme["shadows"]
-      : typeof DefaultConstraints.shadows) &
-      ThemeExt["shadows"])
+  type BorderRadiiKey = GetKey<
+    Theme["borderRadii"],
+    typeof DefaultConstraints.borderRadii,
+    ThemeExt["borderRadii"]
   >;
-  type FontSizeKey = NonSymbol<
-    keyof ((Theme["fontSizes"] extends object
-      ? Theme["fontSizes"]
-      : typeof DefaultConstraints.fontSizes) &
-      ThemeExt["fontSizes"])
+  type ShadowKey = GetKey<
+    Theme["shadows"],
+    typeof DefaultConstraints.shadows,
+    ThemeExt["shadows"]
   >;
-  type FontWeightKey = NonSymbol<
-    keyof ((Theme["fontWeights"] extends object
-      ? Theme["fontWeights"]
-      : typeof DefaultConstraints.fontWeights) &
-      ThemeExt["fontWeights"])
+  type FontSizeKey = GetKey<
+    Theme["fontSizes"],
+    typeof DefaultConstraints.fontSizes,
+    ThemeExt["fontSizes"]
+  >;
+  type FontWeightKey = GetKey<
+    Theme["fontWeights"],
+    typeof DefaultConstraints.fontWeights,
+    ThemeExt["fontWeights"]
   >;
 
   type Cn =
