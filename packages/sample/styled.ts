@@ -1,4 +1,4 @@
-import { createStyleBuilder, defaultHandlers } from "rn-styler-core";
+import { createStyleBuilder, defaultHandlers } from "react-native-style-buddy";
 import { View, Text } from "react-native";
 
 export const { makeStyledComponent } = createStyleBuilder({

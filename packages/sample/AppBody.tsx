@@ -18,7 +18,12 @@ export const AppBody = () => {
         darkStyled={["bg:pink-800"]}
       >
         <StyledText
-          styled={["text:4xl", "color:purple-600", "font-weight:bold"]}
+          styled={[
+            "text:4xl",
+            "color:purple-600",
+            "font-weight:bold",
+            "italic",
+          ]}
         >
           Hello world!
         </StyledText>

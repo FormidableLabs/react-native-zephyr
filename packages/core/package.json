@@ -27,6 +27,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "prepublishOnly": "cp ../../README.md ./README.md && yarn test && yarn build",
     "preversion": "yarn run test"

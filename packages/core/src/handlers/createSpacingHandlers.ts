@@ -18,9 +18,9 @@ export const createSpacingHandlers = <
         ? constraints[val]
         : extractFromBrackets(val);
 
-      return properties.reduce<FlexStyle>((acc, prop) => {
-        // TODO: Figure out why TS no likey
-        // @ts-ignore
+      return properties.reduce<{
+        [K in keyof FlexStyle]: number | string | undefined;
+      }>((acc, prop) => {
         acc[prop] = isNegative
           ? typeof spaceVal === "number"
             ? -spaceVal

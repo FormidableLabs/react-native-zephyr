@@ -1,5 +1,5 @@
 export class SimpleConstrainedCache {
-  __records = new Map<string, any>();
+  __records = new Map<string, Record<string, unknown>>();
   __maxNumRecords: number;
 
   constructor({ maxNumRecords }: { maxNumRecords: number }) {

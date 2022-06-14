@@ -32,42 +32,27 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
   const styled = <Cn extends ClassName<StyleHandlers>>(...classNames: Cn[]) => {
     const cacheKey = classNames.join(",");
 
-    const styles = {} as ReturnStyle<
-      StyleHandlers,
-      InvertClassName<StyleHandlers, Cn>
-    > & {
-      "--bg-opacity"?: number;
-    };
+    const styles = {} as Record<string, any>;
 
     // First, check the cache
     if (cache.has(cacheKey)) return cache.get(cacheKey);
 
     // Start to aggregate styles
     for (let c of classNames || []) {
-      const m = c.match(/^(.+):(.+)$/); // TODO: Extract regex out of fn
+      const m = c.match(HandlerArgRegExp);
       const prop = m?.[1];
       const value = m?.[2];
       const handler =
         handlers?.[prop as NonSymbol<keyof typeof handlers>] || handlers?.[c];
 
-      // TODO: BUTTON THIS SHIT UP
       if (handler) {
-        // @ts-ignore
         Object.assign(styles, handler(value));
       }
     }
 
-    // TODO: BUTTON THIS SHIT UP
     // Massage for bg-opacity
-    // @ts-ignore
-    if (
-      typeof styles["--bg-opacity"] === "number" &&
-      // @ts-ignore
-      styles?.backgroundColor
-    ) {
-      // @ts-ignore
+    if (typeof styles["--bg-opacity"] === "number" && styles?.backgroundColor) {
       const { r, g, b } = colorStringToRgb(styles.backgroundColor);
-      // @ts-ignore
       styles.backgroundColor = `rgba(${r}, ${g}, ${b}, ${styles["--bg-opacity"]})`;
     }
     delete styles["--bg-opacity"];
@@ -98,44 +83,40 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
   /**
    * Utility to make a styled component
    */
-  // TODO: forwardRef, and maybe try to memoize
-  const makeStyledComponent = <T, Cn extends ClassName<StyleHandlers>, Ref>(
+  const makeStyledComponent = <
+    T extends { style?: unknown },
+    Cn extends ClassName<StyleHandlers>,
+    Ref
+  >(
     WrappedComponent: JSXElementConstructor<T>
   ) => {
     const ComponentWithStyles = React.forwardRef<
       Ref,
       T & { styled?: Cn[]; darkStyled?: Cn[] }
-    >(
-      (
-        {
-          styled,
-          darkStyled,
-          // @ts-ignore
-          style,
-          ...rest
-        },
-        ref
-      ) => {
-        const addedStyles = useStyled({
-          baseClasses: styled,
-          darkClasses: darkStyled,
-        });
+    >(({ styled, darkStyled, style, ...rest }, ref) => {
+      const addedStyles = useStyled({
+        baseClasses: styled,
+        darkClasses: darkStyled,
+      });
 
-        return (
-          // @ts-ignore
-          <WrappedComponent
-            ref={ref}
-            {...rest}
-            style={[addedStyles, ...[Array.isArray(style) ? style : [style]]]}
-          />
-        );
-      }
-    );
+      return (
+        // @ts-ignore
+        <WrappedComponent
+          ref={ref}
+          {...rest}
+          style={[addedStyles, ...[Array.isArray(style) ? style : [style]]]}
+        />
+      );
+    });
 
-    // TODO: Probably give component a displayName
+    if ("displayName" in WrappedComponent) {
+      ComponentWithStyles["displayName"] = WrappedComponent["displayName"];
+    }
 
     return ComponentWithStyles;
   };
 
   return { styled, useStyle: useStyled, makeStyledComponent };
 };
+
+const HandlerArgRegExp = /^(.+):(.+)$/;
