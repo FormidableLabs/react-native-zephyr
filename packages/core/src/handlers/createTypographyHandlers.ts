@@ -19,7 +19,10 @@ export const createTypographyHandlers = <
     "text-align": (textAlign: NonNullable<TextStyle["textAlign"]>) =>
       <TextStyle>{ textAlign },
     text: (inp: FontSizeKey) => {
-      const [fontSize, lineHeight] = constraints.fontSizes[inp];
+      const val = constraints.fontSizes[inp];
+      if (!val) return {};
+
+      const [fontSize, lineHeight] = val;
       return <TextStyle>{ fontSize, lineHeight };
     },
     "font-weight": (inp: FontWeightKey) => {

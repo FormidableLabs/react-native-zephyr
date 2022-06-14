@@ -175,4 +175,13 @@ describe.only("defaultSpacingHandlers", () => {
     // @ts-expect-error
     expect(styles("m:3")).toEqual({});
   });
+
+  it("allows extending constraints", () => {
+    const { styles } = createStyleBuilder({
+      extendTheme: { spacing: { sm: 4 } },
+    });
+
+    expect(styles("m:1")).toEqual({ margin: C["1"] });
+    expect(styles("m:sm")).toEqual({ margin: 4 });
+  });
 });

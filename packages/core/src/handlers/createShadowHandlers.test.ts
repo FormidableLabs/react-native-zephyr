@@ -32,4 +32,44 @@ describe("createShadowHandlers", () => {
       shadowRadius,
     });
   });
+
+  it("allows for custom constraints", () => {
+    const { styles } = createStyleBuilder({
+      theme: {
+        shadows: {
+          foo: { ios: [1, 2, 3, 4], android: 2 },
+        },
+      },
+    });
+
+    expect(styles("shadow:foo")).toEqual({
+      shadowOffset: { width: 1, height: 2 },
+      shadowRadius: 3,
+      shadowOpacity: 4,
+    });
+    // @ts-expect-error
+    expect(styles("shadow:md")).toEqual({});
+  });
+
+  it("allows extending constraints", () => {
+    const { styles } = createStyleBuilder({
+      extendTheme: {
+        shadows: {
+          foo: { ios: [1, 2, 3, 4], android: 2 },
+        },
+      },
+    });
+
+    const md = DefaultConstraints.shadows.md.ios;
+    expect(styles("shadow:md")).toEqual({
+      shadowOffset: { width: md[0], height: md[1] },
+      shadowRadius: md[2],
+      shadowOpacity: md[3],
+    });
+    expect(styles("shadow:foo")).toEqual({
+      shadowOffset: { width: 1, height: 2 },
+      shadowRadius: 3,
+      shadowOpacity: 4,
+    });
+  });
 });

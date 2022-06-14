@@ -12,6 +12,8 @@ export const createShadowHandlers = <
     shadow: (inp: keyof Constraints): ViewStyle => {
       const val = constraints[inp];
 
+      if (!val) return {};
+
       return Platform.select({
         android: { elevation: val?.android || 0 },
         default: {

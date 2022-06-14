@@ -65,4 +65,13 @@ describe("createBorderHandlers", () => {
     // @ts-expect-error
     expect(styles("rounded:baz")).toEqual({});
   });
+
+  it("allows extending constraints", () => {
+    const { styles } = createStyleBuilder({
+      extendTheme: { borderRadii: { foo: 6 } },
+    });
+
+    expect(styles("rounded:sm")).toEqual({ borderRadius: C["sm"] });
+    expect(styles("rounded:foo")).toEqual({ borderRadius: 6 });
+  });
 });

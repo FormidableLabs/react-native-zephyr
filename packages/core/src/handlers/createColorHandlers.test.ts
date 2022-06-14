@@ -44,4 +44,13 @@ describe("createColorHandlers", () => {
     // @ts-expect-error
     expect(styles("color:red-300")).toEqual({});
   });
+
+  it("allows extending constraints", () => {
+    const { styles } = createStyleBuilder({
+      extendTheme: { colors: { dirt: "brown" } },
+    });
+
+    expect(styles("bg:black")).toEqual({ backgroundColor: "#000" });
+    expect(styles("bg:dirt")).toEqual({ backgroundColor: "brown" });
+  });
 });

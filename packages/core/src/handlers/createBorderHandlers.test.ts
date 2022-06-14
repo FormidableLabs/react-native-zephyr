@@ -52,4 +52,13 @@ describe("createBorderHandlers", () => {
     // @ts-expect-error
     expect(styles("border:baz")).toEqual({});
   });
+
+  it("allows extending constraints", () => {
+    const { styles } = createStyleBuilder({
+      extendTheme: { borderSizes: { foo: 6 } },
+    });
+
+    expect(styles("border:1")).toEqual({ borderWidth: C["1"] });
+    expect(styles("border:foo")).toEqual({ borderWidth: 6 });
+  });
 });

@@ -31,4 +31,13 @@ describe("createAspectRatioHandlers", () => {
     expect(styles("aspect:foo")).toEqual({ aspectRatio: 1 });
     expect(styles("aspect:bar")).toEqual({ aspectRatio: 3 / 7 });
   });
+
+  it("allows extending constraints", () => {
+    const { styles } = createStyleBuilder({
+      extendTheme: { aspectRatios: { foo: [6, 9] } },
+    });
+
+    expect(styles("aspect:1")).toEqual({ aspectRatio: 1 });
+    expect(styles("aspect:foo")).toEqual({ aspectRatio: 6 / 9 });
+  });
 });

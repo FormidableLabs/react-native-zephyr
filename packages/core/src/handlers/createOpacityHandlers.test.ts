@@ -42,4 +42,13 @@ describe("createOpacityHandlers", () => {
     // @ts-expect-error
     expect(styles("opacity:50")).toEqual({});
   });
+
+  it("allows extending constraints", () => {
+    const { styles } = createStyleBuilder({
+      extendTheme: { opacities: { half: 0.5 } },
+    });
+
+    expect(styles("opacity:10")).toEqual({ opacity: 0.1 });
+    expect(styles("opacity:half")).toEqual({ opacity: 0.5 });
+  });
 });

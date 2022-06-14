@@ -10,4 +10,4 @@ export const { makeStyledComponent, styles } = createStyleBuilder({
 export const StyledView = makeStyledComponent(View);
 export const StyledText = makeStyledComponent(Text);
 
-const f = styles("p:3");
+const f = styles("p:3", 3 > 2 ? "px:4" : "py:12");
