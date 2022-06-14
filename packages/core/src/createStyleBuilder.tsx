@@ -15,6 +15,7 @@ import { DefaultConstraints } from "./theme";
 import { FlexStyle } from "react-native";
 import { extractFromBrackets } from "./utils/extractFromBrackets";
 import { mergeThemes } from "./utils/mergeThemes";
+import { createColorHandlers } from "./handlers/createColorHandlers";
 
 /**
  * Core builder fn. Takes in a set of handlers, and gives back a hook and component-builder.
@@ -48,12 +49,12 @@ export const createStyleBuilder = <
     ThemeExt["aspectRatios"];
   type AspectRatioKey = NonSymbol<keyof AspectRatio>;
 
-  type ColorKeys = NonSymbol<
-    keyof ((Theme["colors"] extends object
-      ? Theme["colors"]
-      : typeof DefaultConstraints.colors) &
-      ThemeExt["colors"])
-  >;
+  type Colors = (Theme["colors"] extends object
+    ? Theme["colors"]
+    : typeof DefaultConstraints.colors) &
+    ThemeExt["colors"];
+  type ColorKey = NonSymbol<keyof Colors>;
+
   type OpacityKeys = NonSymbol<
     keyof ((Theme["opacities"] extends object
       ? Theme["opacities"]
@@ -109,10 +110,15 @@ export const createStyleBuilder = <
     | `max-h:${SpacingKey | `[${NumOrString}]`}`
     // Aspect ratio
     | `aspect:${AspectRatioKey | `[${NumOrString}]`}`
-
-    // TODO: more
-    | `bg:${ColorKeys}`
+    // Colors
+    | `bg:${ColorKey | `[${string}]`}`
+    | `border-color:${ColorKey | `[${string}]`}`
+    | `color:${ColorKey | `[${string}]`}`
+    | `tint:${ColorKey | `[${string}]`}`
+    // TODO: Opacity
     | `bg-opacity:${OpacityKeys}`;
+
+  // TODO: more
   // TODO: How do we get the extra handlers in there?
   // | (ExtraStyleHandlers extends null ? never : "fart");
 
@@ -201,6 +207,8 @@ export const createStyleBuilder = <
 
       return {};
     },
+    // Colors
+    ...createColorHandlers(mergedTheme.colors),
 
     // TODO: More handlers here.
 

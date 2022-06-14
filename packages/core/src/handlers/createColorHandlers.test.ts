@@ -9,33 +9,35 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const { styled: sb } = createStyleBuilder({
-  handlers: defaultHandlers,
-});
+const { styles } = createStyleBuilder({});
 const C = DEFAULT_CONSTRAINTS.COLORS;
 
 describe("createColorHandlers", () => {
   const cases: [string, object, object][] = [
     // bg:
-    ["bg:red-300", sb("bg:red-300"), { backgroundColor: C["red-300"] }],
-    ["bg:black", sb("bg:black"), { backgroundColor: C["black"] }],
-    ["bg:[pink]", sb("bg:[pink]"), { backgroundColor: "pink" }],
+    ["bg:red-300", styles("bg:red-300"), { backgroundColor: C["red-300"] }],
+    ["bg:black", styles("bg:black"), { backgroundColor: C["black"] }],
+    ["bg:[pink]", styles("bg:[pink]"), { backgroundColor: "pink" }],
     // border-color:
     [
       "border-color:red-300",
-      sb("border-color:red-300"),
+      styles("border-color:red-300"),
       { borderColor: C["red-300"] },
     ],
     [
       "border-color:black",
-      sb("border-color:black"),
+      styles("border-color:black"),
       { borderColor: C["black"] },
     ],
-    ["border-color:[pink]", sb("border-color:[pink]"), { borderColor: "pink" }],
+    [
+      "border-color:[pink]",
+      styles("border-color:[pink]"),
+      { borderColor: "pink" },
+    ],
     // color:
-    ["color:red-300", sb("color:red-300"), { color: C["red-300"] }],
-    ["color:black", sb("color:black"), { color: C["black"] }],
-    ["color:[pink]", sb("color:[pink]"), { color: "pink" }],
+    ["color:red-300", styles("color:red-300"), { color: C["red-300"] }],
+    ["color:black", styles("color:black"), { color: C["black"] }],
+    ["color:[pink]", styles("color:[pink]"), { color: "pink" }],
   ];
 
   it.each(cases)(
@@ -46,13 +48,15 @@ describe("createColorHandlers", () => {
   );
 
   it("allows custom constraints", () => {
-    const { styled } = createStyleBuilder({
-      handlers: createColorHandlers({ black: "#000", pink: "pink" }),
+    const { styles } = createStyleBuilder({
+      theme: {
+        colors: { black: "#000", pink: "pink" },
+      },
     });
 
-    expect(styled("bg:black")).toEqual({ backgroundColor: "#000" });
-    expect(styled("color:pink")).toEqual({ color: "pink" });
+    expect(styles("bg:black")).toEqual({ backgroundColor: "#000" });
+    expect(styles("color:pink")).toEqual({ color: "pink" });
     // @ts-expect-error
-    expect(styled("color:red-300")).toEqual({});
+    expect(styles("color:red-300")).toEqual({});
   });
 });

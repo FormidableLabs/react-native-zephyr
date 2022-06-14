@@ -156,9 +156,6 @@ export const DEFAULT_CONSTRAINTS = {
   } as const,
 };
 
-export const defaultAspectRatioHandlers = createAspectRatioHandlers(
-  DEFAULT_CONSTRAINTS.ASPECT_RATIOS
-);
 export const defaultBorderHandlers = createBorderHandlers(
   DEFAULT_CONSTRAINTS.BORDER_SIZES
 );
@@ -264,7 +261,6 @@ export const defaultImageHandlers = {
  * Aggregate the defaults
  */
 export const defaultHandlers = {
-  ...defaultAspectRatioHandlers,
   ...defaultColorHandlers,
   ...defaultOpacityHandlers,
   ...defaultBorderHandlers,
