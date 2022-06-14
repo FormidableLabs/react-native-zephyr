@@ -1,6 +1,5 @@
 import { FlexStyle, ImageStyle, StyleSheet } from "react-native";
 import { flattenColor } from "./twColors";
-import { createSpacingHandlers } from "./createSpacingHandlers";
 import { createColorHandlers } from "./createColorHandlers";
 import { createBorderHandlers } from "./createBorderHandlers";
 import { createRoundedHandlers } from "./createRoundedHandlers";
@@ -157,9 +156,6 @@ export const DEFAULT_CONSTRAINTS = {
   } as const,
 };
 
-export const defaultSpacingHandlers = createSpacingHandlers(
-  DEFAULT_CONSTRAINTS.SPACING
-);
 export const defaultAspectRatioHandlers = createAspectRatioHandlers(
   DEFAULT_CONSTRAINTS.ASPECT_RATIOS
 );
@@ -268,7 +264,6 @@ export const defaultImageHandlers = {
  * Aggregate the defaults
  */
 export const defaultHandlers = {
-  ...defaultSpacingHandlers,
   ...defaultAspectRatioHandlers,
   ...defaultColorHandlers,
   ...defaultOpacityHandlers,

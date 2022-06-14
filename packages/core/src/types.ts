@@ -26,9 +26,10 @@ export type BgOpacityRecord = { "--bg-opacity"?: number };
  */
 
 export type ThemeConstraints = {
-  spacing?: Record<string | number, string | number>;
-  colors?: Record<string, string> | undefined;
-  opacities?: Record<string | number, number>;
+  spacing?: Record<NumOrString, string | number>;
+  colors?: Record<NumOrString, string> | undefined;
+  opacities?: Record<NumOrString, number>;
+  aspectRatios?: Record<NumOrString, readonly [number, number]>;
 };
 
 export type NonOptional<T> = { [Key in keyof T]-?: T[Key] };

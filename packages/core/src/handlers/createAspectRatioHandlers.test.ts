@@ -1,7 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { createStyleBuilder } from "../createStyleBuilder";
 import { createAspectRatioHandlers } from "./createAspectRatioHandlers";
-import { defaultHandlers } from "./defaultHandlers";
 
 vi.mock("react-native", () => ({
   StyleSheet: {
@@ -10,15 +9,13 @@ vi.mock("react-native", () => ({
 }));
 
 describe("createAspectRatioHandlers", () => {
-  const { styled: defaultStyled } = createStyleBuilder({
-    handlers: defaultHandlers,
-  });
+  const { styles } = createStyleBuilder({});
 
   const cases: [string, object, object][] = [
-    ["aspect:1", defaultStyled("aspect:1"), { aspectRatio: 1 }],
-    ["aspect:2-1", defaultStyled("aspect:2-1"), { aspectRatio: 2 }],
-    ["aspect:1-2", defaultStyled("aspect:1-2"), { aspectRatio: 1 / 2 }],
-    ["aspect:[1.3]", defaultStyled("aspect:[1.3]"), { aspectRatio: 1.3 }],
+    ["aspect:1", styles("aspect:1"), { aspectRatio: 1 }],
+    ["aspect:2-1", styles("aspect:2-1"), { aspectRatio: 2 }],
+    ["aspect:1-2", styles("aspect:1-2"), { aspectRatio: 1 / 2 }],
+    ["aspect:[1.3]", styles("aspect:[1.3]"), { aspectRatio: 1.3 }],
   ];
 
   it.each(cases)(
@@ -29,11 +26,13 @@ describe("createAspectRatioHandlers", () => {
   );
 
   it("allows custom constraints", () => {
-    const { styled } = createStyleBuilder({
-      handlers: createAspectRatioHandlers({ foo: [1, 1], bar: [3, 7] }),
+    const { styles } = createStyleBuilder({
+      theme: {
+        aspectRatios: { foo: [1, 1], bar: [3, 7] },
+      },
     });
 
-    expect(styled("aspect:foo")).toEqual({ aspectRatio: 1 });
-    expect(styled("aspect:bar")).toEqual({ aspectRatio: 3 / 7 });
+    expect(styles("aspect:foo")).toEqual({ aspectRatio: 1 });
+    expect(styles("aspect:bar")).toEqual({ aspectRatio: 3 / 7 });
   });
 });

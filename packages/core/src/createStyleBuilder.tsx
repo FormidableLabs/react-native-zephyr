@@ -40,7 +40,13 @@ export const createStyleBuilder = <
     ? Theme["spacing"]
     : typeof DefaultConstraints.spacing) &
     ThemeExt["spacing"];
-  type SpacingKeys = NonSymbol<keyof Spacing>;
+  type SpacingKey = NonSymbol<keyof Spacing>;
+
+  type AspectRatio = (Theme["aspectRatios"] extends object
+    ? Theme["aspectRatios"]
+    : typeof DefaultConstraints.aspectRatios) &
+    ThemeExt["aspectRatios"];
+  type AspectRatioKey = NonSymbol<keyof AspectRatio>;
 
   type ColorKeys = NonSymbol<
     keyof ((Theme["colors"] extends object
@@ -57,51 +63,52 @@ export const createStyleBuilder = <
 
   type Cn =
     // Margins
-
-    | `m:${SpacingKeys | `[${NumOrString}]`}`
-    | `-m:${SpacingKeys | `[${NumOrString}]`}`
-    | `mx:${SpacingKeys | `[${NumOrString}]`}`
-    | `-mx:${SpacingKeys | `[${NumOrString}]`}`
-    | `my:${SpacingKeys | `[${NumOrString}]`}`
-    | `-my:${SpacingKeys | `[${NumOrString}]`}`
-    | `ml:${SpacingKeys | `[${NumOrString}]`}`
-    | `-ml:${SpacingKeys | `[${NumOrString}]`}`
-    | `mr:${SpacingKeys | `[${NumOrString}]`}`
-    | `-mr:${SpacingKeys | `[${NumOrString}]`}`
-    | `mt:${SpacingKeys | `[${NumOrString}]`}`
-    | `-mt:${SpacingKeys | `[${NumOrString}]`}`
-    | `mb:${SpacingKeys | `[${NumOrString}]`}`
-    | `-mb:${SpacingKeys | `[${NumOrString}]`}`
+    | `m:${SpacingKey | `[${NumOrString}]`}`
+    | `-m:${SpacingKey | `[${NumOrString}]`}`
+    | `mx:${SpacingKey | `[${NumOrString}]`}`
+    | `-mx:${SpacingKey | `[${NumOrString}]`}`
+    | `my:${SpacingKey | `[${NumOrString}]`}`
+    | `-my:${SpacingKey | `[${NumOrString}]`}`
+    | `ml:${SpacingKey | `[${NumOrString}]`}`
+    | `-ml:${SpacingKey | `[${NumOrString}]`}`
+    | `mr:${SpacingKey | `[${NumOrString}]`}`
+    | `-mr:${SpacingKey | `[${NumOrString}]`}`
+    | `mt:${SpacingKey | `[${NumOrString}]`}`
+    | `-mt:${SpacingKey | `[${NumOrString}]`}`
+    | `mb:${SpacingKey | `[${NumOrString}]`}`
+    | `-mb:${SpacingKey | `[${NumOrString}]`}`
     // Padding
-    | `p:${SpacingKeys | `[${NumOrString}]`}`
-    | `px:${SpacingKeys | `[${NumOrString}]`}`
-    | `py:${SpacingKeys | `[${NumOrString}]`}`
-    | `pl:${SpacingKeys | `[${NumOrString}]`}`
-    | `pr:${SpacingKeys | `[${NumOrString}]`}`
-    | `pt:${SpacingKeys | `[${NumOrString}]`}`
-    | `pb:${SpacingKeys | `[${NumOrString}]`}`
+    | `p:${SpacingKey | `[${NumOrString}]`}`
+    | `px:${SpacingKey | `[${NumOrString}]`}`
+    | `py:${SpacingKey | `[${NumOrString}]`}`
+    | `pl:${SpacingKey | `[${NumOrString}]`}`
+    | `pr:${SpacingKey | `[${NumOrString}]`}`
+    | `pt:${SpacingKey | `[${NumOrString}]`}`
+    | `pb:${SpacingKey | `[${NumOrString}]`}`
     // Inset
-    | `inset:${SpacingKeys | `[${NumOrString}]`}`
-    | `-inset:${SpacingKeys | `[${NumOrString}]`}`
-    | `inset-x:${SpacingKeys | `[${NumOrString}]`}`
-    | `-inset-x:${SpacingKeys | `[${NumOrString}]`}`
-    | `inset-y:${SpacingKeys | `[${NumOrString}]`}`
-    | `-inset-y:${SpacingKeys | `[${NumOrString}]`}`
-    | `left:${SpacingKeys | `[${NumOrString}]`}`
-    | `-left:${SpacingKeys | `[${NumOrString}]`}`
-    | `right:${SpacingKeys | `[${NumOrString}]`}`
-    | `-right:${SpacingKeys | `[${NumOrString}]`}`
-    | `top:${SpacingKeys | `[${NumOrString}]`}`
-    | `-top:${SpacingKeys | `[${NumOrString}]`}`
-    | `bottom:${SpacingKeys | `[${NumOrString}]`}`
-    | `-bottom:${SpacingKeys | `[${NumOrString}]`}`
+    | `inset:${SpacingKey | `[${NumOrString}]`}`
+    | `-inset:${SpacingKey | `[${NumOrString}]`}`
+    | `inset-x:${SpacingKey | `[${NumOrString}]`}`
+    | `-inset-x:${SpacingKey | `[${NumOrString}]`}`
+    | `inset-y:${SpacingKey | `[${NumOrString}]`}`
+    | `-inset-y:${SpacingKey | `[${NumOrString}]`}`
+    | `left:${SpacingKey | `[${NumOrString}]`}`
+    | `-left:${SpacingKey | `[${NumOrString}]`}`
+    | `right:${SpacingKey | `[${NumOrString}]`}`
+    | `-right:${SpacingKey | `[${NumOrString}]`}`
+    | `top:${SpacingKey | `[${NumOrString}]`}`
+    | `-top:${SpacingKey | `[${NumOrString}]`}`
+    | `bottom:${SpacingKey | `[${NumOrString}]`}`
+    | `-bottom:${SpacingKey | `[${NumOrString}]`}`
     // Sizing
-    | `w:${SpacingKeys | `[${NumOrString}]`}`
-    | `min-w:${SpacingKeys | `[${NumOrString}]`}`
-    | `max-w:${SpacingKeys | `[${NumOrString}]`}`
-    | `h:${SpacingKeys | `[${NumOrString}]`}`
-    | `min-h:${SpacingKeys | `[${NumOrString}]`}`
-    | `max-h:${SpacingKeys | `[${NumOrString}]`}`
+    | `w:${SpacingKey | `[${NumOrString}]`}`
+    | `min-w:${SpacingKey | `[${NumOrString}]`}`
+    | `max-w:${SpacingKey | `[${NumOrString}]`}`
+    | `h:${SpacingKey | `[${NumOrString}]`}`
+    | `min-h:${SpacingKey | `[${NumOrString}]`}`
+    | `max-h:${SpacingKey | `[${NumOrString}]`}`
+    // Aspect ratio
+    | `aspect:${AspectRatioKey | `[${NumOrString}]`}`
 
     // TODO: more
     | `bg:${ColorKeys}`
@@ -112,10 +119,10 @@ export const createStyleBuilder = <
   // Helper to build spacing handler
   const spacingHandler =
     (properties: (keyof FlexStyle)[], isNegative?: boolean) =>
-    (val: SpacingKeys | `[${string}]`) => {
+    (val: SpacingKey | `[${string}]`) => {
       const isConstraintKey = (
-        val: SpacingKeys | `[${string}]`
-      ): val is SpacingKeys => Boolean(mergedTheme.spacing[val]);
+        val: SpacingKey | `[${string}]`
+      ): val is SpacingKey => Boolean(mergedTheme.spacing[val]);
 
       const spaceVal = isConstraintKey(val)
         ? mergedTheme.spacing[val]
@@ -180,6 +187,20 @@ export const createStyleBuilder = <
     h: spacingHandler(["height"]),
     "min-h": spacingHandler(["minHeight"]),
     "max-h": spacingHandler(["maxHeight"]),
+    // Aspect ratio
+    aspect: (inp: AspectRatioKey | `[${NumOrString}]`): FlexStyle => {
+      const cVal = mergedTheme.aspectRatios[inp];
+      if (cVal) {
+        return { aspectRatio: cVal[0] / cVal[1] };
+      }
+
+      const overrideVal = extractFromBrackets(inp);
+      if (typeof overrideVal === "number") {
+        return { aspectRatio: overrideVal };
+      }
+
+      return {};
+    },
 
     // TODO: More handlers here.
 
