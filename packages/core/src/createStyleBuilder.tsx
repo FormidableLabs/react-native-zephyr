@@ -16,6 +16,8 @@ import { FlexStyle } from "react-native";
 import { extractFromBrackets } from "./utils/extractFromBrackets";
 import { mergeThemes } from "./utils/mergeThemes";
 import { createColorHandlers } from "./handlers/createColorHandlers";
+import { createSpacingHandlers } from "./handlers/createSpacingHandlers";
+import { createAspectRatioHandlers } from "./handlers/createAspectRatioHandler";
 
 /**
  * Core builder fn. Takes in a set of handlers, and gives back a hook and component-builder.
@@ -122,92 +124,10 @@ export const createStyleBuilder = <
   // TODO: How do we get the extra handlers in there?
   // | (ExtraStyleHandlers extends null ? never : "fart");
 
-  // Helper to build spacing handler
-  const spacingHandler =
-    (properties: (keyof FlexStyle)[], isNegative?: boolean) =>
-    (val: SpacingKey | `[${string}]`) => {
-      const isConstraintKey = (
-        val: SpacingKey | `[${string}]`
-      ): val is SpacingKey => Boolean(mergedTheme.spacing[val]);
-
-      const spaceVal = isConstraintKey(val)
-        ? mergedTheme.spacing[val]
-        : extractFromBrackets(val);
-
-      return properties.reduce<{
-        [K in keyof FlexStyle]: number | string | undefined;
-      }>((acc, prop) => {
-        acc[prop] = isNegative
-          ? typeof spaceVal === "number"
-            ? -spaceVal
-            : `-${spaceVal}`
-          : spaceVal;
-        return acc;
-      }, {});
-    };
-
   // Build out our actual handlers.
   const handlers = {
-    // Margin
-    m: spacingHandler(["margin"]),
-    "-m": spacingHandler(["margin"], true),
-    mx: spacingHandler(["marginHorizontal"]),
-    "-mx": spacingHandler(["marginHorizontal"], true),
-    my: spacingHandler(["marginVertical"]),
-    "-my": spacingHandler(["marginVertical"], true),
-    ml: spacingHandler(["marginLeft"]),
-    "-ml": spacingHandler(["marginLeft"], true),
-    mr: spacingHandler(["marginRight"]),
-    "-mr": spacingHandler(["marginRight"], true),
-    mt: spacingHandler(["marginTop"]),
-    "-mt": spacingHandler(["marginTop"], true),
-    mb: spacingHandler(["marginBottom"]),
-    "-mb": spacingHandler(["marginBottom"], true),
-    // Padding
-    p: spacingHandler(["padding"]),
-    px: spacingHandler(["paddingHorizontal"]),
-    py: spacingHandler(["paddingVertical"]),
-    pl: spacingHandler(["paddingLeft"]),
-    pr: spacingHandler(["paddingRight"]),
-    pt: spacingHandler(["paddingTop"]),
-    pb: spacingHandler(["paddingBottom"]),
-    // Inset/positioning
-    inset: spacingHandler(["top", "bottom", "left", "right"]),
-    "-inset": spacingHandler(["top", "bottom", "left", "right"], true),
-    "inset-x": spacingHandler(["left", "right"]),
-    "-inset-x": spacingHandler(["left", "right"], true),
-    "inset-y": spacingHandler(["top", "bottom"]),
-    "-inset-y": spacingHandler(["top", "bottom"], true),
-    left: spacingHandler(["left"]),
-    "-left": spacingHandler(["left"], true),
-    right: spacingHandler(["right"]),
-    "-right": spacingHandler(["right"], true),
-    top: spacingHandler(["top"]),
-    "-top": spacingHandler(["top"], true),
-    bottom: spacingHandler(["bottom"]),
-    "-bottom": spacingHandler(["bottom"], true),
-    // Sizing
-    w: spacingHandler(["width"]),
-    "min-w": spacingHandler(["minWidth"]),
-    "max-w": spacingHandler(["maxWidth"]),
-    h: spacingHandler(["height"]),
-    "min-h": spacingHandler(["minHeight"]),
-    "max-h": spacingHandler(["maxHeight"]),
-    // Aspect ratio
-    aspect: (inp: AspectRatioKey | `[${NumOrString}]`): FlexStyle => {
-      const cVal = mergedTheme.aspectRatios[inp];
-      if (cVal) {
-        return { aspectRatio: cVal[0] / cVal[1] };
-      }
-
-      const overrideVal = extractFromBrackets(inp);
-      if (typeof overrideVal === "number") {
-        return { aspectRatio: overrideVal };
-      }
-
-      return {};
-    },
-    // Colors
+    ...createSpacingHandlers(mergedTheme.spacing),
+    ...createAspectRatioHandlers(mergedTheme.aspectRatios),
     ...createColorHandlers(mergedTheme.colors),
 
     // TODO: More handlers here.
