@@ -1,10 +1,8 @@
 import type { JSXElementConstructor } from "react";
 import * as React from "react";
 import {
-  ClassName,
   NonSymbol,
   NumOrString,
-  Optional,
   StyleHandlerSet,
   ThemeConstraints,
 } from "./types";
@@ -12,8 +10,7 @@ import { StyleContext } from "./StyleProvider";
 import { colorStringToRgb } from "./utils/colorStringToRgb";
 import { SimpleConstrainedCache } from "./utils/SimpleConstrainedCache";
 import { DefaultConstraints } from "./theme";
-import { FlexStyle } from "react-native";
-import { extractFromBrackets } from "./utils/extractFromBrackets";
+import { FlexStyle, ImageStyle, TextStyle } from "react-native";
 import { mergeThemes } from "./utils/mergeThemes";
 import { createColorHandlers } from "./handlers/createColorHandlers";
 import { createSpacingHandlers } from "./handlers/createSpacingHandlers";
@@ -23,6 +20,7 @@ import { createBorderHandlers } from "./handlers/createBorderHandlers";
 import { createRoundedHandlers } from "./handlers/createRoundedHandlers";
 import { createShadowHandlers } from "./handlers/createShadowHandlers";
 import { cleanMaybeNumberString } from "./utils/cleanMaybeNumberString";
+import { createTypographyHandlers } from "./handlers/createTypographyHandlers";
 
 /**
  * Core builder fn. Takes in a set of handlers, and gives back a hook and component-builder.
@@ -85,6 +83,18 @@ export const createStyleBuilder = <
       ? Theme["shadows"]
       : typeof DefaultConstraints.shadows) &
       ThemeExt["shadows"])
+  >;
+  type FontSizeKey = NonSymbol<
+    keyof ((Theme["fontSizes"] extends object
+      ? Theme["fontSizes"]
+      : typeof DefaultConstraints.fontSizes) &
+      ThemeExt["fontSizes"])
+  >;
+  type FontWeightKey = NonSymbol<
+    keyof ((Theme["fontWeights"] extends object
+      ? Theme["fontWeights"]
+      : typeof DefaultConstraints.fontWeights) &
+      ThemeExt["fontWeights"])
   >;
 
   type Cn =
@@ -183,9 +193,20 @@ export const createStyleBuilder = <
         | "wrap-reverse"
         | "nowrap"}`
     | `justify:${"start" | "end" | "center" | "between" | "around" | "evenly"}`
-    | `items:${"start" | "end" | "center" | "baseline" | "stretch"}`;
-
-  // TODO: more
+    | `items:${"start" | "end" | "center" | "baseline" | "stretch"}`
+    // Image handlers
+    | `resize:${NonNullable<ImageStyle["resizeMode"]>}`
+    // Typograhpy
+    | "italic"
+    | "uppercase"
+    | "lowercase"
+    | "capitalize"
+    | "underline"
+    | "line-through"
+    | "underline-line-through"
+    | `text-align:${NonNullable<TextStyle["textAlign"]>}`
+    | `text:${FontSizeKey}`
+    | `font-weight:${FontWeightKey}`;
   // TODO: How do we get the extra handlers in there?
   // | (ExtraStyleHandlers extends null ? never : "fart");
 
@@ -269,9 +290,16 @@ export const createStyleBuilder = <
         }[inp] as FlexStyle["alignItems"],
       };
     },
+    // Image handlers
+    resize: (resizeMode: NonNullable<ImageStyle["resizeMode"]>) =>
+      ({ resizeMode } as ImageStyle),
+    // Typography handlers
+    ...createTypographyHandlers({
+      fontSizes: mergedTheme.fontSizes,
+      fontWeights: mergedTheme.fontWeights,
+    }),
 
-    // TODO: More handlers here.
-
+    // And add in the extra handlers at the end, which can overwrite the default ones
     ...extraHandlers,
   };
 

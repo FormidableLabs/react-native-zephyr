@@ -1,20 +1,12 @@
-import { createStyleBuilder, defaultHandlers } from "react-native-style-buddy";
+import { createStyleBuilder } from "react-native-style-buddy";
 import { View, Text } from "react-native";
 
 export const { makeStyledComponent, styles } = createStyleBuilder({
-  // theme: {
-  //   spacing: { sm: 3 },
-  // },
-  // extendTheme: {},
-  // extraHandlers: {},
-  // // theme: {
-  // // spacing: { sm: 4, md: 8, lg: 12 },
-  // // },
-  // extendTheme: {
-  //   spacing: { huge: 24 },
-  //   colors: { poop: "brown" },
-  //   opacities: { meh: 0.7 },
-  // },
+  extendTheme: {
+    spacing: { huge: 24 },
+    colors: { poop: "brown" },
+    opacities: { meh: 0.7 },
+  },
   // extraHandlers: {
   //   baz: () => ({ backgroundColor: "red" }),
   // },
