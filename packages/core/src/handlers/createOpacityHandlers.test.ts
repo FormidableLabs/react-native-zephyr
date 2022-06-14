@@ -12,25 +12,21 @@ const { styles } = createStyleBuilder({});
 const C = DefaultConstraints.opacities;
 
 describe("createOpacityHandlers", () => {
-  const cases: [string, object, object][] = [
+  const cases: [Parameters<typeof styles>[0][], object][] = [
     // opacity:
-    ["opacity:50", styles("opacity:50"), { opacity: C["50"] }],
-    ["opacity:0", styles("opacity:0"), { opacity: C["0"] }],
-    ["opacity:[.33]", styles("opacity:[.33]"), { opacity: 0.33 }],
+    [["opacity:50"], { opacity: C["50"] }],
+    [["opacity:0"], { opacity: C["0"] }],
+    [["opacity:[.33]"], { opacity: 0.33 }],
     // bg-opacity:
     [
-      "bg:red-100 bg-opacity:50",
-      styles("bg:red-100", "bg-opacity:50"),
+      ["bg:red-100", "bg-opacity:50"],
       { backgroundColor: "rgba(254, 226, 226, 0.5)" },
     ],
   ];
 
-  it.each(cases)(
-    "builder(...%s)=%s equals %s",
-    (_, actualOutput, expectedOutput) => {
-      expect(actualOutput).toEqual(expectedOutput);
-    }
-  );
+  it.each(cases)("styles(...%s) equals %s", (cns, expectedOutput) => {
+    expect(styles(...cns)).toEqual(expectedOutput);
+  });
 
   it("allows custom constraints", () => {
     const { styles } = createStyleBuilder({

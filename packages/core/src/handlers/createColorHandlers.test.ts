@@ -13,39 +13,24 @@ const { styles } = createStyleBuilder({});
 const C = DefaultConstraints.colors;
 
 describe("createColorHandlers", () => {
-  const cases: [string, object, object][] = [
+  const cases: [Parameters<typeof styles>[0], object][] = [
     // bg:
-    ["bg:red-300", styles("bg:red-300"), { backgroundColor: C["red-300"] }],
-    ["bg:black", styles("bg:black"), { backgroundColor: C["black"] }],
-    ["bg:[pink]", styles("bg:[pink]"), { backgroundColor: "pink" }],
+    ["bg:red-300", { backgroundColor: C["red-300"] }],
+    ["bg:black", { backgroundColor: C["black"] }],
+    ["bg:[pink]", { backgroundColor: "pink" }],
     // border-color:
-    [
-      "border-color:red-300",
-      styles("border-color:red-300"),
-      { borderColor: C["red-300"] },
-    ],
-    [
-      "border-color:black",
-      styles("border-color:black"),
-      { borderColor: C["black"] },
-    ],
-    [
-      "border-color:[pink]",
-      styles("border-color:[pink]"),
-      { borderColor: "pink" },
-    ],
+    ["border-color:red-300", { borderColor: C["red-300"] }],
+    ["border-color:black", { borderColor: C["black"] }],
+    ["border-color:[pink]", { borderColor: "pink" }],
     // color:
-    ["color:red-300", styles("color:red-300"), { color: C["red-300"] }],
-    ["color:black", styles("color:black"), { color: C["black"] }],
-    ["color:[pink]", styles("color:[pink]"), { color: "pink" }],
+    ["color:red-300", { color: C["red-300"] }],
+    ["color:black", { color: C["black"] }],
+    ["color:[pink]", { color: "pink" }],
   ];
 
-  it.each(cases)(
-    "builder(...%s)=%s equals %s",
-    (_, actualOutput, expectedOutput) => {
-      expect(actualOutput).toEqual(expectedOutput);
-    }
-  );
+  it.each(cases)("styles(%s) equals %s", (cn, expectedOutput) => {
+    expect(styles(cn)).toEqual(expectedOutput);
+  });
 
   it("allows custom constraints", () => {
     const { styles } = createStyleBuilder({
