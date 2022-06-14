@@ -29,7 +29,7 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
   /**
    * Fundamental styling function, used by the useStyle hook
    */
-  const styled = <Cn extends ClassName<StyleHandlers>>(...classNames: Cn[]) => {
+  const styles = <Cn extends ClassName<StyleHandlers>>(...classNames: Cn[]) => {
     const cacheKey = classNames.join(",");
 
     const styles = {} as Record<string, any>;
@@ -66,7 +66,7 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
   /**
    * Core hook to apply styles based on props/style object
    */
-  const useStyled = <Cn extends ClassName<StyleHandlers>>({
+  const useStyles = <Cn extends ClassName<StyleHandlers>>({
     baseClasses = [],
     darkClasses = [],
   }: {
@@ -77,7 +77,7 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
     const classes = baseClasses.concat(isDarkMode ? darkClasses : []);
     const cacheKey = classes.join(",");
 
-    return React.useMemo(() => styled(...classes), [cacheKey]);
+    return React.useMemo(() => styles(...classes), [cacheKey]);
   };
 
   /**
@@ -94,7 +94,7 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
       Ref,
       T & { styled?: Cn[]; darkStyled?: Cn[] }
     >(({ styled, darkStyled, style, ...rest }, ref) => {
-      const addedStyles = useStyled({
+      const addedStyles = useStyles({
         baseClasses: styled,
         darkClasses: darkStyled,
       });
@@ -116,7 +116,7 @@ export const createStyleBuilder = <StyleHandlers extends StyleHandlerSet>({
     return ComponentWithStyles;
   };
 
-  return { styled, useStyle: useStyled, makeStyledComponent };
+  return { styles, useStyles, makeStyledComponent };
 };
 
 const HandlerArgRegExp = /^(.+):(.+)$/;

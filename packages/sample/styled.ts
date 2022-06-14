@@ -1,7 +1,7 @@
 import { createStyleBuilder, defaultHandlers } from "react-native-style-buddy";
 import { View, Text } from "react-native";
 
-export const { makeStyledComponent } = createStyleBuilder({
+export const { makeStyledComponent, styles } = createStyleBuilder({
   handlers: defaultHandlers,
 });
 
