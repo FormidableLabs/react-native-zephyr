@@ -1,7 +1,7 @@
 import { vi, describe, expect, it } from "vitest";
-import { DEFAULT_CONSTRAINTS, defaultHandlers } from "./defaultHandlers";
 import { createStyleBuilder } from "../createStyleBuilder";
 import { createColorHandlers } from "./createColorHandlers";
+import { DefaultConstraints } from "../theme";
 
 vi.mock("react-native", () => ({
   StyleSheet: {
@@ -10,7 +10,7 @@ vi.mock("react-native", () => ({
 }));
 
 const { styles } = createStyleBuilder({});
-const C = DEFAULT_CONSTRAINTS.COLORS;
+const C = DefaultConstraints.colors;
 
 describe("createColorHandlers", () => {
   const cases: [string, object, object][] = [

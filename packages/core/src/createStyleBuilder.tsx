@@ -21,6 +21,8 @@ import { createAspectRatioHandlers } from "./handlers/createAspectRatioHandler";
 import { createOpacityHandlers } from "./handlers/createOpacityHandlers";
 import { createBorderHandlers } from "./handlers/createBorderHandlers";
 import { createRoundedHandlers } from "./handlers/createRoundedHandlers";
+import { createShadowHandlers } from "./handlers/createShadowHandlers";
+import { cleanMaybeNumberString } from "./utils/cleanMaybeNumberString";
 
 /**
  * Core builder fn. Takes in a set of handlers, and gives back a hook and component-builder.
@@ -77,6 +79,12 @@ export const createStyleBuilder = <
       ? Theme["borderRadii"]
       : typeof DefaultConstraints.borderRadii) &
       ThemeExt["borderRadii"])
+  >;
+  type ShadowKey = NonSymbol<
+    keyof ((Theme["shadows"] extends object
+      ? Theme["shadows"]
+      : typeof DefaultConstraints.shadows) &
+      ThemeExt["shadows"])
   >;
 
   type Cn =
@@ -146,7 +154,36 @@ export const createStyleBuilder = <
     | `rounded-t:${BorderRadiiKey | `[${number}]`}`
     | `rounded-b:${BorderRadiiKey | `[${number}]`}`
     | `rounded-l:${BorderRadiiKey | `[${number}]`}`
-    | `rounded-r:${BorderRadiiKey | `[${number}]`}`;
+    | `rounded-r:${BorderRadiiKey | `[${number}]`}`
+    // Shadows
+    | `shadow:${ShadowKey}`
+    | "relative"
+    | "absolute"
+    | "hidden"
+    | "visible"
+    | "overflow:visible"
+    | "overflow:hidden"
+    | "overflow:scroll"
+    | `z:${NonNullable<FlexStyle["zIndex"]>}`
+    // Flex handlers
+    | `flex:${
+        | "1"
+        | "auto"
+        | "initial"
+        | "none"
+        | "row"
+        | "row-reverse"
+        | "col"
+        | "col-reverse"
+        | "grow"
+        | "grow-0"
+        | "shrink"
+        | "shrink-0"
+        | "wrap"
+        | "wrap-reverse"
+        | "nowrap"}`
+    | `justify:${"start" | "end" | "center" | "between" | "around" | "evenly"}`
+    | `items:${"start" | "end" | "center" | "baseline" | "stretch"}`;
 
   // TODO: more
   // TODO: How do we get the extra handlers in there?
@@ -160,6 +197,78 @@ export const createStyleBuilder = <
     ...createOpacityHandlers(mergedTheme.opacities),
     ...createBorderHandlers(mergedTheme.borderSizes),
     ...createRoundedHandlers(mergedTheme.borderRadii),
+    ...createShadowHandlers(mergedTheme.shadows),
+    // Position handlers
+    relative: () => ({ position: "relative" } as FlexStyle),
+    absolute: () => ({ position: "absolute" } as FlexStyle),
+    hidden: () => ({ display: "none" } as FlexStyle),
+    visible: () => ({ display: "flex" } as FlexStyle),
+    overflow: (overflow: NonNullable<FlexStyle["overflow"]>) =>
+      ({ overflow } as FlexStyle),
+    z: (zIndex: NonNullable<FlexStyle["zIndex"]>) =>
+      ({ zIndex: cleanMaybeNumberString(`${zIndex}`) } as FlexStyle),
+    // Flex handlers
+    flex: (
+      inp:
+        | "1"
+        | "auto"
+        | "initial"
+        | "none"
+        | "row"
+        | "row-reverse"
+        | "col"
+        | "col-reverse"
+        | "grow"
+        | "grow-0"
+        | "shrink"
+        | "shrink-0"
+        | "wrap"
+        | "wrap-reverse"
+        | "nowrap"
+    ) => {
+      return {
+        1: { flexGrow: 1, flexShrink: 1, flexBasis: "0%" },
+        auto: { flexGrow: 1, flexShrink: 1, flexBasis: "auto" },
+        initial: { flexGrow: 0, flexShrink: 1, flexBasis: "auto" },
+        none: { flexGrow: 0, flexShrink: 0, flexBasis: "auto" },
+        row: { flexDirection: "row" },
+        "row-reverse": { flexDirection: "row-reverse" },
+        col: { flexDirection: "column" },
+        "col-reverse": { flexDirection: "column-reverse" },
+        grow: { flexGrow: 1 },
+        "grow-0": { flexGrow: 0 },
+        shrink: { flexShrink: 1 },
+        "shrink-0": { flexShrink: 0 },
+        wrap: { flexWrap: "wrap" },
+        "wrap-reverse": { flexWrap: "wrap-reverse" },
+        nowrap: { flexWrap: "nowrap" },
+      }[inp] as FlexStyle;
+    },
+    justify: (
+      inp: "start" | "end" | "center" | "between" | "around" | "evenly"
+    ) => {
+      return {
+        justifyContent: {
+          start: "flex-start",
+          end: "flex-end",
+          center: "center",
+          between: "space-between",
+          around: "space-around",
+          evenly: "space-evenly",
+        }[inp] as FlexStyle["justifyContent"],
+      };
+    },
+    items: (inp: "start" | "end" | "center" | "baseline" | "stretch") => {
+      return {
+        alignItems: {
+          start: "flex-start",
+          end: "flex-end",
+          center: "center",
+          baseline: "baseline",
+          stretch: "stretch",
+        }[inp] as FlexStyle["alignItems"],
+      };
+    },
 
     // TODO: More handlers here.
 

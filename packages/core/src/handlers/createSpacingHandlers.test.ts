@@ -1,6 +1,6 @@
 import { vi, describe, it, expect } from "vitest";
 import { createStyleBuilder } from "../createStyleBuilder";
-import { DEFAULT_CONSTRAINTS, defaultSpacingHandlers } from "./defaultHandlers";
+import { DefaultConstraints } from "../theme";
 
 vi.mock("react-native", () => ({
   StyleSheet: {
@@ -9,7 +9,7 @@ vi.mock("react-native", () => ({
 }));
 
 const { styles: sb } = createStyleBuilder({});
-const C = DEFAULT_CONSTRAINTS.SPACING;
+const C = DefaultConstraints.spacing;
 
 describe.only("defaultSpacingHandlers", () => {
   const cases: [object, object][] = [

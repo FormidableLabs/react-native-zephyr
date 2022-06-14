@@ -1,7 +1,7 @@
 import { vi, describe, it, expect } from "vitest";
 import { createStyleBuilder } from "../createStyleBuilder";
-import { DEFAULT_CONSTRAINTS, defaultHandlers } from "./defaultHandlers";
 import { createBorderHandlers } from "./createBorderHandlers";
+import { DefaultConstraints } from "../theme";
 
 vi.mock("react-native", () => ({
   StyleSheet: {
@@ -10,7 +10,7 @@ vi.mock("react-native", () => ({
 }));
 
 const { styles } = createStyleBuilder({});
-const C = DEFAULT_CONSTRAINTS.BORDER_SIZES;
+const C = DefaultConstraints.borderSizes;
 
 describe("createBorderHandlers", () => {
   const cases: [string, object, object][] = [

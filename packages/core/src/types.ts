@@ -32,6 +32,10 @@ export type ThemeConstraints = {
   aspectRatios?: Record<NumOrString, readonly [number, number]>;
   borderSizes?: Record<NumOrString, number>;
   borderRadii?: Record<NumOrString, number>;
+  shadows?: Record<
+    NumOrString,
+    { android: number; ios: readonly [number, number, number, number] }
+  >;
 };
 
 export type NonOptional<T> = { [Key in keyof T]-?: T[Key] };

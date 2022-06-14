@@ -1,5 +1,4 @@
 import { vi, describe, it, expect } from "vitest";
-import { defaultHandlers } from "./defaultHandlers";
 import { createStyleBuilder } from "../createStyleBuilder";
 
 vi.mock("react-native", () => ({
@@ -8,79 +7,85 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const { styled: sb } = createStyleBuilder({
-  handlers: defaultHandlers,
-});
+const { styles } = createStyleBuilder({});
 
 describe("defaultFlexHandlers", () => {
   const cases: [string, object, object][] = [
     // justify:
-    ["justify:start", sb("justify:start"), { justifyContent: "flex-start" }],
-    ["justify:end", sb("justify:end"), { justifyContent: "flex-end" }],
-    ["justify:center", sb("justify:center"), { justifyContent: "center" }],
+    [
+      "justify:start",
+      styles("justify:start"),
+      { justifyContent: "flex-start" },
+    ],
+    ["justify:end", styles("justify:end"), { justifyContent: "flex-end" }],
+    ["justify:center", styles("justify:center"), { justifyContent: "center" }],
     [
       "justify:between",
-      sb("justify:between"),
+      styles("justify:between"),
       { justifyContent: "space-between" },
     ],
     [
       "justify:around",
-      sb("justify:around"),
+      styles("justify:around"),
       { justifyContent: "space-around" },
     ],
     [
       "justify:evenly",
-      sb("justify:evenly"),
+      styles("justify:evenly"),
       { justifyContent: "space-evenly" },
     ],
 
     // items:
-    ["items:start", sb("items:start"), { alignItems: "flex-start" }],
-    ["items:end", sb("items:end"), { alignItems: "flex-end" }],
-    ["items:center", sb("items:center"), { alignItems: "center" }],
-    ["items:baseline", sb("items:baseline"), { alignItems: "baseline" }],
-    ["items:stretch", sb("items:stretch"), { alignItems: "stretch" }],
+    ["items:start", styles("items:start"), { alignItems: "flex-start" }],
+    ["items:end", styles("items:end"), { alignItems: "flex-end" }],
+    ["items:center", styles("items:center"), { alignItems: "center" }],
+    ["items:baseline", styles("items:baseline"), { alignItems: "baseline" }],
+    ["items:stretch", styles("items:stretch"), { alignItems: "stretch" }],
 
     // flex helpers
-    ["flex:1", sb("flex:1"), { flexGrow: 1, flexShrink: 1, flexBasis: "0%" }],
+    [
+      "flex:1",
+      styles("flex:1"),
+      { flexGrow: 1, flexShrink: 1, flexBasis: "0%" },
+    ],
     [
       "flex:auto",
-      sb("flex:auto"),
+      styles("flex:auto"),
       { flexGrow: 1, flexShrink: 1, flexBasis: "auto" },
     ],
     [
       "flex:initial",
-      sb("flex:initial"),
+      styles("flex:initial"),
       { flexGrow: 0, flexShrink: 1, flexBasis: "auto" },
     ],
     [
       "flex:none",
-      sb("flex:none"),
+      styles("flex:none"),
       { flexGrow: 0, flexShrink: 0, flexBasis: "auto" },
     ],
-    ["flex:row", sb("flex:row"), { flexDirection: "row" }],
+    ["flex:row", styles("flex:row"), { flexDirection: "row" }],
     [
       "flex:row-reverse",
-      sb("flex:row-reverse"),
+      styles("flex:row-reverse"),
       { flexDirection: "row-reverse" },
     ],
-    ["flex:col", sb("flex:col"), { flexDirection: "column" }],
+    ["flex:col", styles("flex:col"), { flexDirection: "column" }],
     [
       "flex:col-reverse",
-      sb("flex:col-reverse"),
+      styles("flex:col-reverse"),
       { flexDirection: "column-reverse" },
     ],
-    ["flex:grow", sb("flex:grow"), { flexGrow: 1 }],
-    ["flex:grow-0", sb("flex:grow-0"), { flexGrow: 0 }],
-    ["flex:shrink", sb("flex:shrink"), { flexShrink: 1 }],
-    ["flex:shrink-0", sb("flex:shrink-0"), { flexShrink: 0 }],
-    ["flex:wrap", sb("flex:wrap"), { flexWrap: "wrap" }],
+    ["flex:grow", styles("flex:grow"), { flexGrow: 1 }],
+    ["flex:grow-0", styles("flex:grow-0"), { flexGrow: 0 }],
+    ["flex:shrink", styles("flex:shrink"), { flexShrink: 1 }],
+    ["flex:shrink-0", styles("flex:shrink-0"), { flexShrink: 0 }],
+    ["flex:wrap", styles("flex:wrap"), { flexWrap: "wrap" }],
     [
       "flex:wrap-reverse",
-      sb("flex:wrap-reverse"),
+      styles("flex:wrap-reverse"),
       { flexWrap: "wrap-reverse" },
     ],
-    ["flex:nowrap", sb("flex:nowrap"), { flexWrap: "nowrap" }],
+    ["flex:nowrap", styles("flex:nowrap"), { flexWrap: "nowrap" }],
   ];
 
   it.each(cases)(

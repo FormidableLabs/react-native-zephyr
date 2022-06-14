@@ -1,5 +1,4 @@
 import { vi, describe, it, expect } from "vitest";
-import { defaultHandlers } from "./defaultHandlers";
 import { createStyleBuilder } from "../createStyleBuilder";
 
 vi.mock("react-native", () => ({
@@ -8,20 +7,18 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const { styled: sb } = createStyleBuilder({
-  handlers: defaultHandlers,
-});
+const { styles } = createStyleBuilder({});
 
 describe("defaultPositionHandlers", () => {
   const cases: [string, object, object][] = [
-    ["relative", sb("relative"), { position: "relative" }],
-    ["absolute", sb("absolute"), { position: "absolute" }],
-    ["hidden", sb("hidden"), { display: "none" }],
-    ["visible", sb("visible"), { display: "flex" }],
-    ["overflow:visible", sb("overflow:visible"), { overflow: "visible" }],
-    ["overflow:hidden", sb("overflow:hidden"), { overflow: "hidden" }],
-    ["overflow:scroll", sb("overflow:scroll"), { overflow: "scroll" }],
-    ["z:0", sb("z:0"), { zIndex: 0 }],
+    ["relative", styles("relative"), { position: "relative" }],
+    ["absolute", styles("absolute"), { position: "absolute" }],
+    ["hidden", styles("hidden"), { display: "none" }],
+    ["visible", styles("visible"), { display: "flex" }],
+    ["overflow:visible", styles("overflow:visible"), { overflow: "visible" }],
+    ["overflow:hidden", styles("overflow:hidden"), { overflow: "hidden" }],
+    ["overflow:scroll", styles("overflow:scroll"), { overflow: "scroll" }],
+    ["z:0", styles("z:0"), { zIndex: 0 }],
   ];
 
   it.each(cases)(
