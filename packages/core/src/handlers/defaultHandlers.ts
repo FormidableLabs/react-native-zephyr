@@ -6,104 +6,10 @@ import { createRoundedHandlers } from "./createRoundedHandlers";
 import { createShadowHandlers } from "./createShadowHandlers";
 import { cleanMaybeNumberString } from "../utils/cleanMaybeNumberString";
 import { createOpacityHandlers } from "./createOpacityHandlers";
-import { createAspectRatioHandlers } from "./createAspectRatioHandlers";
 import { createTypographyHandlers } from "./createTypographyHandlers";
 
 const BASE_FONT_SIZE = 14;
 export const DEFAULT_CONSTRAINTS = {
-  SPACING: {
-    "0": 0,
-    pt: 1,
-    "0.5": 2,
-    "1": 4,
-    "1.5": 6,
-    "2": 8,
-    "2.5": 10,
-    "3": 12,
-    "3.5": 14,
-    "4": 16,
-    "5": 20,
-    "6": 24,
-    "7": 28,
-    "8": 32,
-    "9": 36,
-    "10": 40,
-    "11": 44,
-    "12": 48,
-    "14": 56,
-    "16": 64,
-    "20": 80,
-    "24": 96,
-    "28": 112,
-    "32": 128,
-    "36": 144,
-    "40": 160,
-    "44": 176,
-    "48": 192,
-    "52": 208,
-    "56": 224,
-    "60": 240,
-    "64": 256,
-    "72": 288,
-    "80": 320,
-    "96": 384,
-    "1/4": "25%",
-    "1/2": "50%",
-    "3/4": "75%",
-    "1/3": "33.3333333%",
-    "2/3": "66.666666%",
-    "1/5": "20%",
-    "2/5": "40%",
-    "3/5": "60%",
-    "4/5": "80%",
-    full: "100%",
-  } as const,
-  COLORS: {
-    white: "#fff",
-    black: "#000",
-    ...flattenColor("coolGray", "gray"),
-    ...flattenColor("red", "red"),
-    ...flattenColor("green", "green"),
-    ...flattenColor("blue", "blue"),
-    ...flattenColor("indigo", "indigo"),
-    ...flattenColor("purple", "purple"),
-    ...flattenColor("pink", "pink"),
-  } as const,
-  OPACITIES: {
-    "0": 0,
-    "5": 0.05,
-    "10": 0.1,
-    "20": 0.2,
-    "25": 0.25,
-    "30": 0.3,
-    "40": 0.4,
-    "50": 0.5,
-    "60": 0.6,
-    "70": 0.7,
-    "75": 0.75,
-    "80": 0.8,
-    "90": 0.9,
-    "95": 0.95,
-  } as const,
-  BORDER_SIZES: {
-    "0": 0,
-    hairline: StyleSheet.hairlineWidth,
-    "1": 1,
-    "2": 2,
-    "4": 4,
-    "8": 8,
-  } as const,
-  BORDER_RADII: {
-    none: 0,
-    sm: 0.125 * BASE_FONT_SIZE,
-    base: 0.25 * BASE_FONT_SIZE,
-    md: 0.375 * BASE_FONT_SIZE,
-    lg: 0.5 * BASE_FONT_SIZE,
-    xl: 0.75 * BASE_FONT_SIZE,
-    "2xl": BASE_FONT_SIZE,
-    "3xl": 1.5 * BASE_FONT_SIZE,
-    full: 999,
-  } as const,
   FONT_SIZES: {
     xs: [0.75 * BASE_FONT_SIZE, BASE_FONT_SIZE],
     sm: [0.875 * BASE_FONT_SIZE, 1.25 * BASE_FONT_SIZE],
@@ -155,19 +61,6 @@ export const DEFAULT_CONSTRAINTS = {
     "3-2": [3, 2],
   } as const,
 };
-
-export const defaultBorderHandlers = createBorderHandlers(
-  DEFAULT_CONSTRAINTS.BORDER_SIZES
-);
-export const defaultRoundedHandlers = createRoundedHandlers(
-  DEFAULT_CONSTRAINTS.BORDER_RADII
-);
-export const defaultColorHandlers = createColorHandlers(
-  DEFAULT_CONSTRAINTS.COLORS
-);
-export const defaultOpacityHandlers = createOpacityHandlers(
-  DEFAULT_CONSTRAINTS.OPACITIES
-);
 
 export const defaultShadowHandlers = createShadowHandlers(
   DEFAULT_CONSTRAINTS.SHADOWS
@@ -261,8 +154,6 @@ export const defaultImageHandlers = {
  * Aggregate the defaults
  */
 export const defaultHandlers = {
-  ...defaultBorderHandlers,
-  ...defaultRoundedHandlers,
   ...defaultShadowHandlers,
   ...defaultPositioningHandlers,
   ...defaultFlexHandlers,

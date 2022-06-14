@@ -30,6 +30,8 @@ export type ThemeConstraints = {
   colors?: Record<NumOrString, string> | undefined;
   opacities?: Record<NumOrString, number>;
   aspectRatios?: Record<NumOrString, readonly [number, number]>;
+  borderSizes?: Record<NumOrString, number>;
+  borderRadii?: Record<NumOrString, number>;
 };
 
 export type NonOptional<T> = { [Key in keyof T]-?: T[Key] };

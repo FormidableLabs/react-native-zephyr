@@ -19,6 +19,8 @@ import { createColorHandlers } from "./handlers/createColorHandlers";
 import { createSpacingHandlers } from "./handlers/createSpacingHandlers";
 import { createAspectRatioHandlers } from "./handlers/createAspectRatioHandler";
 import { createOpacityHandlers } from "./handlers/createOpacityHandlers";
+import { createBorderHandlers } from "./handlers/createBorderHandlers";
+import { createRoundedHandlers } from "./handlers/createRoundedHandlers";
 
 /**
  * Core builder fn. Takes in a set of handlers, and gives back a hook and component-builder.
@@ -40,29 +42,41 @@ export const createStyleBuilder = <
   const mergedTheme = mergeThemes({ theme, extendTheme });
 
   // TODO: DRY this up.
-  type Spacing = (Theme["spacing"] extends object
-    ? Theme["spacing"]
-    : typeof DefaultConstraints.spacing) &
-    ThemeExt["spacing"];
-  type SpacingKey = NonSymbol<keyof Spacing>;
-
-  type AspectRatio = (Theme["aspectRatios"] extends object
-    ? Theme["aspectRatios"]
-    : typeof DefaultConstraints.aspectRatios) &
-    ThemeExt["aspectRatios"];
-  type AspectRatioKey = NonSymbol<keyof AspectRatio>;
-
-  type Colors = (Theme["colors"] extends object
-    ? Theme["colors"]
-    : typeof DefaultConstraints.colors) &
-    ThemeExt["colors"];
-  type ColorKey = NonSymbol<keyof Colors>;
-
+  type SpacingKey = NonSymbol<
+    keyof (Theme["spacing"] extends object
+      ? Theme["spacing"]
+      : typeof DefaultConstraints.spacing) &
+      ThemeExt["spacing"]
+  >;
+  type AspectRatioKey = NonSymbol<
+    keyof (Theme["aspectRatios"] extends object
+      ? Theme["aspectRatios"]
+      : typeof DefaultConstraints.aspectRatios) &
+      ThemeExt["aspectRatios"]
+  >;
+  type ColorKey = NonSymbol<
+    keyof (Theme["colors"] extends object
+      ? Theme["colors"]
+      : typeof DefaultConstraints.colors) &
+      ThemeExt["colors"]
+  >;
   type OpacityKey = NonSymbol<
     keyof ((Theme["opacities"] extends object
       ? Theme["opacities"]
       : typeof DefaultConstraints.opacities) &
       ThemeExt["opacities"])
+  >;
+  type BorderSizeKey = NonSymbol<
+    keyof ((Theme["borderSizes"] extends object
+      ? Theme["borderSizes"]
+      : typeof DefaultConstraints.borderSizes) &
+      ThemeExt["borderSizes"])
+  >;
+  type BorderRadiiKey = NonSymbol<
+    keyof ((Theme["borderRadii"] extends object
+      ? Theme["borderRadii"]
+      : typeof DefaultConstraints.borderRadii) &
+      ThemeExt["borderRadii"])
   >;
 
   type Cn =
@@ -120,7 +134,19 @@ export const createStyleBuilder = <
     | `tint:${ColorKey | `[${string}]`}`
     // Opacity
     | `bg-opacity:${OpacityKey | `[${number}]`}`
-    | `opacity:${OpacityKey | `[${number}]`}`;
+    | `opacity:${OpacityKey | `[${number}]`}`
+    // Borders
+    | `border:${BorderSizeKey | `[${number}]`}`
+    | `border-t:${BorderSizeKey | `[${number}]`}`
+    | `border-b:${BorderSizeKey | `[${number}]`}`
+    | `border-l:${BorderSizeKey | `[${number}]`}`
+    | `border-r:${BorderSizeKey | `[${number}]`}`
+    // Border radii
+    | `rounded:${BorderRadiiKey | `[${number}]`}`
+    | `rounded-t:${BorderRadiiKey | `[${number}]`}`
+    | `rounded-b:${BorderRadiiKey | `[${number}]`}`
+    | `rounded-l:${BorderRadiiKey | `[${number}]`}`
+    | `rounded-r:${BorderRadiiKey | `[${number}]`}`;
 
   // TODO: more
   // TODO: How do we get the extra handlers in there?
@@ -132,6 +158,8 @@ export const createStyleBuilder = <
     ...createAspectRatioHandlers(mergedTheme.aspectRatios),
     ...createColorHandlers(mergedTheme.colors),
     ...createOpacityHandlers(mergedTheme.opacities),
+    ...createBorderHandlers(mergedTheme.borderSizes),
+    ...createRoundedHandlers(mergedTheme.borderRadii),
 
     // TODO: More handlers here.
 

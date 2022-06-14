@@ -1,5 +1,7 @@
 import { flattenColor } from "./handlers/twColors";
+import { StyleSheet } from "react-native";
 
+const BASE_FONT_SIZE = 14;
 export const DefaultConstraints = {
   spacing: {
     "0": 0,
@@ -85,5 +87,24 @@ export const DefaultConstraints = {
     "2-1": [2, 1],
     "2-3": [2, 3],
     "3-2": [3, 2],
+  } as const,
+  borderSizes: {
+    "0": 0,
+    hairline: StyleSheet.hairlineWidth,
+    "1": 1,
+    "2": 2,
+    "4": 4,
+    "8": 8,
+  } as const,
+  borderRadii: {
+    none: 0,
+    sm: 0.125 * BASE_FONT_SIZE,
+    base: 0.25 * BASE_FONT_SIZE,
+    md: 0.375 * BASE_FONT_SIZE,
+    lg: 0.5 * BASE_FONT_SIZE,
+    xl: 0.75 * BASE_FONT_SIZE,
+    "2xl": BASE_FONT_SIZE,
+    "3xl": 1.5 * BASE_FONT_SIZE,
+    full: 999,
   } as const,
 } as const;

@@ -2,9 +2,9 @@ import { createStyleBuilder, defaultHandlers } from "react-native-style-buddy";
 import { View, Text } from "react-native";
 
 export const { makeStyledComponent, styles } = createStyleBuilder({
-  theme: {
-    spacing: { sm: 3 },
-  },
+  // theme: {
+  //   spacing: { sm: 3 },
+  // },
   // extendTheme: {},
   // extraHandlers: {},
   // // theme: {
@@ -23,4 +23,4 @@ export const { makeStyledComponent, styles } = createStyleBuilder({
 export const StyledView = makeStyledComponent(View);
 export const StyledText = makeStyledComponent(Text);
 
-const f = styles("p:sm", "m:[32]", "fart");
+const f = styles("p:3", "m:[32]");
