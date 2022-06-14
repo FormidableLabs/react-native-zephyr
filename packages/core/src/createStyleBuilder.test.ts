@@ -1,5 +1,6 @@
 import { vi, describe, it, expect } from "vitest";
 import { createStyleBuilder } from "./createStyleBuilder";
+import { DefaultConstraints } from "./theme";
 
 vi.mock("react-native", () => ({
   StyleSheet: {
@@ -8,27 +9,12 @@ vi.mock("react-native", () => ({
 }));
 
 describe("createStyleBuilder", () => {
-  // it("creates simple builder", () => {
-  //   const { styles } = createStyleBuilder({
-  //     handlers: {
-  //       p: (x: "1" | "2" | "3") => ({ padding: 10 * +x } as FlexStyle),
-  //     },
-  //   });
-  //
-  //   expect(styled("p:1")).toEqual({ padding: 10 });
-  //   // @ts-expect-error
-  //   expect(styled("m:1")).toEqual({});
-  // });
-
-  // it("handles no-arg handlers", () => {
-  //   const { styled } = createStyleBuilder({
-  //     handlers: {
-  //       capitalize: () => ({ textTransform: "capitalize" } as TextStyle),
-  //     },
-  //   });
-  //
-  //   expect(styled("capitalize")).toEqual({ textTransform: "capitalize" });
-  // });
+  it("creates builder with default constraints/handlers", () => {
+    const { styles } = createStyleBuilder();
+    expect(styles("p:1")).toEqual({ padding: DefaultConstraints.spacing["1"] });
+    // @ts-expect-error
+    expect(styles("nope?")).toEqual({});
+  });
 
   it("maintains referential equality", () => {
     const { styles } = createStyleBuilder({});
@@ -39,5 +25,40 @@ describe("createStyleBuilder", () => {
 
     expect(s1).toBe(s2);
     expect(s1).not.toBe(s3);
+  });
+
+  it("allows overriding theme values", () => {
+    const { styles } = createStyleBuilder({
+      theme: {
+        spacing: { sm: 4, md: 8 },
+      },
+    });
+
+    expect(styles("p:sm")).toEqual({ padding: 4 });
+    expect(styles("p:md")).toEqual({ padding: 8 });
+    // @ts-expect-error
+    expect(styles("p:0")).toEqual({});
+  });
+
+  it("allows extending theme values", () => {
+    const { styles } = createStyleBuilder({
+      extendTheme: {
+        spacing: { sm: 4, md: 8 },
+      },
+    });
+
+    expect(styles("p:sm")).toEqual({ padding: 4 });
+    expect(styles("p:md")).toEqual({ padding: 8 });
+    expect(styles("p:1")).toEqual({ padding: DefaultConstraints.spacing["1"] });
+  });
+
+  it("allows for extra handlers", () => {
+    const { styles } = createStyleBuilder({
+      extraHandlers: {
+        foo: () => ({ color: "brown" }),
+      },
+    });
+
+    expect(styles("foo")).toEqual({ color: "brown" });
   });
 });

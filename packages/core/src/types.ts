@@ -1,5 +1,6 @@
 import { TextStyle } from "react-native";
 
+export type ValueOf<T> = T[keyof T];
 export type StyleHandler = (...args: any[]) => object;
 export type StyleHandlerSet = {
   [key: string]: StyleHandler;
@@ -8,6 +9,12 @@ export type StyleHandlerSet = {
 export type NonSymbol<T> = Exclude<T, symbol>;
 
 export type BgOpacityRecord = { "--bg-opacity"?: number };
+
+export type ClassName<P extends StyleHandlerSet> = ValueOf<{
+  [K in keyof P]: Parameters<P[K]>[0] extends undefined
+    ? `${NonSymbol<K>}`
+    : `${NonSymbol<K>}:${Parameters<P[K]>[0]}`;
+}>;
 
 /**
  * THEME TYPES

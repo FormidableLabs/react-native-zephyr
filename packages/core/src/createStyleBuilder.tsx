@@ -1,6 +1,7 @@
 import type { JSXElementConstructor } from "react";
 import * as React from "react";
 import {
+  ClassName,
   NonSymbol,
   NumOrString,
   StyleHandlerSet,
@@ -26,9 +27,9 @@ import { createTypographyHandlers } from "./handlers/createTypographyHandlers";
  * Core builder fn. Takes in a set of handlers, and gives back a hook and component-builder.
  */
 export const createStyleBuilder = <
-  ExtraStyleHandlers extends StyleHandlerSet | undefined,
   Theme extends ThemeConstraints,
-  ThemeExt extends ThemeConstraints
+  ThemeExt extends ThemeConstraints,
+  ExtraStyleHandlers extends StyleHandlerSet | undefined = undefined
 >({
   extraHandlers,
   theme,
@@ -37,28 +38,28 @@ export const createStyleBuilder = <
   extraHandlers?: ExtraStyleHandlers;
   theme?: Theme;
   extendTheme?: ThemeExt;
-}) => {
+} = {}) => {
   const cache = new SimpleConstrainedCache({ maxNumRecords: 200 });
   const mergedTheme = mergeThemes({ theme, extendTheme });
 
   // TODO: DRY this up.
   type SpacingKey = NonSymbol<
-    keyof (Theme["spacing"] extends object
+    keyof ((Theme["spacing"] extends object
       ? Theme["spacing"]
       : typeof DefaultConstraints.spacing) &
-      ThemeExt["spacing"]
+      ThemeExt["spacing"])
   >;
   type AspectRatioKey = NonSymbol<
-    keyof (Theme["aspectRatios"] extends object
+    keyof ((Theme["aspectRatios"] extends object
       ? Theme["aspectRatios"]
       : typeof DefaultConstraints.aspectRatios) &
-      ThemeExt["aspectRatios"]
+      ThemeExt["aspectRatios"])
   >;
   type ColorKey = NonSymbol<
-    keyof (Theme["colors"] extends object
+    keyof ((Theme["colors"] extends object
       ? Theme["colors"]
       : typeof DefaultConstraints.colors) &
-      ThemeExt["colors"]
+      ThemeExt["colors"])
   >;
   type OpacityKey = NonSymbol<
     keyof ((Theme["opacities"] extends object
@@ -206,9 +207,10 @@ export const createStyleBuilder = <
     | "underline-line-through"
     | `text-align:${NonNullable<TextStyle["textAlign"]>}`
     | `text:${FontSizeKey}`
-    | `font-weight:${FontWeightKey}`;
-  // TODO: How do we get the extra handlers in there?
-  // | (ExtraStyleHandlers extends null ? never : "fart");
+    | `font-weight:${FontWeightKey}`
+    | (typeof extraHandlers extends undefined
+        ? never
+        : ClassName<NonNullable<typeof extraHandlers>>);
 
   // Build out our actual handlers.
   const handlers = {

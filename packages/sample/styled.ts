@@ -3,16 +3,11 @@ import { View, Text } from "react-native";
 
 export const { makeStyledComponent, styles } = createStyleBuilder({
   extendTheme: {
-    spacing: { huge: 24 },
-    colors: { poop: "brown" },
-    opacities: { meh: 0.7 },
+    spacing: { sm: 4 },
   },
-  // extraHandlers: {
-  //   baz: () => ({ backgroundColor: "red" }),
-  // },
 });
 
 export const StyledView = makeStyledComponent(View);
 export const StyledText = makeStyledComponent(Text);
 
-const f = styles("p:3", "m:[32]");
+const f = styles("p:3", "p:sm");

@@ -28,7 +28,8 @@
     "build": "rm -rf dist && tsc",
     "dev": "tsc --watch",
     "typecheck": "tsc --noEmit",
-    "test": "vitest run",
+    "test": "yarn typecheck && vitest run",
+    "test:watch": "vitest",
     "prepublishOnly": "cp ../../README.md ./README.md && yarn test && yarn build",
     "preversion": "yarn run test"
   },
