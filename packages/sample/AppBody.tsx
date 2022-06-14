@@ -15,7 +15,9 @@ export const AppBody = () => {
           "shadow:lg",
         ]}
       >
-        <StyledText styled={["text:2xl", "font-weight:bold"]}>
+        <StyledText
+          styled={["text:2xl", "font-weight:bold", { "color:blue-700": true }]}
+        >
           Hello world!
         </StyledText>
       </StyledView>

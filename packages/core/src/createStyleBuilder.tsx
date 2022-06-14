@@ -22,6 +22,7 @@ import { createRoundedHandlers } from "./handlers/createRoundedHandlers";
 import { createShadowHandlers } from "./handlers/createShadowHandlers";
 import { cleanMaybeNumberString } from "./utils/cleanMaybeNumberString";
 import { createTypographyHandlers } from "./handlers/createTypographyHandlers";
+import { flattenClassNameArgs } from "./utils/flattenClassNameArgs";
 
 /**
  * Core builder fn. Takes in a set of handlers, and gives back a hook and component-builder.
@@ -306,10 +307,13 @@ export const createStyleBuilder = <
     ...extraHandlers,
   };
 
+  type CnArg = Cn | { [key in Cn]?: boolean };
+
   /**
    * Fundamental styling function, used by the useStyle hook
    */
-  const styles = (...classNames: Cn[]): Record<string, any> => {
+  const styles = (...args: CnArg[]): Record<string, any> => {
+    const classNames = flattenClassNameArgs(...args);
     const cacheKey = classNames.join(",");
 
     const styles = {} as Record<string, any>;
@@ -354,11 +358,13 @@ export const createStyleBuilder = <
     baseClasses = [],
     darkClasses = [],
   }: {
-    baseClasses?: Cn[];
-    darkClasses?: Cn[];
+    baseClasses?: CnArg[];
+    darkClasses?: CnArg[];
   }) => {
     const { isDarkMode } = React.useContext(StyleContext);
-    const classes = baseClasses.concat(isDarkMode ? darkClasses : []);
+    const classes = flattenClassNameArgs<Cn>(...baseClasses).concat(
+      isDarkMode ? flattenClassNameArgs<Cn>(...darkClasses) : []
+    );
     const cacheKey = classes.join(",");
 
     return React.useMemo(() => styles(...classes), [cacheKey]);
@@ -372,7 +378,7 @@ export const createStyleBuilder = <
   ) => {
     const ComponentWithStyles = React.forwardRef<
       Ref,
-      T & { styled?: Cn[]; darkStyled?: Cn[] }
+      T & { styled?: CnArg[]; darkStyled?: CnArg[] }
     >(({ styled, darkStyled, style, ...rest }, ref) => {
       const addedStyles = useStyles({
         baseClasses: styled,

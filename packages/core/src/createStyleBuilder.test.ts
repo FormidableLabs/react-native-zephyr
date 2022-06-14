@@ -8,10 +8,12 @@ vi.mock("react-native", () => ({
   },
 }));
 
+const C = DefaultConstraints.spacing;
+
 describe("createStyleBuilder", () => {
   it("creates builder with default constraints/handlers", () => {
     const { styles } = createStyleBuilder();
-    expect(styles("p:1")).toEqual({ padding: DefaultConstraints.spacing["1"] });
+    expect(styles("p:1")).toEqual({ padding: C["1"] });
     // @ts-expect-error
     expect(styles("nope?")).toEqual({});
   });
@@ -49,7 +51,7 @@ describe("createStyleBuilder", () => {
 
     expect(styles("p:sm")).toEqual({ padding: 4 });
     expect(styles("p:md")).toEqual({ padding: 8 });
-    expect(styles("p:1")).toEqual({ padding: DefaultConstraints.spacing["1"] });
+    expect(styles("p:1")).toEqual({ padding: C["1"] });
   });
 
   it("allows for extra handlers", () => {
@@ -60,5 +62,14 @@ describe("createStyleBuilder", () => {
     });
 
     expect(styles("foo")).toEqual({ color: "brown" });
+  });
+
+  it("allows for clsx-like syntax", () => {
+    const { styles } = createStyleBuilder();
+
+    expect(styles("m:3", { "p:4": true, "w:7": false })).toEqual({
+      margin: C["3"],
+      padding: C["4"],
+    });
   });
 });
