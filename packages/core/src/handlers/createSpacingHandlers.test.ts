@@ -1,5 +1,4 @@
 import { vi, describe, it, expect } from "vitest";
-import { createSpacingHandlers } from "./createSpacingHandlers";
 import { createStyleBuilder } from "../createStyleBuilder";
 import { DEFAULT_CONSTRAINTS, defaultSpacingHandlers } from "./defaultHandlers";
 
@@ -9,12 +8,10 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const { styled: sb } = createStyleBuilder({
-  handlers: defaultSpacingHandlers,
-});
+const { styles: sb } = createStyleBuilder({});
 const C = DEFAULT_CONSTRAINTS.SPACING;
 
-describe("defaultSpacingHandlers", () => {
+describe.only("defaultSpacingHandlers", () => {
   const cases: [object, object][] = [
     // m:
     [sb("m:1"), { margin: C["1"] }],
@@ -174,12 +171,14 @@ describe("defaultSpacingHandlers", () => {
   );
 
   it("allows for custom constraints", () => {
-    const { styled } = createStyleBuilder({
-      handlers: createSpacingHandlers({ 1: 1, 2: 2 } as const),
+    const { styles } = createStyleBuilder({
+      theme: {
+        spacing: { sm: 3 },
+      },
     });
 
-    expect(styled("m:2")).toEqual({ margin: 2 });
+    expect(styles("m:sm")).toEqual({ margin: 3 });
     // @ts-expect-error
-    expect(styled("m:3")).toEqual({});
+    expect(styles("m:3")).toEqual({});
   });
 });

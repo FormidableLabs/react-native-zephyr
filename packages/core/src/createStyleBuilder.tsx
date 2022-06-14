@@ -20,7 +20,7 @@ import { mergeThemes } from "./utils/mergeThemes";
  * Core builder fn. Takes in a set of handlers, and gives back a hook and component-builder.
  */
 export const createStyleBuilder = <
-  ExtraStyleHandlers extends StyleHandlerSet,
+  ExtraStyleHandlers extends StyleHandlerSet | undefined,
   Theme extends ThemeConstraints,
   ThemeExt extends ThemeConstraints
 >({
@@ -57,6 +57,7 @@ export const createStyleBuilder = <
 
   type Cn =
     // Margins
+
     | `m:${SpacingKeys | `[${NumOrString}]`}`
     | `-m:${SpacingKeys | `[${NumOrString}]`}`
     | `mx:${SpacingKeys | `[${NumOrString}]`}`
@@ -94,10 +95,19 @@ export const createStyleBuilder = <
     | `-top:${SpacingKeys | `[${NumOrString}]`}`
     | `bottom:${SpacingKeys | `[${NumOrString}]`}`
     | `-bottom:${SpacingKeys | `[${NumOrString}]`}`
+    // Sizing
+    | `w:${SpacingKeys | `[${NumOrString}]`}`
+    | `min-w:${SpacingKeys | `[${NumOrString}]`}`
+    | `max-w:${SpacingKeys | `[${NumOrString}]`}`
+    | `h:${SpacingKeys | `[${NumOrString}]`}`
+    | `min-h:${SpacingKeys | `[${NumOrString}]`}`
+    | `max-h:${SpacingKeys | `[${NumOrString}]`}`
+
     // TODO: more
     | `bg:${ColorKeys}`
-    | `bg-opacity:${OpacityKeys}`
-    | ClassName<ExtraStyleHandlers>;
+    | `bg-opacity:${OpacityKeys}`;
+  // TODO: How do we get the extra handlers in there?
+  // | (ExtraStyleHandlers extends null ? never : "fart");
 
   // Helper to build spacing handler
   const spacingHandler =
@@ -125,6 +135,7 @@ export const createStyleBuilder = <
 
   // Build out our actual handlers.
   const handlers = {
+    // Margin
     m: spacingHandler(["margin"]),
     "-m": spacingHandler(["margin"], true),
     mx: spacingHandler(["marginHorizontal"]),
@@ -139,6 +150,7 @@ export const createStyleBuilder = <
     "-mt": spacingHandler(["marginTop"], true),
     mb: spacingHandler(["marginBottom"]),
     "-mb": spacingHandler(["marginBottom"], true),
+    // Padding
     p: spacingHandler(["padding"]),
     px: spacingHandler(["paddingHorizontal"]),
     py: spacingHandler(["paddingVertical"]),
@@ -146,6 +158,7 @@ export const createStyleBuilder = <
     pr: spacingHandler(["paddingRight"]),
     pt: spacingHandler(["paddingTop"]),
     pb: spacingHandler(["paddingBottom"]),
+    // Inset/positioning
     inset: spacingHandler(["top", "bottom", "left", "right"]),
     "-inset": spacingHandler(["top", "bottom", "left", "right"], true),
     "inset-x": spacingHandler(["left", "right"]),
@@ -156,7 +169,19 @@ export const createStyleBuilder = <
     "-left": spacingHandler(["left"], true),
     right: spacingHandler(["right"]),
     "-right": spacingHandler(["right"], true),
-    // TODO: Spacing handlers using merged theme/extension
+    top: spacingHandler(["top"]),
+    "-top": spacingHandler(["top"], true),
+    bottom: spacingHandler(["bottom"]),
+    "-bottom": spacingHandler(["bottom"], true),
+    // Sizing
+    w: spacingHandler(["width"]),
+    "min-w": spacingHandler(["minWidth"]),
+    "max-w": spacingHandler(["maxWidth"]),
+    h: spacingHandler(["height"]),
+    "min-h": spacingHandler(["minHeight"]),
+    "max-h": spacingHandler(["maxHeight"]),
+
+    // TODO: More handlers here.
 
     ...extraHandlers,
   };
@@ -164,13 +189,14 @@ export const createStyleBuilder = <
   /**
    * Fundamental styling function, used by the useStyle hook
    */
-  const styles = (...classNames: Cn[]) => {
+  const styles = (...classNames: Cn[]): Record<string, any> => {
     const cacheKey = classNames.join(",");
 
     const styles = {} as Record<string, any>;
 
     // First, check the cache
-    if (cache.has(cacheKey)) return cache.get(cacheKey);
+    const cachedValue = cache.get(cacheKey);
+    if (cachedValue) return cachedValue;
 
     // Start to aggregate styles
     for (let c of classNames || []) {
