@@ -18,6 +18,7 @@ import { mergeThemes } from "./utils/mergeThemes";
 import { createColorHandlers } from "./handlers/createColorHandlers";
 import { createSpacingHandlers } from "./handlers/createSpacingHandlers";
 import { createAspectRatioHandlers } from "./handlers/createAspectRatioHandler";
+import { createOpacityHandlers } from "./handlers/createOpacityHandlers";
 
 /**
  * Core builder fn. Takes in a set of handlers, and gives back a hook and component-builder.
@@ -57,7 +58,7 @@ export const createStyleBuilder = <
     ThemeExt["colors"];
   type ColorKey = NonSymbol<keyof Colors>;
 
-  type OpacityKeys = NonSymbol<
+  type OpacityKey = NonSymbol<
     keyof ((Theme["opacities"] extends object
       ? Theme["opacities"]
       : typeof DefaultConstraints.opacities) &
@@ -117,8 +118,9 @@ export const createStyleBuilder = <
     | `border-color:${ColorKey | `[${string}]`}`
     | `color:${ColorKey | `[${string}]`}`
     | `tint:${ColorKey | `[${string}]`}`
-    // TODO: Opacity
-    | `bg-opacity:${OpacityKeys}`;
+    // Opacity
+    | `bg-opacity:${OpacityKey | `[${number}]`}`
+    | `opacity:${OpacityKey | `[${number}]`}`;
 
   // TODO: more
   // TODO: How do we get the extra handlers in there?
@@ -129,6 +131,7 @@ export const createStyleBuilder = <
     ...createSpacingHandlers(mergedTheme.spacing),
     ...createAspectRatioHandlers(mergedTheme.aspectRatios),
     ...createColorHandlers(mergedTheme.colors),
+    ...createOpacityHandlers(mergedTheme.opacities),
 
     // TODO: More handlers here.
 

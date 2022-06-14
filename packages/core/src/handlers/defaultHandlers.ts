@@ -261,8 +261,6 @@ export const defaultImageHandlers = {
  * Aggregate the defaults
  */
 export const defaultHandlers = {
-  ...defaultColorHandlers,
-  ...defaultOpacityHandlers,
   ...defaultBorderHandlers,
   ...defaultRoundedHandlers,
   ...defaultShadowHandlers,
