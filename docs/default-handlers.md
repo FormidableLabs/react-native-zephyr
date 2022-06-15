@@ -1,3 +1,7 @@
+---
+sidebar_position: 4
+---
+
 # Default Handlers
 
 Perhaps the biggest perk of using Style Buddy is that it provides a suite of style "style classes" out of the box that you can use to style your UI elements. The available style classes are created from the set of default "style handlers" (outlined here) and your theme. 

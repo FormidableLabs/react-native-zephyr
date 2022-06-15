@@ -1,3 +1,7 @@
+---
+sidebar_position: 5
+---
+
 # Default Theme
 
 Style Buddy provides a set of default theme constraints, so you can start styling with zero configuration. You can easily customize/extend the theme (see [Extending the Theme](./extending-the-theme.md)), but don't have to to get started with Style buddy.

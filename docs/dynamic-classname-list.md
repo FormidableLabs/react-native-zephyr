@@ -1,3 +1,7 @@
+---
+sidebar_position: 9
+---
+
 # Dynamic Class Name Lists
 
 [clsx](https://github.com/lukeed/clsx#readme) provides a utility function that makes it easier to generate a className list in CSS-styled projects, which is very useful when applying dynamic classes to a UI element.

@@ -1,3 +1,7 @@
+---
+sidebar_position: 6
+---
+
 # Extending the Theme
 
 Style Buddy ships with [a default theme](./default-theme.md), but gives you the flexibility to override and extend the theme as your heart desires.

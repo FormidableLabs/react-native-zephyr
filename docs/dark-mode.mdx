@@ -1,3 +1,7 @@
+---
+sidebar_position: 8
+---
+
 # Dark Mode Support
 
 Style Buddy supports dark mode out of the box using the `useStyles` and `makeStyledComponent` style helpers returned from `createStyleBuddy`. Both accept arguments `classes` and `darkClasses` that indicate:
@@ -36,8 +40,8 @@ const App = () => {
 
 This tiny bit of markup gives us something like the following.
 
-<div style="text-align:center">
-  <img src="./img/dark-mode.gif" alt="Sample of Dark Mode Hello World" width="300" style="border-radius: 16px">
+<div style={{textAlign: 'center'}}>
+  <img src="./img/dark-mode.gif" alt="Sample of Dark Mode Hello World" width="300" style={{ borderRadius: "16px"}} />
 </div>
 
 ## A note about `styles`

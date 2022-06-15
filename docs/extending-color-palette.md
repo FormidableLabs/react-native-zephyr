@@ -1,3 +1,7 @@
+---
+sidebar_position: 7
+---
+
 # Extending the Color Palette
 
 TailwindCSS has [a beautiful color palette](https://tailwindcss.com/docs/customizing-colors). We have used that same color palette for Style Buddy, but we only ship a select handful of these colors in the default theme.

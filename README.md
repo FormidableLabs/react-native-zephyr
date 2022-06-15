@@ -191,6 +191,6 @@ And don't forget to wrap your application in a `StyleProvider` instance.
 - [Default Theme](./docs/default-theme.md)
 - [Extending the Theme](./docs/extending-the-theme.md)
 - [Dynamic ClassName Lists](./docs/dynamic-classname-list.md)
-- [Dark Mode Support](./docs/dark-mode.md)
+- [Dark Mode Support](./docs/dark-mode.mdx)
 - [Extending the Color Palette](./docs/extending-color-palette.md)
 - API Reference
