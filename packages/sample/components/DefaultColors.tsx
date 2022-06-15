@@ -14,7 +14,7 @@ const getColors = (key: string) => {
 };
 
 export const DefaultColors = () => {
-  const scrollViewStyles = useStyles({ baseClasses: ["py:4", "px:10"] });
+  const scrollViewStyles = useStyles({ classes: ["py:4", "px:10"] });
   return (
     <ScrollView contentContainerStyle={scrollViewStyles}>
       <ColorList color="gray" />
@@ -30,20 +30,20 @@ export const DefaultColors = () => {
 
 const ColorList = ({ color }: { color: string }) => (
   <StyledView
-    styled={["flex:1", "flex:row", "items:center", "justify:between", "mb:4"]}
+    classes={["flex:1", "flex:row", "items:center", "justify:between", "mb:4"]}
   >
     {getColors(color).map(([key, color]) => (
-      <StyledView key={key} styled={["items:center"]}>
+      <StyledView key={key} classes={["items:center"]}>
         <StyledText
-          styled={["font-weight:bold", "text-align:center", "text:xs"]}
+          classes={["font-weight:bold", "text-align:center", "text:xs"]}
         >
           {key}
         </StyledText>
-        <StyledView styled={["h:2"]} />
+        <StyledView classes={["h:2"]} />
         {/* @ts-ignore */}
-        <StyledView styled={["w:14", "h:8", "shadow:md", `bg:${key}`]} />
-        <StyledView styled={["h:2"]} />
-        <StyledView styled={["text-align:center"]} />
+        <StyledView classes={["w:14", "h:8", "shadow:md", `bg:${key}`]} />
+        <StyledView classes={["h:2"]} />
+        <StyledView classes={["text-align:center"]} />
       </StyledView>
     ))}
   </StyledView>

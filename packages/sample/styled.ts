@@ -1,5 +1,5 @@
 import { createStyleBuddy, extractTwColor } from "react-native-style-buddy";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Animated } from "react-native";
 
 export const { makeStyledComponent, styles, useStyles } = createStyleBuddy({
   extendTheme: {
@@ -11,6 +11,8 @@ export const { makeStyledComponent, styles, useStyles } = createStyleBuddy({
 
 export const StyledView = makeStyledComponent(View);
 export const StyledText = makeStyledComponent(Text);
-export const StyledTouchableOpacity = makeStyledComponent(TouchableOpacity);
+export const StyledTouchableOpacity = makeStyledComponent(
+  Animated.createAnimatedComponent(TouchableOpacity)
+);
 
 const f = styles("bg:brown-300");

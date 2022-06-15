@@ -1,8 +1,13 @@
 import * as React from "react";
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, Animated } from "react-native";
 import { DefaultColors } from "./components/DefaultColors";
 import { DefaultBorderSizes } from "./components/DefaultBorderSizes";
-import { StyledText, StyledView, styles } from "./styled";
+import {
+  StyledText,
+  StyledTouchableOpacity,
+  StyledView,
+  styles,
+} from "./styled";
 import { DefaultOpacities } from "./components/DefaultOpacities";
 import { DefaultBorderRadii } from "./components/DefaultBorderRadii";
 import { DefaultFontSizes } from "./components/defaultFontSizes";
@@ -13,12 +18,12 @@ import { DefaultAspectRatios } from "./components/DefaultAspectRatios";
 export const AppBody = () => {
   return (
     <StyledView
-      styled={["flex:1", "bg:purple-100", "justify:center", "items:center"]}
-      darkStyled={["bg:purple-800"]}
+      classes={["flex:1", "bg:purple-100", "justify:center", "items:center"]}
+      darkClasses={["bg:purple-800"]}
     >
       <StyledText
-        styled={["text:5xl", "color:gray-800"]}
-        darkStyled={["color:gray-100"]}
+        classes={["text:5xl", "color:gray-800"]}
+        darkClasses={["text:6xl", "color:gray-100"]}
       >
         Hey world
       </StyledText>

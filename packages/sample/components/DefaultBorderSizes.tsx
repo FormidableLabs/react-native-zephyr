@@ -5,7 +5,7 @@ import { DefaultConstraints } from "react-native-style-buddy";
 export const DefaultBorderSizes = () => {
   return (
     <StyledView
-      styled={[
+      classes={[
         "flex:1",
         "flex:row",
         "items:center",
@@ -14,12 +14,12 @@ export const DefaultBorderSizes = () => {
       ]}
     >
       {Object.keys(DefaultConstraints.borderSizes).map((key) => (
-        <StyledView key={key} styled={["items:center"]}>
-          <StyledText styled={["text:sm", "color:gray-600"]}>
+        <StyledView key={key} classes={["items:center"]}>
+          <StyledText classes={["text:sm", "color:gray-600"]}>
             border:{key}
           </StyledText>
           <StyledView
-            styled={[
+            classes={[
               "rounded:lg",
               "bg:white",
               "border-color:purple-700",

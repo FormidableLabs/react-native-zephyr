@@ -356,19 +356,19 @@ export const createStyleBuddy = <
    * Core hook to apply styles based on props/style object
    */
   const useStyles = ({
-    baseClasses = [],
+    classes = [],
     darkClasses = [],
   }: {
-    baseClasses?: CnArg[];
+    classes?: CnArg[];
     darkClasses?: CnArg[];
   }) => {
     const { isDarkMode } = React.useContext(StyleContext);
-    const classes = flattenClassNameArgs<Cn>(...baseClasses).concat(
+    const allClasses = flattenClassNameArgs<Cn>(...classes).concat(
       isDarkMode ? flattenClassNameArgs<Cn>(...darkClasses) : []
     );
     const cacheKey = classes.join(",");
 
-    return React.useMemo(() => styles(...classes), [cacheKey]);
+    return React.useMemo(() => styles(...allClasses), [cacheKey]);
   };
 
   /**
@@ -379,11 +379,11 @@ export const createStyleBuddy = <
   ) => {
     const ComponentWithStyles = React.forwardRef<
       Ref,
-      T & { styled?: CnArg[]; darkStyled?: CnArg[] }
-    >(({ styled, darkStyled, style, ...rest }, ref) => {
+      T & { classes?: CnArg[]; darkClasses?: CnArg[] }
+    >(({ classes, darkClasses, style, ...rest }, ref) => {
       const addedStyles = useStyles({
-        baseClasses: styled,
-        darkClasses: darkStyled,
+        classes,
+        darkClasses,
       });
 
       return (

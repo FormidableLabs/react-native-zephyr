@@ -5,7 +5,7 @@ import { DefaultConstraints } from "react-native-style-buddy";
 
 export const DefaultOpacities = () => {
   return (
-    <StyledView styled={["flex:1", "bg:gray-300"]}>
+    <StyledView classes={["flex:1", "bg:gray-300"]}>
       <SafeAreaView style={styles("flex:1", "flex:row")}>
         {Object.keys(DefaultConstraints.opacities).map((key) => (
           <StyledView
@@ -19,7 +19,7 @@ export const DefaultOpacities = () => {
               "items:center"
             )}
           >
-            <StyledText styled={["font-weight:bold"]}>{key}</StyledText>
+            <StyledText classes={["font-weight:bold"]}>{key}</StyledText>
           </StyledView>
         ))}
       </SafeAreaView>

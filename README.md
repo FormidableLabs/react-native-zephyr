@@ -85,7 +85,7 @@ const Component2 = () => {
 // Or, generate a reusable styled component for easy application of styles
 const StyledView = makeStyledComponent(View);
 const Component3 = () => {
-  return <StyledView styled={["w:4", "h:8", "bg:red-300"]} darkStyled={["bg:red-800"]} />;
+  return <StyledView classes={["w:4", "h:8", "bg:red-300"]} darkClasses={["bg:red-800"]} />;
 };
 ```
 
@@ -169,12 +169,12 @@ import { StyledView, StyledText } from "./styles";
 export const MySweetComponent = () => {
   return (
     <StyledView
-      styled={["flex:1", "bg:red-100"]}
-      darkStyled={["bg:red-800"]}
+      classes={["flex:1", "bg:red-100"]}
+      darkClasses={["bg:red-800"]}
     >
       <StyledText
-        styled={["text:3xl", "color:gray-800"]}
-        darkStyled={["color:gray-200"]}
+        classes={["text:3xl", "color:gray-800"]}
+        darkClasses={["color:gray-200"]}
       >
         Hello world!
       </StyledText>
@@ -191,6 +191,6 @@ And don't forget to wrap your application in a `StyleProvider` instance.
 - [Default Theme](./docs/default-theme.md)
 - [Extending the Theme](./docs/extending-the-theme.md)
 - [Dynamic ClassName Lists](./docs/dynamic-classname-list.md)
-- Dark Mode
+- [Dark Mode Support](./docs/dark-mode.md)
 - [Extending the Color Palette](./docs/extending-color-palette.md)
 - API Reference
