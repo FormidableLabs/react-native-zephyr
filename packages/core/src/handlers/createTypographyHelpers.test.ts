@@ -1,5 +1,5 @@
 import { vi, describe, it, expect } from "vitest";
-import { createStyleBuilder } from "../createStyleBuilder";
+import { createStyleBuddy } from "../createStyleBuddy";
 import { DefaultConstraints } from "../theme";
 
 vi.mock("react-native", () => ({
@@ -8,7 +8,7 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const { styles } = createStyleBuilder();
+const { styles } = createStyleBuddy();
 const FW = DefaultConstraints.fontWeights;
 const FS = DefaultConstraints.fontSizes;
 
@@ -40,7 +40,7 @@ describe("createTypographyHelpers", () => {
   });
 
   it("allows for custom constraints", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       theme: {
         fontSizes: { foo: [8, 10] },
         fontWeights: { bar: "bold" },
@@ -57,7 +57,7 @@ describe("createTypographyHelpers", () => {
   });
 
   it("allows extending constraints", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       extendTheme: {
         fontSizes: { foo: [8, 10] },
         fontWeights: { bar: "bold" },

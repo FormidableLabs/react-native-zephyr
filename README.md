@@ -25,13 +25,13 @@ Here's a quick sample to whet your appetite.
 ```tsx
 import { View, Text } from "react-native";
 import {
-  createStyleBuilder,
+  createStyleBuddy,
   defaultHandlers,
   StyleProvider,
 } from "react-native-style-buddy";
 
 // Provide style "handlers", get some goodies back
-const { makeStyledComponent } = createStyleBuilder({
+const { makeStyledComponent } = createStyleBuddy({
   handlers: defaultHandlers,
 });
 
@@ -62,12 +62,12 @@ export const App = () => {
 
 ### Step 1: Provide styling "handlers"
 
-First, provide some styling "handlers" to the `createStyleBuilder` function to build some styling utilities:
+First, provide some styling "handlers" to the `createStyleBuddy` function to build some styling utilities:
 
 ```ts
-import { createStyleBuilder } from 'react-native-style-buddy';
+import { createStyleBuddy } from 'react-native-style-buddy';
 
-export const { makeStyledComponent } = createStyleBuilder({
+export const { makeStyledComponent } = createStyleBuddy({
   handlers: {
     flex1: () => ({ flex: 1 }),
     bg: (color: "blue" | "red") => ({ backgroundColor: color }),
@@ -85,10 +85,10 @@ Each "handler" is a function, with 0 or 1 parameters, that returns a style objec
 Next, generate some "styled components" that will make use of your style handlers.
 
 ```ts
-import { createStyleBuilder } from 'react-native-style-buddy';
+import { createStyleBuddy } from 'react-native-style-buddy';
 import { View } from 'react-native';
 
-export const { makeStyledComponent } = createStyleBuilder({ /* ... */ });
+export const { makeStyledComponent } = createStyleBuddy({ /* ... */ });
 
 export const StyledView = makeStyledComponent(View);
 ```
@@ -140,10 +140,10 @@ RN Styled, by default, is style-agnostic. You can provide all of your own handle
 However, we also offer a suite of default handlers to make your styling journey even easier. Just use (or extend) the `defaultHandlers` object as your `handlers` config!
 
 ```tsx
-import { createStyleBuilder, defaultHandlers } from 'react-native-style-buddy';
+import { createStyleBuddy, defaultHandlers } from 'react-native-style-buddy';
 import { View } from 'react-native';
 
-const { makeStyledComponent } = createStyleBuilder({
+const { makeStyledComponent } = createStyleBuddy({
   handlers: defaultHandlers, // <- your life, on easy mode
 });
 const StyledView = makeStyledComponent(View);

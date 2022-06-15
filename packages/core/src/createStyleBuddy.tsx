@@ -27,7 +27,7 @@ import { flattenClassNameArgs } from "./utils/flattenClassNameArgs";
 /**
  * Core builder fn. Takes in a set of handlers, and gives back a hook and component-builder.
  */
-export const createStyleBuilder = <
+export const createStyleBuddy = <
   Theme extends ThemeConstraints,
   ThemeExt extends ThemeConstraints,
   ExtraStyleHandlers extends StyleHandlerSet | undefined = undefined

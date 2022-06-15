@@ -1,5 +1,5 @@
 import { vi, describe, expect, it } from "vitest";
-import { createStyleBuilder } from "../createStyleBuilder";
+import { createStyleBuddy } from "../createStyleBuddy";
 import { createColorHandlers } from "./createColorHandlers";
 import { DefaultConstraints } from "../theme";
 
@@ -9,7 +9,7 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const { styles } = createStyleBuilder({});
+const { styles } = createStyleBuddy({});
 const C = DefaultConstraints.colors;
 
 describe("createColorHandlers", () => {
@@ -33,7 +33,7 @@ describe("createColorHandlers", () => {
   });
 
   it("allows custom constraints", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       theme: {
         colors: { black: "#000", pink: "pink" },
       },
@@ -46,7 +46,7 @@ describe("createColorHandlers", () => {
   });
 
   it("allows extending constraints", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       extendTheme: { colors: { dirt: "brown" } },
     });
 

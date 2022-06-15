@@ -1,5 +1,5 @@
 import { vi, describe, it, expect } from "vitest";
-import { createStyleBuilder } from "../createStyleBuilder";
+import { createStyleBuddy } from "../createStyleBuddy";
 import { DefaultConstraints } from "../theme";
 
 vi.mock("react-native", () => ({
@@ -8,7 +8,7 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const { styles } = createStyleBuilder({});
+const { styles } = createStyleBuddy({});
 const C = DefaultConstraints.opacities;
 
 describe("createOpacityHandlers", () => {
@@ -29,7 +29,7 @@ describe("createOpacityHandlers", () => {
   });
 
   it("allows custom constraints", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       theme: {
         opacities: { half: 0.5, notmuch: 0.05 },
       },
@@ -44,7 +44,7 @@ describe("createOpacityHandlers", () => {
   });
 
   it("allows extending constraints", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       extendTheme: { opacities: { half: 0.5 } },
     });
 

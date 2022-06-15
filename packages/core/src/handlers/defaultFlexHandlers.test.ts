@@ -1,5 +1,5 @@
 import { vi, describe, it, expect } from "vitest";
-import { createStyleBuilder } from "../createStyleBuilder";
+import { createStyleBuddy } from "../createStyleBuddy";
 
 vi.mock("react-native", () => ({
   StyleSheet: {
@@ -7,7 +7,7 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const { styles } = createStyleBuilder({});
+const { styles } = createStyleBuddy({});
 
 describe("defaultFlexHandlers", () => {
   const cases: [Parameters<typeof styles>[0], object][] = [

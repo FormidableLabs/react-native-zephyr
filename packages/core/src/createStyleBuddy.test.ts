@@ -1,5 +1,5 @@
 import { vi, describe, it, expect } from "vitest";
-import { createStyleBuilder } from "./createStyleBuilder";
+import { createStyleBuddy } from "./createStyleBuddy";
 import { DefaultConstraints } from "./theme";
 
 vi.mock("react-native", () => ({
@@ -10,16 +10,16 @@ vi.mock("react-native", () => ({
 
 const C = DefaultConstraints.spacing;
 
-describe("createStyleBuilder", () => {
+describe("createStyleBuddy", () => {
   it("creates builder with default constraints/handlers", () => {
-    const { styles } = createStyleBuilder();
+    const { styles } = createStyleBuddy();
     expect(styles("p:1")).toEqual({ padding: C["1"] });
     // @ts-expect-error
     expect(styles("nope?")).toEqual({});
   });
 
   it("maintains referential equality", () => {
-    const { styles } = createStyleBuilder({});
+    const { styles } = createStyleBuddy({});
 
     const s1 = styles("mx:3", "my:12");
     const s2 = styles("mx:3", "my:12");
@@ -30,7 +30,7 @@ describe("createStyleBuilder", () => {
   });
 
   it("allows overriding theme values", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       theme: {
         spacing: { sm: 4, md: 8 },
       },
@@ -43,7 +43,7 @@ describe("createStyleBuilder", () => {
   });
 
   it("allows extending theme values", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       extendTheme: {
         spacing: { sm: 4, md: 8 },
       },
@@ -55,7 +55,7 @@ describe("createStyleBuilder", () => {
   });
 
   it("allows for extra handlers", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       extraHandlers: {
         foo: () => ({ color: "brown" }),
       },
@@ -65,7 +65,7 @@ describe("createStyleBuilder", () => {
   });
 
   it("allows for clsx-like syntax", () => {
-    const { styles } = createStyleBuilder();
+    const { styles } = createStyleBuddy();
 
     expect(styles("m:3", { "p:4": true, "w:7": false })).toEqual({
       margin: C["3"],

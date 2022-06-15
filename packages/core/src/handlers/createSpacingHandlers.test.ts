@@ -1,5 +1,5 @@
 import { vi, describe, it, expect } from "vitest";
-import { createStyleBuilder } from "../createStyleBuilder";
+import { createStyleBuddy } from "../createStyleBuddy";
 import { DefaultConstraints } from "../theme";
 
 vi.mock("react-native", () => ({
@@ -8,7 +8,7 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const { styles } = createStyleBuilder({});
+const { styles } = createStyleBuddy({});
 const C = DefaultConstraints.spacing;
 
 describe.only("defaultSpacingHandlers", () => {
@@ -165,7 +165,7 @@ describe.only("defaultSpacingHandlers", () => {
   });
 
   it("allows for custom constraints", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       theme: {
         spacing: { sm: 3 },
       },
@@ -177,7 +177,7 @@ describe.only("defaultSpacingHandlers", () => {
   });
 
   it("allows extending constraints", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       extendTheme: { spacing: { sm: 4 } },
     });
 

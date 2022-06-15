@@ -1,2 +1,2 @@
-export { createStyleBuilder } from "./createStyleBuilder";
+export { createStyleBuddy } from "./createStyleBuddy";
 export { StyleProvider } from "./StyleProvider";

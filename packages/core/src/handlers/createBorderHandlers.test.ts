@@ -1,5 +1,5 @@
 import { vi, describe, it, expect } from "vitest";
-import { createStyleBuilder } from "../createStyleBuilder";
+import { createStyleBuddy } from "../createStyleBuddy";
 import { createBorderHandlers } from "./createBorderHandlers";
 import { DefaultConstraints } from "../theme";
 
@@ -9,7 +9,7 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const { styles } = createStyleBuilder({});
+const { styles } = createStyleBuddy({});
 const C = DefaultConstraints.borderSizes;
 
 describe("createBorderHandlers", () => {
@@ -41,7 +41,7 @@ describe("createBorderHandlers", () => {
   });
 
   it("allows for custom constraints", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       theme: {
         borderSizes: { foo: 6, bar: 9 },
       },
@@ -54,7 +54,7 @@ describe("createBorderHandlers", () => {
   });
 
   it("allows extending constraints", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       extendTheme: { borderSizes: { foo: 6 } },
     });
 

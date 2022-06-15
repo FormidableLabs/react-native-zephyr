@@ -1,5 +1,5 @@
 import { vi, describe, it, expect } from "vitest";
-import { createStyleBuilder } from "../createStyleBuilder";
+import { createStyleBuddy } from "../createStyleBuddy";
 import { DefaultConstraints } from "../theme";
 
 let platform = "android";
@@ -14,7 +14,7 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const { styles } = createStyleBuilder({});
+const { styles } = createStyleBuddy({});
 const C = DefaultConstraints.shadows;
 
 describe("createShadowHandlers", () => {
@@ -34,7 +34,7 @@ describe("createShadowHandlers", () => {
   });
 
   it("allows for custom constraints", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       theme: {
         shadows: {
           foo: { ios: [1, 2, 3, 4], android: 2 },
@@ -52,7 +52,7 @@ describe("createShadowHandlers", () => {
   });
 
   it("allows extending constraints", () => {
-    const { styles } = createStyleBuilder({
+    const { styles } = createStyleBuddy({
       extendTheme: {
         shadows: {
           foo: { ios: [1, 2, 3, 4], android: 2 },
