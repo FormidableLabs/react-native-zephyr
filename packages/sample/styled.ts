@@ -1,11 +1,7 @@
-import { createStyleBuilder } from "react-native-style-buddy";
+import { createStyleBuddy } from "react-native-style-buddy";
 import { View, Text, TouchableOpacity } from "react-native";
 
-export const { makeStyledComponent, styles } = createStyleBuilder({
-  extendTheme: {
-    spacing: { sm: 4 },
-  },
-});
+export const { makeStyledComponent, styles } = createStyleBuddy({});
 
 export const StyledView = makeStyledComponent(View);
 export const StyledText = makeStyledComponent(Text);

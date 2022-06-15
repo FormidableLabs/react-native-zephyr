@@ -9,6 +9,10 @@ React Native Style Buddy is a [TailwindCSS](https://tailwindcss.com/)-inspired s
 - **type-safety** for speedy and confident development;
 - dark-mode support out of the box.
 
+Here's a snapshot of what you get to look forward to. Check out that sweet, sweet autocomplete. 🤤
+
+![Sample of VSCode usage](./docs/vsc-sample.png)
+
 ## Installation
 
 Install `react-native-style-buddy` using your favorite package registry tool:
@@ -38,7 +42,7 @@ const { styles, useStyles, makeStyledComponent } = createStyleBuddy();
 
 ### Styling elements
 
-With your new styling utilities (see [Default Handlers](#default-handlers) for more info on styling handlers you get out of the box), you can quickly style elements.
+With your new styling utilities (see [Default Handlers](./docs/default-handlers.md) for more info on styling handlers you get out of the box), you can quickly style elements.
 
 ```tsx
 import { createStyleBuddy } from "react-native-style-buddy";
@@ -70,7 +74,7 @@ const Component3 = () => {
 
 ### Customizing the theme
 
-Style Buddy ships with a suite of [default handlers](#default-handlers) that use the [default theme](#default-theme) to create the applicable style "names" (such as `"w:4"`). This default theme is overridable and extendable. To override the default theme constraints, you can pass a `theme` argument to `createStyleBuddy`.
+Style Buddy ships with a suite of [default handlers](./docs/default-handlers.md) that use the [default theme](./docs/default-theme.md) to create the applicable style "names" (such as `"w:4"`). This default theme is overridable and extendable. To override the default theme constraints, you can pass a `theme` argument to `createStyleBuddy`.
 
 ```ts
 import { createStyleBuddy } from "react-native-style-buddy";
@@ -85,7 +89,7 @@ const { styles } = createStyleBuddy({
 styles("px:sm", "py:md", "m:lg");
 ```
 
-Note that by passing a constraints field, such as `spacing` or `colors`, you'll override the respective default theme constraints. See [Extending the theme](#extending-the-theme) for more details on how this works. If you want to just _extend_ the default theme constraints, use the `extendTheme` parameter.
+Note that by passing a constraints field, such as `spacing` or `colors`, you'll override the respective default theme constraints. See [Extending the theme](./docs/extending-the-theme.md) for more details on how this works. If you want to just _extend_ the default theme constraints, use the `extendTheme` parameter.
 
 ```ts
 import { createStyleBuddy } from "react-native-style-buddy";
@@ -121,30 +125,12 @@ const { styles } = createStyleBuddy({
 styles("size:small", "size:large", "foo");
 ```
 
-## Core API
+## Additional Guides
 
-TODO:
-
-## Default Handlers
-
-TODO:
-
-## Default Theme
-
-TODO:
-
-## Extending the theme
-
-TODO:
-
-## Dynamic StyleName Syntax
-
-TODO: CLSX-like syntax
-
-## Dark Mode
-
-TODO:
-
-## Extended Color Palette 
-
-TODO:
+- [Default Handlers](./docs/default-handlers.md)
+- [Default Theme](./docs/default-theme.md)
+- [Extending the Theme](./docs/extending-the-theme.md)
+- Dynamic style names
+- Dark Mode
+- Extending the Color Palette
+- API Reference

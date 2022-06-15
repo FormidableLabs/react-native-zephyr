@@ -1,31 +1,21 @@
 import * as React from "react";
-import { StyledView, StyledText, StyledTouchableOpacity } from "./styled";
-import { Text } from "react-native";
+import { View, Text } from "react-native";
+import { createStyleBuddy } from "react-native-style-buddy";
+
+const { makeStyledComponent } = createStyleBuddy({});
+
+export const StyledView = makeStyledComponent(View);
+export const StyledText = makeStyledComponent(Text);
 
 export const AppBody = () => {
-  const [x, setX] = React.useState(0);
-  const increment = React.useCallback(() => {
-    setX((v) => v + 1);
-  }, []);
-
   return (
-    <StyledView styled={["p:16", "bg:red-200"]}>
-      <StyledTouchableOpacity
-        styled={[
-          "p:12",
-          "rounded:2xl",
-          "border:1",
-          "bg:blue-300",
-          {
-            "shadow:lg": x % 2 === 1,
-          },
-        ]}
-        onPress={increment}
+    <StyledView styled={["flex:1", "justify:center", "items:center"]}>
+      <StyledText
+        styled={["text:3xl", "color:re"]}
+        darkStyled={["color:red-300"]}
       >
-        <StyledText styled={["text:2xl", "font-weight:bold"]}>
-          Hello world!
-        </StyledText>
-      </StyledTouchableOpacity>
+        Hello world!
+      </StyledText>
     </StyledView>
   );
 };
