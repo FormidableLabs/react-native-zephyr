@@ -8,7 +8,7 @@ export default function App() {
     "light" as "light" | "dark"
   );
   return (
-    <StyleProvider colorScheme={colorScheme}>
+    <StyleProvider>
       <AppBody />
     </StyleProvider>
   );

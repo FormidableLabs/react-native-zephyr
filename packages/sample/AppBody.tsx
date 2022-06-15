@@ -2,7 +2,7 @@ import * as React from "react";
 import { View, Text, SafeAreaView } from "react-native";
 import { DefaultColors } from "./components/DefaultColors";
 import { DefaultBorderSizes } from "./components/DefaultBorderSizes";
-import { styles } from "./styled";
+import { StyledText, StyledView, styles } from "./styled";
 import { DefaultOpacities } from "./components/DefaultOpacities";
 import { DefaultBorderRadii } from "./components/DefaultBorderRadii";
 import { DefaultFontSizes } from "./components/defaultFontSizes";
@@ -11,6 +11,19 @@ import { DefaultShadows } from "./components/DefaultShadows";
 import { DefaultAspectRatios } from "./components/DefaultAspectRatios";
 
 export const AppBody = () => {
+  return (
+    <StyledView
+      styled={["flex:1", "bg:purple-100", "justify:center", "items:center"]}
+      darkStyled={["bg:purple-800"]}
+    >
+      <StyledText
+        styled={["text:5xl", "color:gray-800"]}
+        darkStyled={["color:gray-100"]}
+      >
+        Hey world
+      </StyledText>
+    </StyledView>
+  );
   // return <DefaultColors />;
   // return <DefaultOpacities />;
   // return <DefaultBorderSizes />;
@@ -18,5 +31,5 @@ export const AppBody = () => {
   // return <DefaultFontSizes />;
   // return <DefaultFontWeights />;
   // return <DefaultShadows />;
-  return <DefaultAspectRatios />;
+  // return <DefaultAspectRatios />;
 };

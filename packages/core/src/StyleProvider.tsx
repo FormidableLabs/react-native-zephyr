@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ColorSchemeName, useColorScheme } from "react-native";
+import { useColorScheme } from "react-native";
 
 export const StyleContext = React.createContext({
   isDarkMode: false,
@@ -21,7 +21,7 @@ export const StyleProvider = ({
         colorScheme === "dark" ||
         (colorScheme === "auto" && systemColorScheme === "dark"),
     };
-  }, [colorScheme]);
+  }, [colorScheme, systemColorScheme]);
 
   return (
     <StyleContext.Provider value={value}>{children}</StyleContext.Provider>
