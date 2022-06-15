@@ -125,6 +125,47 @@ const { styles } = createStyleBuddy({
 styles("size:small", "size:large", "foo");
 ```
 
+## Recommended Usage
+
+We recommend creating a _single_ Style Buddy instance for your entire application. This helps with consistency and caching. You might create a file with all-things Style Buddy, and export what you need from there.
+
+```ts
+// styles.ts
+import { createStyleBuddy } from "react-native-style-buddy";
+import { View, Text } from "react-native";
+
+// Export helpers
+export const { styles, useStyles, makeStyledComponent } = createStyleBuddy({ /* ... */ });
+
+// Export some styled components for easy-user
+export const StyledView = makeStyledComponent(View);
+export const StyledText = makeStyledComponent(Text);
+```
+
+Then, throughout your app you can import style helpers from this file.
+
+```tsx
+// MySweetComponent.tsx
+import * as React from "react";
+import { StyledView, StyledText } from "./styles";
+
+export const MySweetComponent = () => {
+  return (
+    <StyledView
+      styled={["flex:1", "bg:red-100"]}
+      darkStyled={["bg:red-800"]}
+    >
+      <StyledText
+        styled={["text:3xl", "color:gray-800"]}
+        darkStyled={["color:gray-200"]}
+      >
+        Hello world!
+      </StyledText>
+    </StyledView>
+  )
+};
+```
+
 ## Additional Guides
 
 - [Default Handlers](./docs/default-handlers.md)
