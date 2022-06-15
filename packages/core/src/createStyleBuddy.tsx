@@ -2,6 +2,7 @@ import type { JSXElementConstructor } from "react";
 import * as React from "react";
 import {
   ClassName,
+  FlexibleClassName,
   NonSymbol,
   NumOrString,
   StyleHandlerSet,
@@ -307,7 +308,7 @@ export const createStyleBuddy = <
     ...extraHandlers,
   };
 
-  type CnArg = Cn | { [key in Cn]?: boolean };
+  type CnArg = FlexibleClassName<Cn>;
 
   /**
    * Fundamental styling function, used by the useStyle hook

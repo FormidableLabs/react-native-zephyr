@@ -38,3 +38,10 @@ export type ThemeConstraints = {
 export type NonOptional<T> = { [Key in keyof T]-?: T[Key] };
 
 export type NumOrString = number | string;
+
+export type FlexibleClassName<Cn extends string> =
+  | Cn
+  | { [key in Cn]?: boolean }
+  | null
+  | undefined
+  | false;
