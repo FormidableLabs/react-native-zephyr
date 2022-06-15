@@ -29,7 +29,13 @@ describe("flattenClassNameArgs", () => {
 
   it("handles falsey values", () => {
     expect(
-      flattenClassNameArgs<FooBarBaz>(null, false, undefined, "foo")
+      flattenClassNameArgs<FooBarBaz>(
+        null,
+        false,
+        undefined,
+        "foo",
+        false && "bar"
+      )
     ).toEqual(["foo"]);
   });
 });

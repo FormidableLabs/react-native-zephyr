@@ -130,7 +130,7 @@ styles("size:small", "size:large", "foo");
 - [Default Handlers](./docs/default-handlers.md)
 - [Default Theme](./docs/default-theme.md)
 - [Extending the Theme](./docs/extending-the-theme.md)
-- Dynamic style names
+- [Dynamic ClassName Lists](./docs/dynamic-classname-list.md)
 - Dark Mode
 - Extending the Color Palette
 - API Reference
