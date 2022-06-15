@@ -1,10 +1,16 @@
-import { createStyleBuddy } from "react-native-style-buddy";
+import { createStyleBuddy, extractTwColor } from "react-native-style-buddy";
 import { View, Text, TouchableOpacity } from "react-native";
 
-export const { makeStyledComponent, styles, useStyles } = createStyleBuddy({});
+export const { makeStyledComponent, styles, useStyles } = createStyleBuddy({
+  extendTheme: {
+    colors: {
+      ...extractTwColor({ twColor: "fuchsia", name: "brown" }),
+    },
+  },
+});
 
 export const StyledView = makeStyledComponent(View);
 export const StyledText = makeStyledComponent(Text);
 export const StyledTouchableOpacity = makeStyledComponent(TouchableOpacity);
 
-const f = styles("p:3", 3 > 2 ? "px:4" : "py:12");
+const f = styles("bg:brown-300");

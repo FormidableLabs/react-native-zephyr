@@ -132,5 +132,5 @@ styles("size:small", "size:large", "foo");
 - [Extending the Theme](./docs/extending-the-theme.md)
 - [Dynamic ClassName Lists](./docs/dynamic-classname-list.md)
 - Dark Mode
-- Extending the Color Palette
+- [Extending the Color Palette](./docs/extending-color-palette.md)
 - API Reference

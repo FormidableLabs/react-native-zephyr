@@ -1,4 +1,4 @@
-import { flattenColor } from "./handlers/twColors";
+import { extractTwColor } from "./handlers/twColors";
 import { StyleSheet } from "react-native";
 
 const BASE_FONT_SIZE = 14;
@@ -50,13 +50,13 @@ export const DefaultConstraints = {
   colors: {
     white: "#fff",
     black: "#000",
-    ...flattenColor("coolGray", "gray"),
-    ...flattenColor("red", "red"),
-    ...flattenColor("green", "green"),
-    ...flattenColor("blue", "blue"),
-    ...flattenColor("indigo", "indigo"),
-    ...flattenColor("purple", "purple"),
-    ...flattenColor("pink", "pink"),
+    ...extractTwColor({ twColor: "coolGray", name: "gray" }),
+    ...extractTwColor({ twColor: "red", name: "red" }),
+    ...extractTwColor({ twColor: "green", name: "green" }),
+    ...extractTwColor({ twColor: "blue", name: "blue" }),
+    ...extractTwColor({ twColor: "indigo", name: "indigo" }),
+    ...extractTwColor({ twColor: "purple", name: "purple" }),
+    ...extractTwColor({ twColor: "pink", name: "pink" }),
   } as const,
   opacities: {
     "0": 0,
