@@ -2,11 +2,17 @@
 
 Perhaps the biggest perk of using Style Buddy is that it provides a suite of style "style classes" out of the box that you can use to style your UI elements. The available style classes are created from the set of default "style handlers" (outlined here) and your theme. 
 
-This page outlines the available style classes shipped with Style Buddy out of the box. The examples here are using [the default theme](./default-theme.md) with no customizations, but see [Extending the Theme](./extending-the-theme.md) for more info on how to customize the theme. Also note that these docs indicate which styles classes are "overridable" (TODO: Link here) using the `[x]` syntax.
+This page outlines the available style classes shipped with Style Buddy out of the box. The examples here are using [the default theme](./default-theme.md) with no customizations, but see [Extending the Theme](./extending-the-theme.md) for more info on how to customize the theme. Also note that these docs indicate which styles classes are "[overridable](#overrides)" using the `[x]` syntax.
+
+## Overrides
+
+Before getting into the default handlers, we should discuss "constraint overrides". Most of the default handlers restrict you to using values from your theme constraints (this is in general a good thing!). However, sometimes you need to break free from your theme/scales and use a one-off value. 
+
+Many of the default handlers offer you an escape hatch to handle these one-off cases by using `[x]` syntax. For example, if you need to "nudge" a single element 3 pixels you could use a class like `left:[3]` to apply `{ left: 3 }`, even if `3` is not in your theme's `spacing` constraints.
 
 ## Margin 
 
-Style Buddy uses your spacing constraints (TODO: link) to generate margin helpers. You can set all margins with `m:`, horizontal/vertical margins with `mx:` and `my:` (respectively), and individual side margins with `ml:`, `mr:`, `mt:`, and `mb:`.
+Style Buddy uses your [spacing constraints](./default-theme.md#default-spacing-constraints) to generate margin helpers. You can set all margins with `m:`, horizontal/vertical margins with `mx:` and `my:` (respectively), and individual side margins with `ml:`, `mr:`, `mt:`, and `mb:`.
 
 | Prefix | Argument                 | Overridable | Properties Set              | Example           |
 |--------|--------------------------|-------------|-----------------------------|-------------------|
