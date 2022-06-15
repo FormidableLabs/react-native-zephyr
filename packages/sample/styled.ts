@@ -1,7 +1,7 @@
 import { createStyleBuddy } from "react-native-style-buddy";
 import { View, Text, TouchableOpacity } from "react-native";
 
-export const { makeStyledComponent, styles } = createStyleBuddy({});
+export const { makeStyledComponent, styles, useStyles } = createStyleBuddy({});
 
 export const StyledView = makeStyledComponent(View);
 export const StyledText = makeStyledComponent(Text);
