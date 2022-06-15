@@ -30,9 +30,26 @@ pnpm add react-native-style-buddy # pnpm
 
 Style Buddy consists of a core method `createStyleBuddy` that allows you to customize your theme, add some extra style handlers, and it will return styling helpers to make your life easier.
 
+### Wrap your app in a `StyleProvider`
+
+Start by wrapping your app in a `StyleProvider` instance, which is used by Style Buddy under the hood (for things such as dark mode support).
+
+```tsx
+// App.tsx
+import { StyleProvider } from "react-native-style-buddy";
+
+export const App = () => {
+  return (
+    <StyleProvider>
+      {/* The rest of your app body... */}
+    </StyleProvider>
+  );
+};
+```
+
 ### Create helpers
 
-Start by using the `createStyleBuddy` method to generate styling helpers.
+ Then use the `createStyleBuddy` method to generate styling helpers.
 
 ```ts
 import { createStyleBuddy } from "react-native-style-buddy";
@@ -165,6 +182,8 @@ export const MySweetComponent = () => {
   )
 };
 ```
+
+And don't forget to wrap your application in a `StyleProvider` instance.
 
 ## Additional Guides
 
