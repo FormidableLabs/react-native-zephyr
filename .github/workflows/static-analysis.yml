@@ -16,6 +16,6 @@ jobs:
         with:
           node-version: 16
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: yarn install
       - name: Type Check
         run: yarn typecheck
