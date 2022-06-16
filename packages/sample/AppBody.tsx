@@ -23,7 +23,7 @@ export const AppBody = () => {
     >
       <StyledText
         classes={["text:5xl", "color:gray-800"]}
-        darkClasses={["text:6xl", "color:gray-100"]}
+        darkClasses={["color:gray-100"]}
       >
         Hey world
       </StyledText>

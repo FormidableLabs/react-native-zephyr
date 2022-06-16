@@ -14,6 +14,6 @@ pnpm add react-native-style-buddy # pnpm
 
 Note that `react-native-style-buddy` is a JS library with no native dependencies, and therefore installation involves no more than installing the JS package into your repository.
 
-:::warning
+:::note
 Style Buddy's type-safety and style-name inference is possible due to [template literal types](https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html) in TypeScript. Template literal types were released in TypeScript 4.1, and therefore for you to get type safety/inference – your project will need to be using at least `typescript: "4.1.0"`.
 :::
