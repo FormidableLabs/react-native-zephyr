@@ -10,7 +10,7 @@ This document outlines the default theme provided out of the box. It is heavily 
 
 ## Default Spacing Constraints
 
-The `spacing` constraints apply to anything space/size related, such as [the margin classes](./default-handlers.md#margin), [the padding classes](./default-handlers.md#padding), [the sizing classes](./default-handlers.md#sizing), and [the positioning classes](./available-classes.md#positioning). Here's the scale for the default `sizing` constraints.
+The `spacing` constraints apply to anything space/size related, such as [the margin classes](./default-handlers.md#margin), [the padding classes](./default-handlers.md#padding), [the sizing classes](./default-handlers.md#sizing), and [the positioning classes](./default-handlers.md#positioning). Here's the scale for the default `sizing` constraints.
 
 
 | Name                  | Size        |
