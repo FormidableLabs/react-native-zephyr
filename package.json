@@ -11,6 +11,7 @@
   "devDependencies": {
     "@types/react": "^18.0.12",
     "@types/react-native": "^0.67.8",
+    "concurrently": "^7.2.2",
     "prettier": "^2.6.2",
     "react": "^18.1.0",
     "react-native": "^0.68.2",
@@ -18,6 +19,9 @@
     "vitest": "^0.14.2"
   },
   "scripts": {
+    "dev:core": "yarn workspace react-native-style-buddy run dev",
+    "dev:sample": "yarn workspace react-native-style-buddy-sample run start",
+    "dev": "concurrently -c blue,red \"yarn run dev:core\" \"yarn run dev:sample\"",
     "test": "vitest run",
     "test:watch": "vitest",
     "version": "yarn workspace react-native-style-buddy version --new-version $npm_pacakge_version",
