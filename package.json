@@ -20,6 +20,7 @@
   },
   "scripts": {
     "dev:core": "yarn workspace react-native-style-buddy run dev",
+    "build:core": "yarn workspace react-native-style-buddy run build",
     "dev:sample": "yarn workspace react-native-style-buddy-sample run start",
     "dev": "concurrently -c blue,red \"yarn run dev:core\" \"yarn run dev:sample\"",
     "typecheck": "tsc --noEmit",

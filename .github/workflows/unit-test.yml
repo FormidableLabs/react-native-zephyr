@@ -20,5 +20,7 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: Install dependencies
         uses: yarn install
+      - name: Build core
+        run: yarn build:core
       - name: Unit Test
         run: yarn test

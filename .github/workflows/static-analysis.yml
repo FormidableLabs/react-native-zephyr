@@ -17,5 +17,7 @@ jobs:
           node-version: 16
       - name: Install dependencies
         run: yarn install
+      - name: Build core
+        run: yarn build:core
       - name: Type Check
         run: yarn typecheck
