@@ -15,6 +15,7 @@ const C = DefaultConstraints.borderRadii;
 describe("createBorderHandlers", () => {
   const cases: [Parameters<typeof styles>[0], object][] = [
     // rounded:
+    ["rounded:none", { borderRadius: C["none"] }],
     ["rounded:lg", { borderRadius: C["lg"] }],
     ["rounded:[17]", { borderRadius: 17 }],
     // rounded-t:

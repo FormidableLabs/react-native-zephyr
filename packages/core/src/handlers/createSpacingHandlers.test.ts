@@ -71,6 +71,7 @@ describe.only("defaultSpacingHandlers", () => {
     ["-mb:[3]", { marginBottom: -3 }],
 
     // p:
+    ["p:0", { padding: C["0"] }],
     ["p:1", { padding: C["1"] }],
     ["p:1/2", { padding: C["1/2"] }],
     ["p:[3]", { padding: 3 }],

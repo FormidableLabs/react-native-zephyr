@@ -7,16 +7,14 @@ export const createBorderHandlers = <
 >(
   constraints: Constraints
 ) => {
-  const isConstraintKey = (
-    val: keyof typeof constraints | `[${string}]`
-  ): val is keyof typeof constraints => Boolean(constraints?.[val]);
-
   const borderSizeHandler =
     (...properties: Array<keyof ViewStyle>) =>
     (inp: NonSymbol<keyof Constraints> | `[${string}]`) => {
-      const val = isConstraintKey(inp)
-        ? constraints[inp]
-        : extractFromBrackets(inp);
+      const constrainedVal = constraints[inp];
+      const val =
+        constrainedVal !== undefined
+          ? constraints[inp]
+          : extractFromBrackets(inp);
 
       return properties.reduce<ViewStyle>((acc, prop) => {
         // @ts-ignore
