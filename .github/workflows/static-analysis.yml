@@ -1,0 +1,23 @@
+name: Static Analysis
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+
+jobs:
+  static-analysis:
+    name: 'Type-check'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+      - name: Install dependencies
+        run: yarn install
+      - name: Build core
+        run: yarn build:core
+      - name: Type Check
+        run: yarn typecheck
