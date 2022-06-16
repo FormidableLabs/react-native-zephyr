@@ -83,18 +83,64 @@ This small amount of React will generate the following (left: in light mode, rig
 
 ### Using `styles` and `useStyles`
 
-TODO:
+The `createStyleBuddy` function returns three core utilities that you can use for styling:
+
+- `styles` is a function with no reliance on React's component lifecycle, and can be used to generate a React Native style object based on the style classes you provided it. However, it does not support dark-mode (since it is not tuned into your React app).
+- `useStyles` is a React hook that allows you to pass style classes for the baseline case as well as for dark mode, and returns a React Native style object. You can then apply the returned style to an element in your component.
+- `makeStyledComponent` is a HOC that turns a component into a "styled" component. The wrapped component will then have `classes` and `darkClasses` props that you can use to apply style classes.
+
+We recommend using `makeStyledComponent` to export reusable styled components (such as `StyledView` above), but the additional `styles` and `useStyles` offer you additional flexibility if you do not want to wrap your components.
+
 
 ## Step 4: Customizing your theme
 
-TODO:
+Style Buddy ships with a suite of [default handlers](./default-handlers.md) that use the [default theme](./default-theme.md) to create the applicable style "classes" (such as `"w:4"`). This default theme is overridable and extendable. To override the default theme constraints, you can pass a `theme` argument to `createStyleBuddy`.
+
+```ts
+import { createStyleBuddy } from "react-native-style-buddy";
+
+const { styles } = createStyleBuddy({
+  theme: {
+    spacing: { sm: 4, md: 8, lg: 16 }
+  }
+});
+
+// Now the spacing helpers, like m: and p:, use the spacing constraints above.
+styles("px:sm", "py:md", "m:lg");
+```
+
+Note that by passing a constraints field, such as `spacing` or `colors`, you'll override the respective default theme constraints. See [Extending the theme](./extending-the-theme.md) for more details on how this works. If you want to just _extend_ the default theme constraints, use the `extendTheme` parameter.
+
+```ts
+import { createStyleBuddy } from "react-native-style-buddy";
+
+const { styles } = createStyleBuddy({
+  extendTheme: {
+    colors: { brand: "#ff00ff" }
+  }
+});
+
+// The default colors are available, alongside your added colors.
+styles("color:red-300", "bg:brand");
+```
 
 ## Step 5: Adding style handlers
 
-TODO:
+Style Buddy allows you to add your own custom style handlers, so you can break free from the default handlers and add your own if you so desire.
 
-## TODO: 
+Each custom handler of the form `f: x => y` will generate a set of style names of the form `f:x`; each handler of the form `f: () => y` will generate a single style name `f`.
 
-- `styles` is a function with no reliance on React's component lifecycle, and can be used to generate a React Native style object based on the style classes you provided it.
-- `useStyles` is a React hook that allows you to pass style classes for the baseline case as well as for dark mode, and returns a React Native style object.
-- `makeStyledComponent` is a HOC that turns a component into a "styled" component. The wrapped component will then have a `classes` and `darkClasses` 
+```ts
+import { createStyleBuddy } from "react-native-style-buddy";
+
+const { styles } = createStyleBuddy({
+  // Add some extra handlers
+  extraHandlers: {
+    size: (x: "small" | "big") => ({ width: x === "small" ? 8 : 64 }),
+    foo: () => ({ backgroundColor: "brown" })
+  }
+});
+
+// You now have some additional style classes, along with the default ones
+styles("size:small", "size:large", "foo");
+```
