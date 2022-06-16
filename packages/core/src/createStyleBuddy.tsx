@@ -366,7 +366,7 @@ export const createStyleBuddy = <
     const allClasses = flattenClassNameArgs<Cn>(...classes).concat(
       isDarkMode ? flattenClassNameArgs<Cn>(...darkClasses) : []
     );
-    const cacheKey = classes.join(",");
+    const cacheKey = allClasses.join(",");
 
     return React.useMemo(() => styles(...allClasses), [cacheKey]);
   };
