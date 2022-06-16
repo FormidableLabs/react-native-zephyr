@@ -22,6 +22,7 @@
     "dev:core": "yarn workspace react-native-style-buddy run dev",
     "dev:sample": "yarn workspace react-native-style-buddy-sample run start",
     "dev": "concurrently -c blue,red \"yarn run dev:core\" \"yarn run dev:sample\"",
+    "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
     "version": "yarn workspace react-native-style-buddy version --new-version $npm_pacakge_version",
