@@ -6,9 +6,20 @@ sidebar_position: 3
 
 Style Buddy consists of a core method `createStyleBuddy` that allows you to customize your theme, add some extra style handlers, and it will return styling helpers to make your life easier.
 
-## Step 1: Wrap your app in a `StyleProvider`
+## Step 1: Install `react-native-style-buddy`
 
-Start by wrapping your app in a `StyleProvider` instance, which is used by Style Buddy under the hood (for things such as dark mode support).
+Start by installing the Style Buddy library:
+
+```shell
+yarn add react-native-style-buddy
+# Or use npm, pnpm, etc.
+```
+
+See the [Installation guide](./installation.md) for more details on installation.
+
+## Step 2: Wrap your app in a `StyleProvider`
+
+Then wrap your app in a `StyleProvider` instance, which is used by Style Buddy under the hood (for things such as dark mode support).
 
 ```tsx title="App.tsx"
 import { StyleProvider } from "react-native-style-buddy";
@@ -22,7 +33,7 @@ export const App = () => {
 };
 ```
 
-## Step 2: Create a Style Buddy
+## Step 3: Create a Style Buddy
 
 Then use the `createStyleBuddy` method to generate styling helpers. We recommend you have a single Style Buddy instance for your entire app, so it's best to create your buddy in a dedicated file and export what you need for the rest of your app to consume.
 
@@ -50,7 +61,7 @@ export const StyledText = makeStyledComponent(Text);
 
 These new, wrapped components (`StyledView` and `StyledText`) expose `classes` and `darkClasses` props that allow you to pass in baseline style classes, as well as style classes to be merged in in dark mode. 
 
-## Step 3: Start styling!
+## Step 4: Start styling!
 
 With your new style helpers (see [Default Handlers](./default-handlers.md) for more info on style classes you get out of the box), you can quickly style elements.
 
@@ -92,7 +103,7 @@ The `createStyleBuddy` function returns three core utilities that you can use fo
 We recommend using `makeStyledComponent` to export reusable styled components (such as `StyledView` above), but the additional `styles` and `useStyles` offer you additional flexibility if you do not want to wrap your components.
 
 
-## Step 4: Customizing your theme
+## Step 5: Customizing your theme
 
 Style Buddy ships with a suite of [default handlers](./default-handlers.md) that use the [default theme](./default-theme.md) to create the applicable style "classes" (such as `"w:4"`). This default theme is overridable and extendable. To override the default theme constraints, you can pass a `theme` argument to `createStyleBuddy`.
 
@@ -124,7 +135,7 @@ const { styles } = createStyleBuddy({
 styles("color:red-300", "bg:brand");
 ```
 
-## Step 5: Adding style handlers
+## Step 6: Adding style handlers
 
 Style Buddy allows you to add your own custom style handlers, so you can break free from the default handlers and add your own if you so desire.
 
