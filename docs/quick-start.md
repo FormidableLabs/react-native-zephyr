@@ -15,7 +15,7 @@ yarn add react-native-style-buddy
 # Or use npm, pnpm, etc.
 ```
 
-See the [Installation guide](./installation.md) for more details on installation.
+See the [Installation guide](./installation.mdx) for more details on installation.
 
 ## Step 2: Wrap your app in a `StyleProvider`
 
