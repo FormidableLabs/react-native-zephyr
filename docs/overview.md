@@ -10,11 +10,11 @@ TailwindCSS is a brilliant library, but it's built for CSS and the web browser â
 
 React Native Style Buddy, out of the box, provides:
 
-- a thorough set of built-in styling utilities (spacing, colors, typography, etc.);
-- an extendable and overridable theming system;
+- a thorough set of [built-in styling utilities](./default-handlers.md) (spacing, colors, typography, etc.);
+- an [extendable and overridable theming system](./extending-the-theme.md);
 - **type-safety** for speedy and confident development;
-- dark-mode support out of the box;
-- [clsx](https://github.com/lukeed/clsx)-like syntax for applying dynamic style classes.
+- [dark-mode support](./dark-mode.mdx) out of the box;
+- [clsx-like syntax](./dynamic-classname-list.md) for applying dynamic style classes.
 
 With zero customization, you can quickly build UIs with *type-inference*, showcased below.
 
