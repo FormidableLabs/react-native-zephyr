@@ -77,6 +77,23 @@ export const MyComponent = () => {
 }
 ```
 
+This small amount of React will generate the following (left: in light mode, right: in dark mode).
+
+![Hello world example](./img/hello-world.png)
+
+### Using `styles` and `useStyles`
+
+TODO:
+
+## Step 4: Customizing your theme
+
+TODO:
+
+## Step 5: Adding style handlers
+
+TODO:
+
+## TODO: 
 
 - `styles` is a function with no reliance on React's component lifecycle, and can be used to generate a React Native style object based on the style classes you provided it.
 - `useStyles` is a React hook that allows you to pass style classes for the baseline case as well as for dark mode, and returns a React Native style object.
