@@ -41,7 +41,7 @@ export const createStyleBuddy = <
   theme?: Theme;
   extendTheme?: ThemeExt;
 } = {}) => {
-  const cache = new SimpleConstrainedCache({ maxNumRecords: 200 });
+  const cache = new SimpleConstrainedCache({ maxNumRecords: 400 });
   const mergedTheme = mergeThemes({ theme, extendTheme });
 
   type GetKey<
