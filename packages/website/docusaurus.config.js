@@ -35,7 +35,8 @@ const config = {
         docs: {
           path: "../../docs",
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/FormidableLabs/react-native-style-buddy",
+          editUrl:
+            "https://github.com/FormidableLabs/react-native-style-buddy/tree/master/packages/website",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),

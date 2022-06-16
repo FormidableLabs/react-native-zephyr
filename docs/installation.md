@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Installation
 
-Install `react-native-style-buddy` using your favorite package registry tool such as `npm`, `yarn`, or `pnpm`.
+In your React Native/Expo project, install `react-native-style-buddy` using your favorite package registry tool such as `npm`, `yarn`, or `pnpm`.
 
 ```shell
 npm install react-native-style-buddy # npm, or

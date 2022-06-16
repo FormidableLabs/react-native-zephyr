@@ -8,7 +8,7 @@ Style Buddy consists of a core method `createStyleBuddy` that allows you to cust
 
 ## Step 1: Install `react-native-style-buddy`
 
-Start by installing the Style Buddy library:
+In your React Native (or Expo) project, install the Style Buddy library:
 
 ```shell
 yarn add react-native-style-buddy
