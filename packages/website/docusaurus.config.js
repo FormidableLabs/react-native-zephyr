@@ -6,9 +6,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "React Native Style Buddy (Alpha)",
-  tagline: "Your buddy when styling your React Native app",
-  url: "https://react-native-style-buddy.vercel.app/",
+  title: "React Native Zephyr",
+  tagline: "React Native styling library",
+  url: "https://react-native-zephyr.vercel.app/",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -49,7 +49,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "RN Style Buddy (Alpha)",
+        title: "Zephyr",
         logo: {
           alt: "Formidable logo",
           src: "img/formidable-f.svg",

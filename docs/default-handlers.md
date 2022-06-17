@@ -4,9 +4,9 @@ sidebar_position: 4
 
 # Default Handlers
 
-Perhaps the biggest perk of using Style Buddy is that it provides a suite of style "style classes" out of the box that you can use to style your UI elements. The available style classes are created from the set of default "style handlers" (outlined here) and your theme. 
+Perhaps the biggest perk of using Zephyr is that it provides a suite of style "style classes" out of the box that you can use to style your UI elements. The available style classes are created from the set of default "style handlers" (outlined here) and your theme. 
 
-This page outlines the available style classes shipped with Style Buddy out of the box. The examples here are using [the default theme](./default-theme.md) with no customizations, but see [Extending the Theme](./extending-the-theme.md) for more info on how to customize the theme. Also note that these docs indicate which styles classes are "[overridable](#overrides)" using the `[x]` syntax.
+This page outlines the available style classes shipped with Zephyr out of the box. The examples here are using [the default theme](./default-theme.md) with no customizations, but see [Extending the Theme](./extending-the-theme.md) for more info on how to customize the theme. Also note that these docs indicate which styles classes are "[overridable](#overrides)" using the `[x]` syntax.
 
 ## Overrides
 
@@ -16,7 +16,7 @@ Many of the default handlers offer you an escape hatch to handle these one-off c
 
 ## Margin 
 
-Style Buddy uses your [spacing constraints](./default-theme.md#default-spacing-constraints) to generate margin helpers. You can set all margins with `m:`, horizontal/vertical margins with `mx:` and `my:` (respectively), and individual side margins with `ml:`, `mr:`, `mt:`, and `mb:`.
+Zephyr uses your [spacing constraints](./default-theme.md#default-spacing-constraints) to generate margin helpers. You can set all margins with `m:`, horizontal/vertical margins with `mx:` and `my:` (respectively), and individual side margins with `ml:`, `mr:`, `mt:`, and `mb:`.
 
 | Prefix | Argument                 | Overridable | Properties Set              | Example           |
 |--------|--------------------------|-------------|-----------------------------|-------------------|
@@ -43,7 +43,7 @@ Each of these margin style classes comes with a "negative" counterpart. E.g., so
 
 ## Padding
 
-The padding classes in Style Buddy behave like their respective margin classes, but setting padding properties instead of margin. There are no "negative" padding classes.
+The padding classes in Zephyr behave like their respective margin classes, but setting padding properties instead of margin. There are no "negative" padding classes.
 
 | Prefix | Argument                 | Overridable | Properties Set                | Example           |
 |--------|--------------------------|-------------|-------------------------------|-------------------|
@@ -58,7 +58,7 @@ The padding classes in Style Buddy behave like their respective margin classes, 
 
 ## Sizing
 
-Style Buddy uses your spacing constraints to generate sizing helpers, allowing you to control the width and height of an element. You can control width (`w:`), minimum width (`min-w:`), maximum width (`max-w:`) &ndash; as well as the respective height properties (`h:`, `min-h:`, and `max-h:`).
+Zephyr uses your spacing constraints to generate sizing helpers, allowing you to control the width and height of an element. You can control width (`w:`), minimum width (`min-w:`), maximum width (`max-w:`) &ndash; as well as the respective height properties (`h:`, `min-h:`, and `max-h:`).
 
 The `aspect:` classes allow you to set the aspect ratio of an element, which is convenient when you need an element with a fixed aspect ratio (e.g., presenting an image in a 16:9 format).
 
@@ -114,7 +114,7 @@ Use the `hidden` class to hide an element. The `overflow:` classes allow you to 
 
 ## Background Color (and Opacity)
 
-Based on your color constraints, Style Buddy provides classes for setting the background color of elements via the `bg:` classes. The `bg-opacity:` classes can be used to set the background opacity of the element (values based on your opacities constraints). You can set the general opacity of an element with the `opacity:` classes.
+Based on your color constraints, Zephyr provides classes for setting the background color of elements via the `bg:` classes. The `bg-opacity:` classes can be used to set the background opacity of the element (values based on your opacities constraints). You can set the general opacity of an element with the `opacity:` classes.
 
 | Prefix        | Argument                   | Overridable | Properties Set    | Example                              |
 |---------------|----------------------------|-------------|-------------------|--------------------------------------|
@@ -125,7 +125,7 @@ Based on your color constraints, Style Buddy provides classes for setting the ba
 
 ## Borders (Width, Color, Radius)
 
-Style Buddy provides classes for styling borders, including border width, border color, and border radius. The `border:`, `border-t:`, `border-b:`, `border-l:`, and `border-r:` use your border width constraints to generate classes that control border width. The `border-color:` classes allow you to color your borders (based on your color constraints). The `rounded:`, `rounded-t:`, `rounded-b:`, `rounded-l:`, `rounded-r:` classes allow you to add border radii to your element (based on your border radii constraints).
+Zephyr provides classes for styling borders, including border width, border color, and border radius. The `border:`, `border-t:`, `border-b:`, `border-l:`, and `border-r:` use your border width constraints to generate classes that control border width. The `border-color:` classes allow you to color your borders (based on your color constraints). The `rounded:`, `rounded-t:`, `rounded-b:`, `rounded-l:`, `rounded-r:` classes allow you to add border radii to your element (based on your border radii constraints).
 
 | Prefix          | Argument                     | Overridable | Properties Set                                      | Example                                       |
 |-----------------|------------------------------|-------------|-----------------------------------------------------|-----------------------------------------------|
@@ -144,7 +144,7 @@ Style Buddy provides classes for styling borders, including border width, border
 
 ## Flex Properties
 
-Style Buddy provides some helpful flexbox helpers out of the box. Of note:
+Zephyr provides some helpful flexbox helpers out of the box. Of note:
 
 - `flex:1`, `flex:auto`, `flex:initial`, `flex:auto`, and `flex:none` provide some presets for flex sizing. (E.g., `flex:1` is often used to make an element fill all of its available space.)
 - `justify:` and `items:` classes let you control the `justifyContent` and `alignItems` properties (respectively).

@@ -4,7 +4,7 @@ sidebar_position: 7
 
 # Extending the Color Palette
 
-TailwindCSS has [a beautiful color palette](https://tailwindcss.com/docs/customizing-colors). We have used that same color palette for Style Buddy, but we only ship a select handful of these colors in the default theme.
+TailwindCSS has [a beautiful color palette](https://tailwindcss.com/docs/customizing-colors). We have used that same color palette for Zephyr, but we only ship a select handful of these colors in the default theme.
 
 However, we provide an easy way to access the other colors in this color palette using the `extractTwColor` helper function. This helper function accepts a TW color name via `twColor` and a new name for the color constraints that will be added to your theme via the `name` field.
 

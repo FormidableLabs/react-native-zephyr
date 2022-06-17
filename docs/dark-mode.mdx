@@ -4,7 +4,7 @@ sidebar_position: 8
 
 # Dark Mode Support
 
-Style Buddy supports dark mode out of the box using the `useStyles` and `makeStyledComponent` style helpers returned from `createStyleBuddy`. Both accept arguments `classes` and `darkClasses` that indicate:
+Zephyr supports dark mode out of the box using the `useStyles` and `makeStyledComponent` style helpers returned from `createStyleBuddy`. Both accept arguments `classes` and `darkClasses` that indicate:
 
 - the baseline `classes` to apply;
 - and the `darkClasses` to _merge_ into the baseline `classes` if the user's color scheme preference is "dark".
@@ -15,7 +15,7 @@ Here's a simple example:
 import { createStyleBuddy } from "react-native-zephyr";
 import { View, Text } from "react-native";
 
-// Setup your style buddy and helpers
+// Setup your Zephyr and helpers
 export const { makeStyledComponent } = createStyleBuddy();
 export const StyledView = makeStyledComponent(View);
 export const StyledText = makeStyledComponent(Text);
@@ -65,7 +65,7 @@ So if you'd like to only offer light mode to start, you could do the following:
 import { createStyleBuddy, StyleProvider } from "react-native-zephyr";
 import { View } from "react-native";
 
-// Setup your style buddy and helpers
+// Setup your Zephyr and helpers
 export const { makeStyledComponent } = createStyleBuddy();
 export const StyledView = makeStyledComponent(View);
 

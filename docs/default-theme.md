@@ -4,7 +4,7 @@ sidebar_position: 5
 
 # Default Theme
 
-Style Buddy provides a set of default theme constraints, so you can start styling with zero configuration. You can easily customize/extend the theme (see [Extending the Theme](./extending-the-theme.md)), but don't have to to get started with Style buddy.
+Zephyr provides a set of default theme constraints, so you can start styling with zero configuration. You can easily customize/extend the theme (see [Extending the Theme](./extending-the-theme.md)), but don't have to to get started with Zephyr.
 
 This document outlines the default theme provided out of the box. It is heavily inspired by [TailwindCSS](https://tailwindcss.com/)'s default theme, with some modifications appropriate for React Native. The code that defines this default theme can be [found here](https://github.com/FormidableLabs/react-native-zephyr/blob/master/packages/core/src/theme.ts).
 

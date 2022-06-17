@@ -28,6 +28,7 @@
   "scripts": {
     "dev:core": "yarn workspace react-native-zephyr run dev",
     "dev:sample": "yarn workspace react-native-zephyr-sample run start",
+    "dev:docs": "yarn workspace docs run start",
     "dev": "concurrently -c blue,red \"yarn run dev:core\" \"yarn run dev:sample\"",
     "typecheck": "tsc --noEmit",
     "lint": "eslint packages --quiet",

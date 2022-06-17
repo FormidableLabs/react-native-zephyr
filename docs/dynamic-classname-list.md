@@ -6,7 +6,7 @@ sidebar_position: 9
 
 [clsx](https://github.com/lukeed/clsx#readme) provides a utility function that makes it easier to generate a className list in CSS-styled projects, which is very useful when applying dynamic classes to a UI element.
 
-Style Buddy provides a similar, slimmed-down version of this functionality out of the box. When providing a list of style classes (to `styles`, `useStyles`, or the `styled`/`darkStyled` props), you can pass in an array of the following type:
+Zephyr provides a similar, slimmed-down version of this functionality out of the box. When providing a list of style classes (to `styles`, `useStyles`, or the `styled`/`darkStyled` props), you can pass in an array of the following type:
 
 ```ts
 type ClassNameArg = Cn | { [key in Cn]?: boolean } | null | undefined | false;

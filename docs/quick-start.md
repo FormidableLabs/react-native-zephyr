@@ -7,11 +7,11 @@ import TabItem from '@theme/TabItem';
 
 # Quick Start
 
-Style Buddy consists of a core method `createStyleBuddy` that allows you to customize your theme, add some extra style handlers, and it will return styling helpers to make your life easier.
+Zephyr consists of a core method `createStyleBuddy` that allows you to customize your theme, add some extra style handlers, and it will return styling helpers to make your life easier.
 
 ## Step 1: Installation
 
-In your React Native (or Expo) project, install the Style Buddy library:
+In your React Native (or Expo) project, install the Zephyr library:
 
 
 <Tabs>
@@ -42,7 +42,7 @@ See the [Installation guide](./installation.mdx) for more details on installatio
 
 ## Step 2: Wrap your app in a `StyleProvider`
 
-Then wrap your app in a `StyleProvider` instance, which is used by Style Buddy under the hood (for things such as dark mode support).
+Then wrap your app in a `StyleProvider` instance, which is used by Zephyr under the hood (for things such as dark mode support).
 
 ```tsx title="App.tsx"
 import { StyleProvider } from "react-native-zephyr";
@@ -56,9 +56,9 @@ export const App = () => {
 };
 ```
 
-## Step 3: Create a Style Buddy
+## Step 3: Create a Zephyr
 
-Then use the `createStyleBuddy` method to generate styling helpers. We recommend you have a single Style Buddy instance for your entire app, so it's best to create your buddy in a dedicated file and export what you need for the rest of your app to consume.
+Then use the `createStyleBuddy` method to generate styling helpers. We recommend you have a single Zephyr instance for your entire app, so it's best to create your buddy in a dedicated file and export what you need for the rest of your app to consume.
 
 ```ts title="styles.ts"
 import { createStyleBuddy } from "react-native-zephyr";
@@ -128,7 +128,7 @@ We recommend using `makeStyledComponent` to export reusable styled components (s
 
 ## Step 5: Customizing your theme
 
-Style Buddy ships with a suite of [default handlers](./default-handlers.md) that use the [default theme](./default-theme.md) to create the applicable style "classes" (such as `"w:4"`). This default theme is overridable and extendable. To override the default theme constraints, you can pass a `theme` argument to `createStyleBuddy`.
+Zephyr ships with a suite of [default handlers](./default-handlers.md) that use the [default theme](./default-theme.md) to create the applicable style "classes" (such as `"w:4"`). This default theme is overridable and extendable. To override the default theme constraints, you can pass a `theme` argument to `createStyleBuddy`.
 
 ```ts
 import { createStyleBuddy } from "react-native-zephyr";
@@ -160,7 +160,7 @@ styles("color:red-300", "bg:brand");
 
 ## Step 6: Adding style handlers
 
-Style Buddy allows you to add your own custom style handlers, so you can break free from the default handlers and add your own if you so desire.
+Zephyr allows you to add your own custom style handlers, so you can break free from the default handlers and add your own if you so desire.
 
 Each custom handler of the form `f: x => y` will generate a set of style names of the form `f:x`; each handler of the form `f: () => y` will generate a single style name `f`.
 
