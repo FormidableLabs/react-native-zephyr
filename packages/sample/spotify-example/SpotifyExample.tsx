@@ -1,24 +1,38 @@
 import * as React from "react";
-import { SafeAreaView } from "react-native";
 import {
   StyledSafeAreaView,
   StyledScrollView,
-  StyledText,
   StyledView,
-  styles,
   useStyles,
 } from "./styles";
-import { Ionicons } from "@expo/vector-icons";
-import { ComponentProps } from "react";
-import { DefaultConstraints } from "react-native-style-buddy";
+import { Tabs } from "./Tabs";
+import { NowPlaying } from "./NowPlaying";
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from "react-native-safe-area-context";
+import { Header } from "./Header";
+import { RecentlyPlayed } from "./RecentlyPlayed";
 
 export const SpotifyExample = () => {
-  // const { top, bottom } = useSafeAreaInsets();
-  const p = useStyles({ classes: ["bg:green-300", "flex:1"] });
+  return (
+    <SafeAreaProvider>
+      <SpotifyExampleBody />
+    </SafeAreaProvider>
+  );
+};
+
+const SpotifyExampleBody = () => {
+  const { top } = useSafeAreaInsets();
+  const p = useStyles({ classes: ["flex:1", "p:2"] });
 
   return (
-    <StyledView style={styles("flex:1", "bg:red-300")}>
-      <StyledScrollView contentContainerStyle={p}></StyledScrollView>
+    <StyledView classes={["flex:1", "bg:gray-800"]}>
+      <StyledScrollView contentContainerStyle={[p, { paddingTop: top }]}>
+        <Header />
+        <StyledView classes={["h:1"]} />
+        <RecentlyPlayed />
+      </StyledScrollView>
       <StyledView classes={["absolute", "bottom:0", "inset-x:0"]}>
         <NowPlaying />
         <StyledSafeAreaView classes={["bg:black", "bg-opacity:50"]}>
@@ -27,31 +41,4 @@ export const SpotifyExample = () => {
       </StyledView>
     </StyledView>
   );
-};
-
-const TABS: { title: string; icon: ComponentProps<typeof Ionicons>["name"] }[] =
-  [
-    { title: "Home", icon: "ios-home" },
-    { title: "Search", icon: "search" },
-    { title: "Your Library", icon: "library" },
-  ];
-const Tabs = () => {
-  return (
-    <StyledView classes={["flex:row", "justify:between", "px:3"]}>
-      {TABS.map(({ title, icon }) => (
-        <StyledView key={title} classes={["p:2", "items:center"]}>
-          <Ionicons
-            name={icon}
-            size={20}
-            color={DefaultConstraints.colors.white}
-          />
-          <StyledText>{title}</StyledText>
-        </StyledView>
-      ))}
-    </StyledView>
-  );
-};
-
-const NowPlaying = () => {
-  return <StyledText>Now playing</StyledText>;
 };

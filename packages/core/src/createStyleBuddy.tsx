@@ -403,7 +403,7 @@ export const createStyleBuddy = <
     return ComponentWithStyles;
   };
 
-  return { styles, useStyles, makeStyledComponent };
+  return { styles, useStyles, makeStyledComponent, theme: mergedTheme };
 };
 
 const HandlerArgRegExp = /^(.+):(.+)$/;
