@@ -1,11 +1,11 @@
 import * as React from "react";
 import { StyleProvider } from "react-native-zephyr";
-import { SpotifyExample } from "./spotify-example/SpotifyExample";
+import { AppBody } from "./AppBody";
 
 export default function App() {
   return (
     <StyleProvider>
-      <SpotifyExample />
+      <AppBody />
     </StyleProvider>
   );
 }

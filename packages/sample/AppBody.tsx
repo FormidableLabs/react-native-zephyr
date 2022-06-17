@@ -5,21 +5,21 @@ export const AppBody = () => {
   return (
     <StyledView classes={["flex:1", "justify:center", "items:center"]}>
       <StyledImage
-        source={require("./bg.png")}
-        classes={["absolute", "inset:0", "resize:cover"]}
+        source={require("./bg.jpg")}
+        classes={["absolute", "w:full", "h:full", "resize:cover"]}
       />
       <StyledView
         classes={[
           "px:8",
           "py:6",
-          "bg:gray-500",
+          "bg:gray-900",
           "rounded:lg",
-          "shadow:lg",
+          "shadow:2xl",
           "bg-opacity:50",
         ]}
       >
         <StyledText classes={["text:5xl", "color:gray-200"]}>
-          Hey world
+          Hello world!
         </StyledText>
       </StyledView>
     </StyledView>
