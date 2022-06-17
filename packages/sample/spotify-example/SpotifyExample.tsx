@@ -9,6 +9,8 @@ import {
   useStyles,
 } from "./styles";
 import { Ionicons } from "@expo/vector-icons";
+import { ComponentProps } from "react";
+import { DefaultConstraints } from "react-native-style-buddy";
 
 export const SpotifyExample = () => {
   // const { top, bottom } = useSafeAreaInsets();
@@ -27,9 +29,27 @@ export const SpotifyExample = () => {
   );
 };
 
-const TABS;
+const TABS: { title: string; icon: ComponentProps<typeof Ionicons>["name"] }[] =
+  [
+    { title: "Home", icon: "ios-home" },
+    { title: "Search", icon: "search" },
+    { title: "Your Library", icon: "library" },
+  ];
 const Tabs = () => {
-  return <StyledText>Bottom bar</StyledText>;
+  return (
+    <StyledView classes={["flex:row", "justify:between", "px:3"]}>
+      {TABS.map(({ title, icon }) => (
+        <StyledView key={title} classes={["p:2", "items:center"]}>
+          <Ionicons
+            name={icon}
+            size={20}
+            color={DefaultConstraints.colors.white}
+          />
+          <StyledText>{title}</StyledText>
+        </StyledView>
+      ))}
+    </StyledView>
+  );
 };
 
 const NowPlaying = () => {
