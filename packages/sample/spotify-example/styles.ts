@@ -1,4 +1,4 @@
-import { createStyleBuddy } from "react-native-style-buddy";
+import { createStyleBuddy } from "react-native-zephyr";
 import {
   View,
   Text,

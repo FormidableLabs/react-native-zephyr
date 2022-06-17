@@ -1,4 +1,4 @@
-import { createStyleBuddy, extractTwColor } from "react-native-style-buddy";
+import { createStyleBuddy, extractTwColor } from "react-native-zephyr";
 import { View, Text, TouchableOpacity, Animated, Image } from "react-native";
 
 export const { makeStyledComponent, styles, useStyles } = createStyleBuddy({

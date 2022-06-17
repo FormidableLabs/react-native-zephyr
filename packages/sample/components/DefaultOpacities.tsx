@@ -1,7 +1,7 @@
 import * as React from "react";
 import { StyledText, StyledView, styles } from "../styled";
 import { SafeAreaView } from "react-native";
-import { DefaultConstraints } from "react-native-style-buddy";
+import { DefaultConstraints } from "react-native-zephyr";
 
 export const DefaultOpacities = () => {
   return (

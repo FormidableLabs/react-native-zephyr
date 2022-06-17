@@ -34,7 +34,7 @@ The default theme conforms to this shape, and this is the shape you'll use to ov
 The `createStyleBuddy` function takes an argument named `theme`, which is of the shape `ThemeConstraints`. Each sub-field you pass to that object (such as `spacing`, `colors`, and so on) will override the default theme's respective set of constraints. Here's an example.
 
 ```ts
-import { createStyleBuddy } from "react-native-style-buddy";
+import { createStyleBuddy } from "react-native-zephyr";
 
 const { styles } = createStyleBuddy({
   theme: {
@@ -58,7 +58,7 @@ Note that if you do _not_ specify a field in `theme`, `createStyleBuddy` will us
 If you don't want to overwrite a specific set of theme constraints, but rather just extend the default constraints, you can use the `extendTheme` parameter of the `createStyleBuddy` function.
 
 ```ts
-import { createStyleBuddy } from "react-native-style-buddy";
+import { createStyleBuddy } from "react-native-zephyr";
 
 const { styles } = createStyleBuddy({
   extendTheme: {

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { DefaultConstraints } from "react-native-style-buddy";
+import { DefaultConstraints } from "react-native-zephyr";
 import { ScrollView } from "react-native";
 import { useStyles, StyledView, StyledText } from "../styled";
 

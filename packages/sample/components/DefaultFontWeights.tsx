@@ -1,6 +1,6 @@
 import * as React from "react";
 import { SafeAreaView, View, Text, ScrollView } from "react-native";
-import { DefaultConstraints } from "react-native-style-buddy";
+import { DefaultConstraints } from "react-native-zephyr";
 import { styles } from "../styled";
 
 export const DefaultFontWeights = () => {

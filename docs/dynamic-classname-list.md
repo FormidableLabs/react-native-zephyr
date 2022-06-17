@@ -17,7 +17,7 @@ where `Cn` is the type of the class names defined by your instance from `createS
 This is better portrayed by an example.
 
 ```ts
-import { createStyleBuddy } from "react-native-style-buddy";
+import { createStyleBuddy } from "react-native-zephyr";
 
 const { styles } = createStyleBuddy();
 

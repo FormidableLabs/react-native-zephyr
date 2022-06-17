@@ -9,7 +9,7 @@ TailwindCSS has [a beautiful color palette](https://tailwindcss.com/docs/customi
 However, we provide an easy way to access the other colors in this color palette using the `extractTwColor` helper function. This helper function accepts a TW color name via `twColor` and a new name for the color constraints that will be added to your theme via the `name` field.
 
 ```ts
-import { createStyleBuddy, extractTwColor } from "react-native-style-buddy";
+import { createStyleBuddy, extractTwColor } from "react-native-zephyr";
 
 const { styles } = createStyleBuddy({
   extendTheme: {

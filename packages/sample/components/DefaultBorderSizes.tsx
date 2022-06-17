@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StyledView, StyledText } from "../styled";
-import { DefaultConstraints } from "react-native-style-buddy";
+import { DefaultConstraints } from "react-native-zephyr";
 
 export const DefaultBorderSizes = () => {
   return (

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { SafeAreaView, View, Text, ScrollView } from "react-native";
 import { styles } from "../styled";
-import { DefaultConstraints } from "react-native-style-buddy";
+import { DefaultConstraints } from "react-native-zephyr";
 
 export const DefaultFontSizes = () => {
   return (
