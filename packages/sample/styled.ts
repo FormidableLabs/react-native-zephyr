@@ -15,5 +15,3 @@ export const StyledTouchableOpacity = makeStyledComponent(
   Animated.createAnimatedComponent(TouchableOpacity)
 );
 export const StyledImage = makeStyledComponent(Image);
-
-const f = styles("bg:brown-300");

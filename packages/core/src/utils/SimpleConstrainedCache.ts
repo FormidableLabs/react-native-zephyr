@@ -24,11 +24,9 @@ export class SimpleConstrainedCache {
    * After each set, we'll make sure to trim up a bit (if needed)
    */
   __trim = () => {
-    if (this.__records.size > this.__maxNumRecords) {
-      for (let [key] of this.__records) {
-        this.__records.delete(key);
-        break;
-      }
+    while (this.__records.size > this.__maxNumRecords) {
+      const [key] = this.__records.keys();
+      this.__records.delete(key);
     }
   };
 }

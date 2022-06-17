@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Animated } from "react-native";
 import { StyleProvider } from "react-native-style-buddy";
 import { AppBody } from "./AppBody";
 

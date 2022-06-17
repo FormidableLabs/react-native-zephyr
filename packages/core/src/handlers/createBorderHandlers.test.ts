@@ -1,6 +1,5 @@
 import { vi, describe, it, expect } from "vitest";
 import { createStyleBuddy } from "../createStyleBuddy";
-import { createBorderHandlers } from "./createBorderHandlers";
 import { DefaultConstraints } from "../theme";
 
 vi.mock("react-native", () => ({

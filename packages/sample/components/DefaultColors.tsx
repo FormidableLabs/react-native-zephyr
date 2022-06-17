@@ -32,7 +32,7 @@ const ColorList = ({ color }: { color: string }) => (
   <StyledView
     classes={["flex:1", "flex:row", "items:center", "justify:between", "mb:4"]}
   >
-    {getColors(color).map(([key, color]) => (
+    {getColors(color).map(([key]) => (
       <StyledView key={key} classes={["items:center"]}>
         <StyledText
           classes={["font-weight:bold", "text-align:center", "text:xs"]}
