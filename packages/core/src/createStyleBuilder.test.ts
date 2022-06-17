@@ -31,7 +31,7 @@ describe("createStyleBuilder", () => {
 
   it("allows overriding theme values", () => {
     const { styles } = createStyleBuilder({
-      theme: {
+      overrideTheme: {
         spacing: { sm: 4, md: 8 },
       },
     });

@@ -167,7 +167,7 @@ describe("defaultSpacingHandlers", () => {
 
   it("allows for custom constraints", () => {
     const { styles } = createStyleBuilder({
-      theme: {
+      overrideTheme: {
         spacing: { sm: 3 },
       },
     });

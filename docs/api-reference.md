@@ -56,9 +56,9 @@ const {
 - `makeStyledComponent: <Props>(Component: React.Component<Props>) => React.Component<Props & { classes?: ClassName[]; darkClasses?: ClassName[] }>`
   - A function to turn a component (with a `style` prop) into a "styled" component that has `classes` and `darkClasses` props that will be applied to the style of the underline component.
   - Example: `const StyledView = makeStyledComponent(View)` where `View` is from React Native.
-  - `theme?: ThemeConstraints`
-    - The final theme after overrides/extensions have been made.
-    - This allows you to manually use your theme constraints if need-be, e.g. `color={theme.colors["green-500"]}`.
+- `theme?: ThemeConstraints`
+  - The final theme after overrides/extensions have been made.
+  - This allows you to manually use your theme constraints if need-be, e.g. `color={theme.colors["green-500"]}`.
 
 ## `extractTwColor`
 
@@ -75,13 +75,13 @@ const colorRange = extractTwColor({ twColor, name });
 
 ### Returns
 
-Returns an object of the shape `{[key: string]: string}` which should be spread into the `colors` field of `theme` or `extendTheme` option of `createStyleBuilder`.
+Returns an object of the shape `{[key: string]: string}` which should be spread into the `colors` field of `overrideTheme` or `extendTheme` option of `createStyleBuilder`.
 
 ## Types
 
 ### `ThemeConstraints`
 
-The type of the default theme, and type used for `theme` and `extendTheme` options of `createStyleBuilder`.
+The type of the default theme, and type used for `overrideTheme` and `extendTheme` options of `createStyleBuilder`.
 
 ```ts
 export type ThemeConstraints = {

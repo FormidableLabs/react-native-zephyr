@@ -42,7 +42,7 @@ describe("createBorderHandlers", () => {
 
   it("allows for custom constraints", () => {
     const { styles } = createStyleBuilder({
-      theme: {
+      overrideTheme: {
         borderSizes: { foo: 6, bar: 9 },
       },
     });

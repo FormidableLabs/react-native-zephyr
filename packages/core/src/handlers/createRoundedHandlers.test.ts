@@ -55,7 +55,7 @@ describe("createBorderHandlers", () => {
 
   it("allows for custom constraints", () => {
     const { styles } = createStyleBuilder({
-      theme: {
+      overrideTheme: {
         borderRadii: { foo: 6, bar: 9 },
       },
     });

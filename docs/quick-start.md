@@ -128,13 +128,13 @@ We recommend using `makeStyledComponent` to export reusable styled components (s
 
 ## Step 5: Customizing your theme
 
-Zephyr ships with a suite of [default handlers](./default-handlers.md) that use the [default theme](./default-theme.md) to create the applicable style "classes" (such as `"w:4"`). This default theme is overridable and extendable. To override the default theme constraints, you can pass a `theme` argument to `createStyleBuilder`.
+Zephyr ships with a suite of [default handlers](./default-handlers.md) that use the [default theme](./default-theme.md) to create the applicable style "classes" (such as `"w:4"`). This default theme is overridable and extendable. To override the default theme constraints, you can pass a `overrideTheme` argument to `createStyleBuilder`.
 
 ```ts
 import { createStyleBuilder } from "react-native-zephyr";
 
 const { styles } = createStyleBuilder({
-  theme: {
+  overrideTheme: {
     spacing: { sm: 4, md: 8, lg: 16 }
   }
 });

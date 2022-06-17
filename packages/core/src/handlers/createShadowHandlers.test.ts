@@ -35,7 +35,7 @@ describe("createShadowHandlers", () => {
 
   it("allows for custom constraints", () => {
     const { styles } = createStyleBuilder({
-      theme: {
+      overrideTheme: {
         shadows: {
           foo: { ios: [1, 2, 3, 4], android: 2 },
         },

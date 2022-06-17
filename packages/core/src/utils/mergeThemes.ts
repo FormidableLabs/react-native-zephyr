@@ -5,10 +5,10 @@ export const mergeThemes = <
   Theme extends ThemeConstraints,
   ThemeExt extends ThemeConstraints
 >({
-  theme,
+  overrideTheme,
   extendTheme,
 }: {
-  theme?: Theme;
+  overrideTheme?: Theme;
   extendTheme?: ThemeExt;
 }) => {
   const newTheme = {} as NonOptional<ThemeConstraints>;
@@ -18,7 +18,7 @@ export const mergeThemes = <
     // @ts-ignore
     newTheme[key] = {
       // @ts-ignore
-      ...(theme?.[key] || DefaultConstraints[key]),
+      ...(overrideTheme?.[key] || DefaultConstraints[key]),
       // @ts-ignore
       ...extendTheme?.[key],
     };

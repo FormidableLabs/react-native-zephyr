@@ -34,15 +34,15 @@ export const createStyleBuilder = <
   ExtraStyleHandlers extends StyleHandlerSet | undefined = undefined
 >({
   extraHandlers,
-  theme,
+  overrideTheme,
   extendTheme,
 }: {
   extraHandlers?: ExtraStyleHandlers;
-  theme?: Theme;
+  overrideTheme?: Theme;
   extendTheme?: ThemeExt;
 } = {}) => {
   const cache = new SimpleConstrainedCache({ maxNumRecords: 400 });
-  const mergedTheme = mergeThemes({ theme, extendTheme });
+  const mergedTheme = mergeThemes({ overrideTheme, extendTheme });
 
   type GetKey<
     UserThemeConstraints,

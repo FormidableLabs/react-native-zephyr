@@ -23,7 +23,7 @@ describe("createAspectRatioHandlers", () => {
 
   it("allows custom constraints", () => {
     const { styles } = createStyleBuilder({
-      theme: {
+      overrideTheme: {
         aspectRatios: { foo: [1, 1], bar: [3, 7] },
       },
     });

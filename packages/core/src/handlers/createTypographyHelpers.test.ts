@@ -41,7 +41,7 @@ describe("createTypographyHelpers", () => {
 
   it("allows for custom constraints", () => {
     const { styles } = createStyleBuilder({
-      theme: {
+      overrideTheme: {
         fontSizes: { foo: [8, 10] },
         fontWeights: { bar: "bold" },
       },

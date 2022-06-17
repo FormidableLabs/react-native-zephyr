@@ -10,7 +10,7 @@ vi.mock("react-native", () => ({
 
 describe("mergeThemes", () => {
   it("replaces default constraints with new ones, only if provided", () => {
-    const newTheme = mergeThemes({ theme: { spacing: { sm: 4 } } });
+    const newTheme = mergeThemes({ overrideTheme: { spacing: { sm: 4 } } });
     expect(newTheme.spacing).toEqual({ sm: 4 });
     expect(newTheme.shadows).toEqual(DefaultConstraints.shadows);
   });
@@ -22,7 +22,7 @@ describe("mergeThemes", () => {
 
   it("allows for constraints to be overwritten _and_ extended", () => {
     const newTheme = mergeThemes({
-      theme: { spacing: { sm: 4 } },
+      overrideTheme: { spacing: { sm: 4 } },
       extendTheme: { spacing: { md: 8 } },
     });
     expect(newTheme.spacing).toEqual({ sm: 4, md: 8 });

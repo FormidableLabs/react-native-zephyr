@@ -33,7 +33,7 @@ describe("createColorHandlers", () => {
 
   it("allows custom constraints", () => {
     const { styles } = createStyleBuilder({
-      theme: {
+      overrideTheme: {
         colors: { black: "#000", pink: "pink" },
       },
     });

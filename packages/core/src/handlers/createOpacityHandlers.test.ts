@@ -30,7 +30,7 @@ describe("createOpacityHandlers", () => {
 
   it("allows custom constraints", () => {
     const { styles } = createStyleBuilder({
-      theme: {
+      overrideTheme: {
         opacities: { half: 0.5, notmuch: 0.05 },
       },
     });
