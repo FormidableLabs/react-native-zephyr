@@ -11,7 +11,7 @@ vi.mock("react-native", () => ({
 const { styles } = createStyleBuddy({});
 const C = DefaultConstraints.spacing;
 
-describe.only("defaultSpacingHandlers", () => {
+describe("defaultSpacingHandlers", () => {
   const cases: [Parameters<typeof styles>[0], object][] = [
     // m:
     ["m:1", { margin: C["1"] }],
