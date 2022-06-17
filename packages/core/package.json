@@ -28,7 +28,7 @@
     "build": "rm -rf dist && tsc -p ./tsconfig.build.json",
     "dev": "tsc --watch",
     "typecheck": "tsc --noEmit",
-    "test": "yarn typecheck && vitest run",
+    "test": "vitest run",
     "test:watch": "vitest",
     "prepublishOnly": "cp ../../README.md ./README.md && yarn test && yarn build",
     "preversion": "yarn run test"
