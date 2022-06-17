@@ -1,11 +1,11 @@
 import * as React from "react";
 import { StyleProvider } from "react-native-style-buddy";
-import { AppBody } from "./AppBody";
+import { SpotifyExample } from "./spotify-example/SpotifyExample";
 
 export default function App() {
   return (
     <StyleProvider>
-      <AppBody />
+      <SpotifyExample />
     </StyleProvider>
   );
 }
