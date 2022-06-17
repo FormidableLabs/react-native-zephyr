@@ -1,6 +1,5 @@
 import { vi, describe, it, expect } from "vitest";
 import { createStyleBuddy } from "../createStyleBuddy";
-import { createBorderHandlers } from "./createBorderHandlers";
 import { DefaultConstraints } from "../theme";
 
 vi.mock("react-native", () => ({
@@ -15,6 +14,7 @@ const C = DefaultConstraints.borderRadii;
 describe("createBorderHandlers", () => {
   const cases: [Parameters<typeof styles>[0], object][] = [
     // rounded:
+    ["rounded:none", { borderRadius: C["none"] }],
     ["rounded:lg", { borderRadius: C["lg"] }],
     ["rounded:[17]", { borderRadius: 17 }],
     // rounded-t:

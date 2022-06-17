@@ -10,13 +10,11 @@ export const createSpacingHandlers = <
   const spacingHandler =
     (properties: (keyof FlexStyle)[], isNegative?: boolean) =>
     (val: NonSymbol<keyof typeof constraints> | `[${string}]`) => {
-      const isConstraintKey = (
-        val: keyof typeof constraints | `[${string}]`
-      ): val is keyof typeof constraints => Boolean(constraints?.[val]);
-
-      const spaceVal = isConstraintKey(val)
-        ? constraints[val]
-        : extractFromBrackets(val);
+      const constrainedVal = constraints[val];
+      const spaceVal =
+        constrainedVal !== undefined
+          ? constraints[val]
+          : extractFromBrackets(val);
 
       return properties.reduce<{
         [K in keyof FlexStyle]: number | string | undefined;

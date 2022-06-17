@@ -6,9 +6,9 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "React Native Style Buddy",
+  title: "React Native Style Buddy (Alpha)",
   tagline: "Your buddy when styling your React Native app",
-  url: "https://your-docusaurus-test-site.com",
+  url: "https://react-native-style-buddy.vercel.app/",
   baseUrl: "/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
@@ -16,8 +16,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "facebook", // Usually your GitHub org/user name.
-  projectName: "docusaurus", // Usually your repo name.
+  organizationName: "Formidable",
+  projectName: "react-native-style-buddy", // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -49,10 +49,10 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "RN Style Buddy",
+        title: "RN Style Buddy (Alpha)",
         logo: {
-          alt: "My Site Logo",
-          src: "img/logo.svg",
+          alt: "Formidable logo",
+          src: "img/formidable-f.svg",
         },
         items: [
           {
@@ -63,7 +63,14 @@ const config = {
           },
           {
             href: "https://github.com/FormidableLabs/react-native-style-buddy",
-            label: "GitHub",
+            className: "header-github-link",
+            "aria-label": "GitHub Repository",
+            position: "right",
+          },
+          {
+            href: "https://formidable.com",
+            className: "header-formidable-link",
+            "aria-label": "Formidable Website",
             position: "right",
           },
         ],

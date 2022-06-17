@@ -9,13 +9,9 @@ export const createColorHandlers = <
 ) => {
   type ColorInput = NonSymbol<keyof Constraints> | `[${string}]`;
 
-  const isConstraintKey = (
-    val: ColorInput
-  ): val is NonSymbol<keyof Constraints> => Boolean(constraints?.[val]);
-
   const getColorValue = (val: ColorInput): string | undefined => {
     const constrainedValue = constraints[val];
-    if (isConstraintKey(val)) return constrainedValue;
+    if (constrainedValue !== undefined) return constrainedValue;
 
     const bracketValue = extractFromBrackets(val);
     if (bracketValue) {

@@ -15,7 +15,7 @@ export const AppBody = () => {
           "bg:gray-500",
           "rounded:lg",
           "shadow:lg",
-          "bg-op",
+          "bg-opacity:50",
         ]}
       >
         <StyledText classes={["text:5xl", "color:gray-200"]}>

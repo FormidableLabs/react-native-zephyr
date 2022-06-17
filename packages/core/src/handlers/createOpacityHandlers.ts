@@ -8,20 +8,19 @@ export const createOpacityHandlers = <
   constraints: Constraints
 ) => {
   type OpacityInput = NonSymbol<keyof Constraints> | `[${number}]`;
-  const isConstraintKey = (
-    val: OpacityInput
-  ): val is NonSymbol<keyof Constraints> => constraints?.[val] !== undefined;
-
   return {
     opacity: (inp: OpacityInput) => {
-      const val = isConstraintKey(inp)
-        ? constraints[inp]
-        : extractFromBrackets(inp);
+      const constrainedVal = constraints[inp];
+      const val =
+        constrainedVal !== undefined
+          ? constraints[inp]
+          : extractFromBrackets(inp);
       return <ViewStyle>{ opacity: val };
     },
 
     "bg-opacity": (inp: OpacityInput): BgOpacityRecord => {
-      if (isConstraintKey(inp)) {
+      const constrainedVal = constraints[inp];
+      if (constrainedVal !== undefined) {
         return { "--bg-opacity": constraints[inp] };
       }
 
