@@ -18,21 +18,21 @@ In your React Native (or Expo) project, install the Style Buddy library:
 <TabItem value="npm" label="NPM">
 
 ```sh
-npm install react-native-style-buddy
+npm install react-native-zephyr
 ```
 
 </TabItem>
 <TabItem value="yarn" label="Yarn">
 
 ```sh
-yarn add react-native-style-buddy
+yarn add react-native-zephyr
 ```
 
 </TabItem>
 <TabItem value="pnpm" label="pnpm">
 
 ```sh
-pnpm add react-native-style-buddy
+pnpm add react-native-zephyr
 ```
 
 </TabItem>

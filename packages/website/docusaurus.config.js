@@ -17,7 +17,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "Formidable",
-  projectName: "react-native-style-buddy", // Usually your repo name.
+  projectName: "react-native-zephyr", // Usually your repo name.
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang. For example, if your site is Chinese, you may want
@@ -36,7 +36,7 @@ const config = {
           path: "../../docs",
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl:
-            "https://github.com/FormidableLabs/react-native-style-buddy/tree/master/packages/website",
+            "https://github.com/FormidableLabs/react-native-zephyr/tree/master/packages/website",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -62,7 +62,7 @@ const config = {
             label: "Documentation",
           },
           {
-            href: "https://github.com/FormidableLabs/react-native-style-buddy",
+            href: "https://github.com/FormidableLabs/react-native-zephyr",
             className: "header-github-link",
             "aria-label": "GitHub Repository",
             position: "right",
@@ -109,7 +109,7 @@ const config = {
             items: [
               {
                 label: "GitHub",
-                href: "https://github.com/FormidableLabs/react-native-style-buddy",
+                href: "https://github.com/FormidableLabs/react-native-zephyr",
               },
             ],
           },

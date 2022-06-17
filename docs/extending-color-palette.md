@@ -24,4 +24,4 @@ const { styles } = createStyleBuddy({
 styles("bg:primary-100", "color:primary-800", /* ... */);
 ```
 
-The full list of available colors can be found [here](https://github.com/FormidableLabs/react-native-style-buddy/blob/master/packages/core/src/handlers/twColors.ts).
+The full list of available colors can be found [here](https://github.com/FormidableLabs/react-native-zephyr/blob/master/packages/core/src/handlers/twColors.ts).
