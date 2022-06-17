@@ -1,5 +1,5 @@
 import { vi, describe, it, expect } from "vitest";
-import { createStyleBuddy } from "../createStyleBuddy";
+import { createStyleBuilder } from "../createStyleBuilder";
 import { DefaultConstraints } from "../theme";
 
 vi.mock("react-native", () => ({
@@ -8,7 +8,7 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const { styles } = createStyleBuddy({});
+const { styles } = createStyleBuilder({});
 const C = DefaultConstraints.borderRadii;
 
 describe("createBorderHandlers", () => {
@@ -54,7 +54,7 @@ describe("createBorderHandlers", () => {
   });
 
   it("allows for custom constraints", () => {
-    const { styles } = createStyleBuddy({
+    const { styles } = createStyleBuilder({
       theme: {
         borderRadii: { foo: 6, bar: 9 },
       },
@@ -67,7 +67,7 @@ describe("createBorderHandlers", () => {
   });
 
   it("allows extending constraints", () => {
-    const { styles } = createStyleBuddy({
+    const { styles } = createStyleBuilder({
       extendTheme: { borderRadii: { foo: 6 } },
     });
 

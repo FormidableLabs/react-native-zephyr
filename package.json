@@ -33,7 +33,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint packages --quiet",
     "test": "vitest run",
-    "check:ci": "yarn typecheck && yarn lint && yarn test",
+    "check:ci": "yarn build:core && yarn typecheck && yarn lint && yarn test",
     "test:watch": "vitest",
     "version": "yarn workspace react-native-zephyr version --new-version $npm_pacakge_version",
     "publish:core": "yarn workspace react-native-zephyr publish",

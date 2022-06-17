@@ -12,14 +12,14 @@ Zephyr provides a similar, slimmed-down version of this functionality out of the
 type ClassNameArg = Cn | { [key in Cn]?: boolean } | null | undefined | false;
 ```
 
-where `Cn` is the type of the class names defined by your instance from `createStyleBuddy`.
+where `Cn` is the type of the class names defined by your instance from `createStyleBuilder`.
 
 This is better portrayed by an example.
 
 ```ts
-import { createStyleBuddy } from "react-native-zephyr";
+import { createStyleBuilder } from "react-native-zephyr";
 
-const { styles } = createStyleBuddy();
+const { styles } = createStyleBuilder();
 
 // Use strings
 styles("px:2", "py:3");

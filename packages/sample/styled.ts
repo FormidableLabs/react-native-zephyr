@@ -1,7 +1,7 @@
-import { createStyleBuddy, extractTwColor } from "react-native-zephyr";
+import { createStyleBuilder, extractTwColor } from "react-native-zephyr";
 import { View, Text, TouchableOpacity, Animated, Image } from "react-native";
 
-export const { makeStyledComponent, styles, useStyles } = createStyleBuddy({
+export const { makeStyledComponent, styles, useStyles } = createStyleBuilder({
   extendTheme: {
     colors: {
       ...extractTwColor({ twColor: "fuchsia", name: "brown" }),

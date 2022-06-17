@@ -16,7 +16,7 @@ type StyleProviderProps = React.PropsWithChildren<{ colorScheme?: "light" | "dar
 - Gives your app access to color-scheme information needed to handle light/dark modes.
 - Pass `colorScheme="dark"` to force the app into "dark mode". Pass `colorScheme="light"` to force the app into "light mode". Pass `colorScheme="auto"` to use the system's color scheme preference.
 
-## `createStyleBuddy`
+## `createStyleBuilder`
 
 ```ts
 const {
@@ -24,7 +24,7 @@ const {
   useStyles,
   makeStyledComponent,
   theme
-} = createStyleBuddy({
+} = createStyleBuilder({
   theme,
   extendTheme,
   extraHandlers,
@@ -47,7 +47,7 @@ const {
 
 - `styles: (...classes: ClassName[]) => Record<string, any>`
   - A method to build a React Native style object based on the classes you pass it. 
-  - `ClassName` type is dynamic based on the options you pass to the `createStyleBuddy` function.
+  - `ClassName` type is dynamic based on the options you pass to the `createStyleBuilder` function.
   - No reliance on React APIs, can be used anywhere.
   - Does **not** support dark mode.
 - `useStyles: ({ classes: ClassName[]; darkClasses: ClassName[] }) => Record<string, any>`
@@ -75,13 +75,13 @@ const colorRange = extractTwColor({ twColor, name });
 
 ### Returns
 
-Returns an object of the shape `{[key: string]: string}` which should be spread into the `colors` field of `theme` or `extendTheme` option of `createStyleBuddy`.
+Returns an object of the shape `{[key: string]: string}` which should be spread into the `colors` field of `theme` or `extendTheme` option of `createStyleBuilder`.
 
 ## Types
 
 ### `ThemeConstraints`
 
-The type of the default theme, and type used for `theme` and `extendTheme` options of `createStyleBuddy`.
+The type of the default theme, and type used for `theme` and `extendTheme` options of `createStyleBuilder`.
 
 ```ts
 export type ThemeConstraints = {

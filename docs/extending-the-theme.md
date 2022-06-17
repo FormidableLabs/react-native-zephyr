@@ -31,12 +31,12 @@ The default theme conforms to this shape, and this is the shape you'll use to ov
 
 ## Overriding specific constraints
 
-The `createStyleBuddy` function takes an argument named `theme`, which is of the shape `ThemeConstraints`. Each sub-field you pass to that object (such as `spacing`, `colors`, and so on) will override the default theme's respective set of constraints. Here's an example.
+The `createStyleBuilder` function takes an argument named `theme`, which is of the shape `ThemeConstraints`. Each sub-field you pass to that object (such as `spacing`, `colors`, and so on) will override the default theme's respective set of constraints. Here's an example.
 
 ```ts
-import { createStyleBuddy } from "react-native-zephyr";
+import { createStyleBuilder } from "react-native-zephyr";
 
-const { styles } = createStyleBuddy({
+const { styles } = createStyleBuilder({
   theme: {
     // Override the default colors
     colors: {
@@ -51,16 +51,16 @@ const { styles } = createStyleBuddy({
 styles("bg:red", "color:blue", /* ... */);
 ```
 
-Note that if you do _not_ specify a field in `theme`, `createStyleBuddy` will use the default theme constraints for that field.
+Note that if you do _not_ specify a field in `theme`, `createStyleBuilder` will use the default theme constraints for that field.
 
 ## Extending specific constraints
 
-If you don't want to overwrite a specific set of theme constraints, but rather just extend the default constraints, you can use the `extendTheme` parameter of the `createStyleBuddy` function.
+If you don't want to overwrite a specific set of theme constraints, but rather just extend the default constraints, you can use the `extendTheme` parameter of the `createStyleBuilder` function.
 
 ```ts
-import { createStyleBuddy } from "react-native-zephyr";
+import { createStyleBuilder } from "react-native-zephyr";
 
-const { styles } = createStyleBuddy({
+const { styles } = createStyleBuilder({
   extendTheme: {
     // _Add_ some more colors
     colors: {

@@ -1,4 +1,4 @@
-import { createStyleBuddy } from "react-native-zephyr";
+import { createStyleBuilder } from "react-native-zephyr";
 import {
   View,
   Text,
@@ -9,7 +9,7 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 
 export const { styles, useStyles, makeStyledComponent, theme } =
-  createStyleBuddy({
+  createStyleBuilder({
     extendTheme: {},
   });
 

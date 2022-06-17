@@ -1,6 +1,6 @@
 import * as React from "react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { createStyleBuddy } from "./createStyleBuddy";
+import { createStyleBuilder } from "./createStyleBuilder";
 import { StyleProvider } from "./StyleProvider";
 import { PropsWithChildren, ComponentProps } from "react";
 import { renderHook } from "@testing-library/react-hooks";
@@ -14,7 +14,7 @@ vi.mock("react-native", () => ({
   useColorScheme: () => colorScheme,
 }));
 
-const { useStyles } = createStyleBuddy();
+const { useStyles } = createStyleBuilder();
 
 const makeWrapper =
   (colorScheme: ComponentProps<typeof StyleProvider>["colorScheme"]) =>

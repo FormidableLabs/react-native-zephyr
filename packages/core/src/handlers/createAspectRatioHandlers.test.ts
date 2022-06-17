@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { createStyleBuddy } from "../createStyleBuddy";
+import { createStyleBuilder } from "../createStyleBuilder";
 
 vi.mock("react-native", () => ({
   StyleSheet: {
@@ -8,7 +8,7 @@ vi.mock("react-native", () => ({
 }));
 
 describe("createAspectRatioHandlers", () => {
-  const { styles } = createStyleBuddy({});
+  const { styles } = createStyleBuilder({});
 
   const cases: [Parameters<typeof styles>[0], object][] = [
     ["aspect:1", { aspectRatio: 1 }],
@@ -22,7 +22,7 @@ describe("createAspectRatioHandlers", () => {
   });
 
   it("allows custom constraints", () => {
-    const { styles } = createStyleBuddy({
+    const { styles } = createStyleBuilder({
       theme: {
         aspectRatios: { foo: [1, 1], bar: [3, 7] },
       },
@@ -33,7 +33,7 @@ describe("createAspectRatioHandlers", () => {
   });
 
   it("allows extending constraints", () => {
-    const { styles } = createStyleBuddy({
+    const { styles } = createStyleBuilder({
       extendTheme: { aspectRatios: { foo: [6, 9] } },
     });
 

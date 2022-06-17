@@ -1,5 +1,5 @@
 import { vi, describe, it, expect } from "vitest";
-import { createStyleBuddy } from "../createStyleBuddy";
+import { createStyleBuilder } from "../createStyleBuilder";
 
 vi.mock("react-native", () => ({
   StyleSheet: {
@@ -8,7 +8,7 @@ vi.mock("react-native", () => ({
 }));
 
 describe("imageHandlers", () => {
-  const { styles } = createStyleBuddy();
+  const { styles } = createStyleBuilder();
   const cases: [Parameters<typeof styles>[0], object][] = [
     ["resize:center", { resizeMode: "center" }],
     ["resize:cover", { resizeMode: "cover" }],
