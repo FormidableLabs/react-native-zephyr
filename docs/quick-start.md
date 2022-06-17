@@ -2,18 +2,41 @@
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Quick Start
 
 Style Buddy consists of a core method `createStyleBuddy` that allows you to customize your theme, add some extra style handlers, and it will return styling helpers to make your life easier.
 
-## Step 1: Install `react-native-style-buddy`
+## Step 1: Installation
 
 In your React Native (or Expo) project, install the Style Buddy library:
 
-```shell
-yarn add react-native-style-buddy
-# Or use npm, pnpm, etc.
+
+<Tabs>
+<TabItem value="npm" label="NPM">
+
+```sh
+npm install react-native-style-buddy
 ```
+
+</TabItem>
+<TabItem value="yarn" label="Yarn">
+
+```sh
+yarn add react-native-style-buddy
+```
+
+</TabItem>
+<TabItem value="pnpm" label="pnpm">
+
+```sh
+pnpm add react-native-style-buddy
+```
+
+</TabItem>
+</Tabs>
 
 See the [Installation guide](./installation.mdx) for more details on installation.
 
