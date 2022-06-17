@@ -324,7 +324,7 @@ export const createStyleBuddy = <
     if (cachedValue) return cachedValue;
 
     // Start to aggregate styles
-    for (let c of classNames || []) {
+    for (const c of classNames || []) {
       const m = c.match(HandlerArgRegExp);
       const prop = m?.[1];
       const value = m?.[2];
