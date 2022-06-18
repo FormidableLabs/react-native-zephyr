@@ -33,7 +33,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          path: "../../docs",
+          path: "../docs",
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl:
             "https://github.com/FormidableLabs/react-native-zephyr/tree/master/packages/website",
