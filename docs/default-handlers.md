@@ -20,25 +20,25 @@ Zephyr uses your [spacing constraints](./default-theme.md#default-spacing-constr
 
 | Prefix | Argument                 | Overridable | Properties Set              | Example           |
 |--------|--------------------------|-------------|-----------------------------|-------------------|
-| `m:`   | `keyof theme['Spacing']` | ✅           | `margin`                    | `m:2`, `m:[32]`   |
-| `mx:`  | `keyof theme['Spacing']` | ✅           | `marginLeft`, `marginRight` | `mx:2`, `mx:[32]` |
-| `my:`  | `keyof theme['Spacing']` | ✅           | `marginTop`, `marginBottom` | `my:2`, `my:[32]` |
-| `ml:`  | `keyof theme['Spacing']` | ✅           | `marginLeft`                | `ml:2`, `ml:[32]` |
-| `mr:`  | `keyof theme['Spacing']` | ✅           | `marginRight`               | `mr:2`, `mr:[32]` |
-| `mt:`  | `keyof theme['Spacing']` | ✅           | `marginTop`                 | `mt:2`, `mt:[32]` |
-| `mb:`  | `keyof theme['Spacing']` | ✅           | `marginBottom`              | `mb:2`, `mb:[32]` |
+| `m:`   | `keyof theme['spacing']` | ✅           | `margin`                    | `m:2`, `m:[32]`   |
+| `mx:`  | `keyof theme['spacing']` | ✅           | `marginLeft`, `marginRight` | `mx:2`, `mx:[32]` |
+| `my:`  | `keyof theme['spacing']` | ✅           | `marginTop`, `marginBottom` | `my:2`, `my:[32]` |
+| `ml:`  | `keyof theme['spacing']` | ✅           | `marginLeft`                | `ml:2`, `ml:[32]` |
+| `mr:`  | `keyof theme['spacing']` | ✅           | `marginRight`               | `mr:2`, `mr:[32]` |
+| `mt:`  | `keyof theme['spacing']` | ✅           | `marginTop`                 | `mt:2`, `mt:[32]` |
+| `mb:`  | `keyof theme['spacing']` | ✅           | `marginBottom`              | `mb:2`, `mb:[32]` |
 
 Each of these margin style classes comes with a "negative" counterpart. E.g., something like `m:3` will generally apply _positive_ margin. You can use `-m:3` to apply the same amount of margin but in the _negative_ direction. This gives us an additional set of classes:
 
 | Prefix | Argument                 | Overridable | Properties Set                | Example             |
 |--------|--------------------------|-------------|-------------------------------|---------------------|
-| `-m:`  | `keyof theme['Spacing']` | ✅           | `-margin`                     | `-m:2`, `-m:[32]`   |
-| `-mx:` | `keyof theme['Spacing']` | ✅           | `-marginLeft`, `-marginRight` | `-mx:2`, `-mx:[32]` |
-| `-my:` | `keyof theme['Spacing']` | ✅           | `-marginTop`, `-marginBottom` | `-my:2`, `-my:[32]` |
-| `-ml:` | `keyof theme['Spacing']` | ✅           | `-marginLeft`                 | `-ml:2`, `-ml:[32]` |
-| `-mr:` | `keyof theme['Spacing']` | ✅           | `-marginRight`                | `-mr:2`, `-mr:[32]` |
-| `-mt:` | `keyof theme['Spacing']` | ✅           | `-marginTop`                  | `-mt:2`, `-mt:[32]` |
-| `-mb:` | `keyof theme['Spacing']` | ✅           | `-marginBottom`               | `-mb:2`, `-mb:[32]` |
+| `-m:`  | `keyof theme['spacing']` | ✅           | `-margin`                     | `-m:2`, `-m:[32]`   |
+| `-mx:` | `keyof theme['spacing']` | ✅           | `-marginLeft`, `-marginRight` | `-mx:2`, `-mx:[32]` |
+| `-my:` | `keyof theme['spacing']` | ✅           | `-marginTop`, `-marginBottom` | `-my:2`, `-my:[32]` |
+| `-ml:` | `keyof theme['spacing']` | ✅           | `-marginLeft`                 | `-ml:2`, `-ml:[32]` |
+| `-mr:` | `keyof theme['spacing']` | ✅           | `-marginRight`                | `-mr:2`, `-mr:[32]` |
+| `-mt:` | `keyof theme['spacing']` | ✅           | `-marginTop`                  | `-mt:2`, `-mt:[32]` |
+| `-mb:` | `keyof theme['spacing']` | ✅           | `-marginBottom`               | `-mb:2`, `-mb:[32]` |
 
 
 ## Padding
@@ -47,13 +47,13 @@ The padding classes in Zephyr behave like their respective margin classes, but s
 
 | Prefix | Argument                 | Overridable | Properties Set                | Example           |
 |--------|--------------------------|-------------|-------------------------------|-------------------|
-| `p:`   | `keyof theme['Spacing']` | ✅           | `padding`                     | `p:2`, `p:[32]`   |
-| `px:`  | `keyof theme['Spacing']` | ✅           | `paddingLeft`, `paddingRight` | `px:2`, `px:[32]` |
-| `py:`  | `keyof theme['Spacing']` | ✅           | `paddingTop`, `paddingBottom` | `py:2`, `py:[32]` |
-| `pl:`  | `keyof theme['Spacing']` | ✅           | `paddingLeft`                 | `pl:2`, `pl:[32]` |
-| `pr:`  | `keyof theme['Spacing']` | ✅           | `paddingRight`                | `pr:2`, `pr:[32]` |
-| `pt:`  | `keyof theme['Spacing']` | ✅           | `paddingTop`                  | `pt:2`, `pt:[32]` |
-| `pb:`  | `keyof theme['Spacing']` | ✅           | `paddingBottom`               | `pb:2`, `pb:[32]` |
+| `p:`   | `keyof theme['spacing']` | ✅           | `padding`                     | `p:2`, `p:[32]`   |
+| `px:`  | `keyof theme['spacing']` | ✅           | `paddingLeft`, `paddingRight` | `px:2`, `px:[32]` |
+| `py:`  | `keyof theme['spacing']` | ✅           | `paddingTop`, `paddingBottom` | `py:2`, `py:[32]` |
+| `pl:`  | `keyof theme['spacing']` | ✅           | `paddingLeft`                 | `pl:2`, `pl:[32]` |
+| `pr:`  | `keyof theme['spacing']` | ✅           | `paddingRight`                | `pr:2`, `pr:[32]` |
+| `pt:`  | `keyof theme['spacing']` | ✅           | `paddingTop`                  | `pt:2`, `pt:[32]` |
+| `pb:`  | `keyof theme['spacing']` | ✅           | `paddingBottom`               | `pb:2`, `pb:[32]` |
 
 
 ## Sizing
