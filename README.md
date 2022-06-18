@@ -12,4 +12,4 @@ React Native Zephyr, out of the box, provides:
 - [dark-mode support](./docs/dark-mode.mdx) out of the box;
 - [clsx-like syntax](./docs/dynamic-classname-list.md) for applying dynamic style classes.
 
-Head over to [the docs](https://react-native-zephyr.vercel.app/docs/overview) to learn more.
+Head over to [the docs](https://react-native-zephyr.vercel.app) to learn more.
