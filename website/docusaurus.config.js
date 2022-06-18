@@ -8,8 +8,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 const config = {
   title: "React Native Zephyr",
   tagline: "React Native styling library",
-  url: "https://react-native-zephyr.vercel.app/",
-  baseUrl: "/",
+  url: "https://formidable.com",
+  baseUrl: "/open-source/react-native-zephyr/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
