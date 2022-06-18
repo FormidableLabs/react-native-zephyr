@@ -7,8 +7,6 @@ import TabItem from '@theme/TabItem';
 
 # Quick Start
 
-Zephyr consists of a core method `createStyleBuilder` that allows you to customize your theme, add some extra style handlers, and it will return styling helpers to make your life easier.
-
 ## Step 1: Installation
 
 In your React Native (or Expo) project, install the Zephyr library:
