@@ -56,7 +56,7 @@ export const App = () => {
 };
 ```
 
-## Step 3: Create a Zephyr
+## Step 3: Create a Style Builder
 
 Then use the `createStyleBuilder` method to generate styling helpers. We recommend you have a single Zephyr instance for your entire app, so it's best to create your buddy in a dedicated file and export what you need for the rest of your app to consume.
 
