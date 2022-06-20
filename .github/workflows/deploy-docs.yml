@@ -7,7 +7,7 @@ on:
       - 'website/**'
   pull_request:
     branches:
-      - main
+      - 'master'
     paths:
       - 'docs/**'
       - 'website/**'
@@ -66,7 +66,7 @@ jobs:
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
       - name: Deploy docs (production)
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/master'
         run: yarn deploy:prod
         working-directory: ./website
         env:
