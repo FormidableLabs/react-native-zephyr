@@ -23,7 +23,7 @@ React Native Zephyr, out of the box, provides:
 - [dark-mode support](./docs/dark-mode.mdx) out of the box;
 - [clsx-like syntax](./docs/dynamic-classname-list.md) for applying dynamic style classes.
 
-Head over to [the docs](https://react-native-zephyr.vercel.app) to learn more.
+Head over to [the docs](https://formidable.com/open-source/react-native-zephyr/) to learn more.
 
 [github-unit-test-image]: https://github.com/FormidableLabs/react-native-zephyr/workflows/Unit%20Test/badge.svg
 [github-static-analysis-image]: https://github.com/FormidableLabs/react-native-zephyr/workflows/Static%20Analysis/badge.svg
@@ -31,5 +31,5 @@ Head over to [the docs](https://react-native-zephyr.vercel.app) to learn more.
 [npm-image]: https://img.shields.io/npm/v/react-native-zephyr
 [npm-url]: https://www.npmjs.com/package/react-native-zephyr
 [docs-image]: https://img.shields.io/badge/docs-visit%20site-blue
-[docs-url]: https://react-native-zephyr.vercel.app/
+[docs-url]: https://formidable.com/open-source/react-native-zephyr/
 [maintenance-image]: https://img.shields.io/badge/maintenance-active-green.svg?color=brightgreen&style=flat

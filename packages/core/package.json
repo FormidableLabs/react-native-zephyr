@@ -16,7 +16,7 @@
     "type": "git",
     "url": "https://github.com/FormidableLabs/react-native-zephyr"
   },
-  "homepage": "https://react-native-zephyr.vercel.app",
+  "homepage": "https://formidable.com/open-source/react-native-zephyr/",
   "exports": {
     ".": [
       {
