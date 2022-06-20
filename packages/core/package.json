@@ -1,11 +1,12 @@
 {
   "name": "react-native-zephyr",
   "author": "Formidable",
-  "description": "Styling library for React Native",
+  "description": "TailwindCSS-inspired styling library for React Native",
   "keywords": [
     "react",
     "react-native",
-    "styling"
+    "styling",
+    "tailwind-css"
   ],
   "version": "0.1.6",
   "main": "dist/index.js",
