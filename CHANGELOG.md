@@ -1,5 +1,9 @@
 # React Native Zephyr Changelog
 
+# 0.1.7
+
+- Update `package.json` description.
+
 ## 0.0.1 – 0.1.6
 
 Laying the foundation for the library:
