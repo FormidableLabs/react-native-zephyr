@@ -84,7 +84,7 @@ These new, wrapped components (`StyledView` and `StyledText`) expose `classes` a
 
 ## Step 4: Start styling!
 
-With your new style helpers (see [Default Handlers](./default-handlers.md) for more info on style classes you get out of the box), you can quickly style elements.
+With your new style helpers (see [Default Classes](./default-classes.md) for more info on style classes you get out of the box), you can quickly style elements.
 
 ```tsx title="MyComponent.tsx"
 import * as React from "react";
@@ -126,7 +126,7 @@ We recommend using `makeStyledComponent` to export reusable styled components (s
 
 ## Step 5: Customizing your theme
 
-Zephyr ships with a suite of [default handlers](./default-handlers.md) that use the [default theme](./default-theme.md) to create the applicable style "classes" (such as `"w:4"`). This default theme is overridable and extendable. To override the default theme constraints, you can pass a `overrideTheme` argument to `createStyleBuilder`.
+Zephyr ships with a suite of [default style classes](./default-classes.md) that use the [default theme](./default-theme.md) to create the applicable style "classes" (such as `"w:4"`). This default theme is overridable and extendable. To override the default theme constraints, you can pass a `overrideTheme` argument to `createStyleBuilder`.
 
 ```ts
 import { createStyleBuilder } from "react-native-zephyr";
@@ -158,9 +158,9 @@ styles("color:red-300", "bg:brand");
 
 ## Step 6: Adding style handlers
 
-Zephyr allows you to add your own custom style handlers, so you can break free from the default handlers and add your own if you so desire.
+Zephyr allows you to add your own custom style handlers, so you can break free from the default classes and add your own if you so desire.
 
-Each custom handler of the form `f: x => y` will generate a set of style names of the form `f:x`; each handler of the form `f: () => y` will generate a single style name `f`.
+Each custom handler of the form `f: x => y` will generate a set of style classes of the form `f:x`; each handler of the form `f: () => y` will generate a single style class `f`.
 
 ```ts
 import { createStyleBuilder } from "react-native-zephyr";

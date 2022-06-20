@@ -10,7 +10,7 @@ This document outlines the default theme provided out of the box. It is heavily 
 
 ## Default Spacing Constraints
 
-The `spacing` constraints apply to anything space/size related, such as [the margin classes](./default-handlers.md#margin), [the padding classes](./default-handlers.md#padding), [the sizing classes](./default-handlers.md#sizing), and [the positioning classes](./default-handlers.md#positioning). Here's the scale for the default `sizing` constraints.
+The `spacing` constraints apply to anything space/size related, such as [the margin classes](./default-classes.md#margin), [the padding classes](./default-classes.md#padding), [the sizing classes](./default-classes.md#sizing), and [the positioning classes](./default-classes.md#positioning). Here's the scale for the default `sizing` constraints.
 
 
 | Name                  | Size        |
@@ -93,7 +93,7 @@ Here's a visual representation of that scale.
 
 ## Default Border Sizes
 
-The `borderSizes` theme constraint applies to [the border width classes](./default-handlers.md#borders-width-color-radius). The scale for this is:
+The `borderSizes` theme constraint applies to [the border width classes](./default-classes.md#borders-width-color-radius). The scale for this is:
 
 | Name       | Size                       |
 |------------|----------------------------|
@@ -110,7 +110,7 @@ Here's a visual representation of that scale.
 
 ## Default Border Radii
 
-The `borderRadii` constraint applies to [the border radius classes](./default-handlers.md#borders-width-color-radius). The scale is based off of the base font size for the default constraints, which is `const BASE_FONT_SIZE = 14`. The scale is as follows:
+The `borderRadii` constraint applies to [the border radius classes](./default-classes.md#borders-width-color-radius). The scale is based off of the base font size for the default constraints, which is `const BASE_FONT_SIZE = 14`. The scale is as follows:
 
 | Name   | Size                     |
 |--------|--------------------------|
@@ -131,7 +131,7 @@ Here's a visual representation of that scale.
 
 ## Default Font Sizes
 
-The `fontSizes` constraint applies to [the font size classes](./default-handlers.md#text-styling). The scale is based off of the base font size for the default constraints, which is `const BASE_FONT_SIZE = 14`. The scale is as follows:
+The `fontSizes` constraint applies to [the font size classes](./default-classes.md#text-styling). The scale is based off of the base font size for the default constraints, which is `const BASE_FONT_SIZE = 14`. The scale is as follows:
 
 | Name   | Size                                              |
 |--------|---------------------------------------------------|
@@ -155,7 +155,7 @@ Here's a visual representation of that scale.
 
 ## Default Font Weights
 
-The `fontWeights` constraint applies to [the font weight classes](./default-handlers.md#text-styling). The scale for this is:
+The `fontWeights` constraint applies to [the font weight classes](./default-classes.md#text-styling). The scale for this is:
 
 | Name         | Value |
 |--------------|-------|
@@ -175,7 +175,7 @@ Here's a visual representation of that scale.
 
 ## Default Shadows
 
-The `shadows` constraint applies to [the shadow classes](./default-handlers.md#shadows). The scale for this is:
+The `shadows` constraint applies to [the shadow classes](./default-classes.md#shadows). The scale for this is:
 
 | Name   | Value                                       |
 |--------|---------------------------------------------|
