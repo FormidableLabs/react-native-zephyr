@@ -31,5 +31,5 @@ Head over to [the docs](https://react-native-zephyr.vercel.app) to learn more.
 [npm-image]: https://img.shields.io/npm/v/react-native-zephyr
 [npm-url]: https://www.npmjs.com/package/react-native-zephyr
 [docs-image]: https://img.shields.io/badge/docs-visit%20site-blue
-[docs-url]: https://formidable.com/open-source/react-native-zephyr/
+[docs-url]: https://react-native-zephyr.vercel.app/
 [maintenance-image]: https://img.shields.io/badge/maintenance-active-green.svg?color=brightgreen&style=flat
