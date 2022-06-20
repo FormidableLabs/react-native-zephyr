@@ -11,7 +11,7 @@ TailwindCSS is a brilliant library, but it's built for CSS and the web browser â
 
 React Native Zephyr, out of the box, provides:
 
-- a thorough set of [built-in styling utilities](./default-handlers.md) (spacing, colors, typography, etc.);
+- a thorough set of [built-in styling utilities](./default-classes.md) (spacing, colors, typography, etc.);
 - an [extendable and overridable theming system](./extending-the-theme.md);
 - **type-safety** for speedy and confident development;
 - [dark-mode support](./dark-mode.mdx) out of the box;

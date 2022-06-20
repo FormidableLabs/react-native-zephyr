@@ -53,18 +53,18 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "Zephyr",
+        title: "React Native Zephyr",
         logo: {
           alt: "Formidable logo",
           src: "img/formidable-f.svg",
         },
         items: [
-          {
-            type: "doc",
-            docId: "overview",
-            position: "left",
-            label: "Documentation",
-          },
+          // {
+          //   type: "doc",
+          //   docId: "overview",
+          //   position: "left",
+          //   label: "Documentation",
+          // },
           {
             href: "https://github.com/FormidableLabs/react-native-zephyr",
             className: "header-github-link",
