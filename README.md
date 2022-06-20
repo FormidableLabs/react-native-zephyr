@@ -1,4 +1,9 @@
 # React Native Zephyr
+[![github][github-static-analysis-image]][github-url]
+[![github][github-unit-test-image]][github-url]
+[![npm][npm-image]][npm-url]
+[![docs][docs-image]][docs-url]
+[![Maintenance Status][maintenance-image]](#maintenance-status)
 
 ### STATUS: In development
 
@@ -19,3 +24,12 @@ React Native Zephyr, out of the box, provides:
 - [clsx-like syntax](./docs/dynamic-classname-list.md) for applying dynamic style classes.
 
 Head over to [the docs](https://react-native-zephyr.vercel.app) to learn more.
+
+[github-unit-test-image]: https://github.com/FormidableLabs/react-native-zephyr/workflows/Unit%20Test/badge.svg
+[github-static-analysis-image]: https://github.com/FormidableLabs/react-native-zephyr/workflows/Static%20Analysis/badge.svg
+[github-url]: https://github.com/FormidableLabs/react-native-zephyr/actions
+[npm-image]: https://img.shields.io/npm/v/react-native-zephyr
+[npm-url]: https://www.npmjs.com/package/react-native-zephyr
+[docs-image]: https://img.shields.io/badge/docs-visit%20site-blue
+[docs-url]: https://formidable.com/open-source/react-native-zephyr/
+[maintenance-image]: https://img.shields.io/badge/maintenance-active-green.svg?color=brightgreen&style=flat
