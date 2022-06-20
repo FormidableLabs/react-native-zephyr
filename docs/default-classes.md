@@ -18,42 +18,42 @@ Many of the default handlers offer you an escape hatch to handle these one-off c
 
 Zephyr uses your [spacing constraints](./default-theme.md#default-spacing-constraints) to generate margin helpers. You can set all margins with `m:`, horizontal/vertical margins with `mx:` and `my:` (respectively), and individual side margins with `ml:`, `mr:`, `mt:`, and `mb:`.
 
-| Prefix | Argument                 | Overridable | Properties Set              | Example           |
-|--------|--------------------------|-------------|-----------------------------|-------------------|
-| `m:`   | `keyof theme['spacing']` | ✅           | `margin`                    | `m:2`, `m:[32]`   |
-| `mx:`  | `keyof theme['spacing']` | ✅           | `marginLeft`, `marginRight` | `mx:2`, `mx:[32]` |
-| `my:`  | `keyof theme['spacing']` | ✅           | `marginTop`, `marginBottom` | `my:2`, `my:[32]` |
-| `ml:`  | `keyof theme['spacing']` | ✅           | `marginLeft`                | `ml:2`, `ml:[32]` |
-| `mr:`  | `keyof theme['spacing']` | ✅           | `marginRight`               | `mr:2`, `mr:[32]` |
-| `mt:`  | `keyof theme['spacing']` | ✅           | `marginTop`                 | `mt:2`, `mt:[32]` |
-| `mb:`  | `keyof theme['spacing']` | ✅           | `marginBottom`              | `mb:2`, `mb:[32]` |
+| Prefix | Argument                                                                   | Overridable | Properties Set              | Example           |
+|--------|----------------------------------------------------------------------------|-------------|-----------------------------|-------------------|
+| `m:`   | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `margin`                    | `m:2`, `m:[32]`   |
+| `mx:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `marginLeft`, `marginRight` | `mx:2`, `mx:[32]` |
+| `my:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `marginTop`, `marginBottom` | `my:2`, `my:[32]` |
+| `ml:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `marginLeft`                | `ml:2`, `ml:[32]` |
+| `mr:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `marginRight`               | `mr:2`, `mr:[32]` |
+| `mt:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `marginTop`                 | `mt:2`, `mt:[32]` |
+| `mb:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `marginBottom`              | `mb:2`, `mb:[32]` |
 
 Each of these margin style classes comes with a "negative" counterpart. E.g., something like `m:3` will generally apply _positive_ margin. You can use `-m:3` to apply the same amount of margin but in the _negative_ direction. This gives us an additional set of classes:
 
-| Prefix | Argument                 | Overridable | Properties Set                | Example             |
-|--------|--------------------------|-------------|-------------------------------|---------------------|
-| `-m:`  | `keyof theme['spacing']` | ✅           | `-margin`                     | `-m:2`, `-m:[32]`   |
-| `-mx:` | `keyof theme['spacing']` | ✅           | `-marginLeft`, `-marginRight` | `-mx:2`, `-mx:[32]` |
-| `-my:` | `keyof theme['spacing']` | ✅           | `-marginTop`, `-marginBottom` | `-my:2`, `-my:[32]` |
-| `-ml:` | `keyof theme['spacing']` | ✅           | `-marginLeft`                 | `-ml:2`, `-ml:[32]` |
-| `-mr:` | `keyof theme['spacing']` | ✅           | `-marginRight`                | `-mr:2`, `-mr:[32]` |
-| `-mt:` | `keyof theme['spacing']` | ✅           | `-marginTop`                  | `-mt:2`, `-mt:[32]` |
-| `-mb:` | `keyof theme['spacing']` | ✅           | `-marginBottom`               | `-mb:2`, `-mb:[32]` |
+| Prefix | Argument                                                                   | Overridable | Properties Set                | Example             |
+|--------|----------------------------------------------------------------------------|-------------|-------------------------------|---------------------|
+| `-m:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `-margin`                     | `-m:2`, `-m:[32]`   |
+| `-mx:` | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `-marginLeft`, `-marginRight` | `-mx:2`, `-mx:[32]` |
+| `-my:` | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `-marginTop`, `-marginBottom` | `-my:2`, `-my:[32]` |
+| `-ml:` | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `-marginLeft`                 | `-ml:2`, `-ml:[32]` |
+| `-mr:` | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `-marginRight`                | `-mr:2`, `-mr:[32]` |
+| `-mt:` | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `-marginTop`                  | `-mt:2`, `-mt:[32]` |
+| `-mb:` | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `-marginBottom`               | `-mb:2`, `-mb:[32]` |
 
 
 ## Padding
 
 The padding classes in Zephyr behave like their respective margin classes, but setting padding properties instead of margin. There are no "negative" padding classes.
 
-| Prefix | Argument                 | Overridable | Properties Set                | Example           |
-|--------|--------------------------|-------------|-------------------------------|-------------------|
-| `p:`   | `keyof theme['spacing']` | ✅           | `padding`                     | `p:2`, `p:[32]`   |
-| `px:`  | `keyof theme['spacing']` | ✅           | `paddingLeft`, `paddingRight` | `px:2`, `px:[32]` |
-| `py:`  | `keyof theme['spacing']` | ✅           | `paddingTop`, `paddingBottom` | `py:2`, `py:[32]` |
-| `pl:`  | `keyof theme['spacing']` | ✅           | `paddingLeft`                 | `pl:2`, `pl:[32]` |
-| `pr:`  | `keyof theme['spacing']` | ✅           | `paddingRight`                | `pr:2`, `pr:[32]` |
-| `pt:`  | `keyof theme['spacing']` | ✅           | `paddingTop`                  | `pt:2`, `pt:[32]` |
-| `pb:`  | `keyof theme['spacing']` | ✅           | `paddingBottom`               | `pb:2`, `pb:[32]` |
+| Prefix | Argument                                                                   | Overridable | Properties Set                | Example           |
+|--------|----------------------------------------------------------------------------|-------------|-------------------------------|-------------------|
+| `p:`   | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `padding`                     | `p:2`, `p:[32]`   |
+| `px:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `paddingLeft`, `paddingRight` | `px:2`, `px:[32]` |
+| `py:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `paddingTop`, `paddingBottom` | `py:2`, `py:[32]` |
+| `pl:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `paddingLeft`                 | `pl:2`, `pl:[32]` |
+| `pr:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `paddingRight`                | `pr:2`, `pr:[32]` |
+| `pt:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `paddingTop`                  | `pt:2`, `pt:[32]` |
+| `pb:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `paddingBottom`               | `pb:2`, `pb:[32]` |
 
 
 ## Sizing
@@ -62,44 +62,44 @@ Zephyr uses your spacing constraints to generate sizing helpers, allowing you to
 
 The `aspect:` classes allow you to set the aspect ratio of an element, which is convenient when you need an element with a fixed aspect ratio (e.g., presenting an image in a 16:9 format).
 
-| Prefix    | Argument                      | Overridable | Properties Set | Example                       |
-|-----------|-------------------------------|-------------|----------------|-------------------------------|
-| `w:`      | `keyof theme['spacing']`      | ✅           | `width`        | `w:2`, `w:[32]`               |
-| `min-w:`  | `keyof theme['spacing']`      | ✅           | `minWidth`     | `min-w:2`, `min-w:[32]`       |
-| `max-w:`  | `keyof theme['spacing']`      | ✅           | `maxWidth`     | `max-w:2`, `max-w:[32]`       |
-| `h:`      | `keyof theme['spacing']`      | ✅           | `height`       | `h:2`, `h:[32]`               |
-| `min-h:`  | `keyof theme['spacing']`      | ✅           | `minHeight`    | `min-h:2`, `min-h:[32]`       |
-| `max-h:`  | `keyof theme['spacing']`      | ✅           | `maxHeight`    | `max-h:2`, `max-h:[32]`       |
-| `aspect:` | `keyof theme['aspectRatios']` | ✅           | `aspectRatio`  | `aspect:16-9`, `aspect:[1.3]` |
+| Prefix    | Argument                                                                   | Overridable | Properties Set | Example                       |
+|-----------|----------------------------------------------------------------------------|-------------|----------------|-------------------------------|
+| `w:`      | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `width`        | `w:2`, `w:[32]`               |
+| `min-w:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `minWidth`     | `min-w:2`, `min-w:[32]`       |
+| `max-w:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `maxWidth`     | `max-w:2`, `max-w:[32]`       |
+| `h:`      | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `height`       | `h:2`, `h:[32]`               |
+| `min-h:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `minHeight`    | `min-h:2`, `min-h:[32]`       |
+| `max-h:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `maxHeight`    | `max-h:2`, `max-h:[32]`       |
+| `aspect:` | [`keyof theme['aspectRatios']`](./default-theme.md#default-aspect-ratios)  | ✅           | `aspectRatio`  | `aspect:16-9`, `aspect:[1.3]` |
 
 
 ## Positioning
 
 You can set positioning type with `relative` and `absolute`. When using `absolute`, use the `inset:`, `inset-x:`, `inset-y:`, `left:`, `right:`, `top:`, and `bottom:` classes to position your element (based on spacing constraints).
 
-| Prefix     | Argument                 | Overridable | Properties Set                   | Example                     |
-|------------|--------------------------|-------------|----------------------------------|-----------------------------|
-| `relative` | N/A                      | ❌           | `{ position: "relative" }`       | `relative`                  |
-| `absolute` | N/A                      | ❌           | `{ position: "absolute" }`       | `absolute`                  |
-| `inset:`   | `keyof theme['spacing']` | ✅           | `top`, `bottom`, `left`, `right` | `inset:0`, `inset:[32]`     |
-| `inset-x:` | `keyof theme['spacing']` | ✅           | `left`, `right`                  | `inset-x:0`, `inset-x:[32]` |
-| `inset-y:` | `keyof theme['spacing']` | ✅           | `top`, `bottom`                  | `inset-y:0`, `inset-y:[32]` |
-| `left:`    | `keyof theme['spacing']` | ✅           | `left`                           | `left:0`, `left:[32]`       |
-| `right:`   | `keyof theme['spacing']` | ✅           | `right`                          | `right:0`, `right:[32]`     |
-| `top:`     | `keyof theme['spacing']` | ✅           | `top`                            | `top:0`, `top:[32]`         |
-| `bottom:`  | `keyof theme['spacing']` | ✅           | `bottom`                         | `bottom:0`, `bottom:[32]`   |
+| Prefix     | Argument                                                                   | Overridable | Properties Set                   | Example                     |
+|------------|----------------------------------------------------------------------------|-------------|----------------------------------|-----------------------------|
+| `relative` | N/A                                                                        | ❌           | `{ position: "relative" }`       | `relative`                  |
+| `absolute` | N/A                                                                        | ❌           | `{ position: "absolute" }`       | `absolute`                  |
+| `inset:`   | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `top`, `bottom`, `left`, `right` | `inset:0`, `inset:[32]`     |
+| `inset-x:` | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `left`, `right`                  | `inset-x:0`, `inset-x:[32]` |
+| `inset-y:` | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `top`, `bottom`                  | `inset-y:0`, `inset-y:[32]` |
+| `left:`    | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `left`                           | `left:0`, `left:[32]`       |
+| `right:`   | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `right`                          | `right:0`, `right:[32]`     |
+| `top:`     | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `top`                            | `top:0`, `top:[32]`         |
+| `bottom:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `bottom`                         | `bottom:0`, `bottom:[32]`   |
 
 Like with [the margin classes](#margin), the positioning classes have "negative" counterparts. This allows for things like `-inset:3` to "overflow" content out of its parent. This then gives us the following set of classes:
 
-| Prefix      | Argument                 | Overridable | Properties Set                       | Example                       |
-|-------------|--------------------------|-------------|--------------------------------------|-------------------------------|
-| `-inset:`   | `keyof theme['spacing']` | ✅           | `-top`, `-bottom`, `-left`, `-right` | `-inset:3`, `-inset:[32]`     |
-| `-inset-x:` | `keyof theme['spacing']` | ✅           | `-left`, `-right`                    | `-inset-x:3`, `-inset-x:[32]` |
-| `-inset-y:` | `keyof theme['spacing']` | ✅           | `-top`, `-bottom`                    | `-inset-y:3`, `-inset-y:[32]` |
-| `-left:`    | `keyof theme['spacing']` | ✅           | `-left`                              | `-left:3`, `-left:[32]`       |
-| `-right:`   | `keyof theme['spacing']` | ✅           | `-right`                             | `-right:3`, `-right:[32]`     |
-| `-top:`     | `keyof theme['spacing']` | ✅           | `-top`                               | `-top:3`, `-top:[32]`         |
-| `-bottom:`  | `keyof theme['spacing']` | ✅           | `-bottom`                            | `-bottom:3`, `-bottom:[32]`   |
+| Prefix      | Argument                                                                   | Overridable | Properties Set                       | Example                       |
+|-------------|----------------------------------------------------------------------------|-------------|--------------------------------------|-------------------------------|
+| `-inset:`   | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `-top`, `-bottom`, `-left`, `-right` | `-inset:3`, `-inset:[32]`     |
+| `-inset-x:` | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `-left`, `-right`                    | `-inset-x:3`, `-inset-x:[32]` |
+| `-inset-y:` | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `-top`, `-bottom`                    | `-inset-y:3`, `-inset-y:[32]` |
+| `-left:`    | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `-left`                              | `-left:3`, `-left:[32]`       |
+| `-right:`   | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `-right`                             | `-right:3`, `-right:[32]`     |
+| `-top:`     | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `-top`                               | `-top:3`, `-top:[32]`         |
+| `-bottom:`  | [`keyof theme['spacing']`](./default-theme.md#default-spacing-constraints) | ✅           | `-bottom`                            | `-bottom:3`, `-bottom:[32]`   |
 
 
 ## Visibility
@@ -116,30 +116,30 @@ Use the `hidden` class to hide an element. The `overflow:` classes allow you to 
 
 Based on your color constraints, Zephyr provides classes for setting the background color of elements via the `bg:` classes. The `bg-opacity:` classes can be used to set the background opacity of the element (values based on your opacities constraints). You can set the general opacity of an element with the `opacity:` classes.
 
-| Prefix        | Argument                   | Overridable | Properties Set    | Example                              |
-|---------------|----------------------------|-------------|-------------------|--------------------------------------|
-| `bg:`         | `keyof theme['colors']`    | ✅           | `backgroundColor` | `bg:red-300`, `bg:[#ff00ff]`         |
-| `bg-opacity:` | `keyof theme['opacities']` | ✅           | NA                | `bg-opacity:50`, `bg-opacity:[0.32]` |
-| `opacity:`    | `keyof theme['opacities']` | ✅           | `opacity`         | `opacity:50`, `opacity:[0.32]`       |
+| Prefix        | Argument                                                        | Overridable | Properties Set    | Example                              |
+|---------------|-----------------------------------------------------------------|-------------|-------------------|--------------------------------------|
+| `bg:`         | [`keyof theme['colors']`](./default-theme.md#default-colors)    | ✅           | `backgroundColor` | `bg:red-300`, `bg:[#ff00ff]`         |
+| `bg-opacity:` | [`keyof theme['opacities']`](./default-theme#default-opacities) | ✅           | NA                | `bg-opacity:50`, `bg-opacity:[0.32]` |
+| `opacity:`    | [`keyof theme['opacities']`](./default-theme#default-opacities) | ✅           | `opacity`         | `opacity:50`, `opacity:[0.32]`       |
 
 
 ## Borders (Width, Color, Radius)
 
 Zephyr provides classes for styling borders, including border width, border color, and border radius. The `border:`, `border-t:`, `border-b:`, `border-l:`, and `border-r:` use your border width constraints to generate classes that control border width. The `border-color:` classes allow you to color your borders (based on your color constraints). The `rounded:`, `rounded-t:`, `rounded-b:`, `rounded-l:`, `rounded-r:` classes allow you to add border radii to your element (based on your border radii constraints).
 
-| Prefix          | Argument                     | Overridable | Properties Set                                      | Example                                       |
-|-----------------|------------------------------|-------------|-----------------------------------------------------|-----------------------------------------------|
-| `border:`       | `keyof theme['borderSizes']` | ✅           | `borderWidth`                                       | `border:hairline`, `border:[3]`               |
-| `border-t:`     | `keyof theme['borderSizes']` | ✅           | `borderTopWidth`                                    | `border-t:hairline`, `border-t:[3]`           |
-| `border-b:`     | `keyof theme['borderSizes']` | ✅           | `borderBottomWidth`                                 | `border-b:hairline`, `border-b:[3]`           |
-| `border-l:`     | `keyof theme['borderSizes']` | ✅           | `borderLeftWidth`                                   | `border-l:hairline`, `border-l:[3]`           |
-| `border-r:`     | `keyof theme['borderSizes']` | ✅           | `borderRightWidth`                                  | `border-r:hairline`, `border-r:[3]`           |
-| `border-color:` | `keyof theme['colors']`      | ✅           | `borderColor`                                       | `border-color:red-300`, `border-color:[blue]` |
-| `rounded:`      | `keyof theme['borderRadii']` | ✅           | `borderRadius`                                      | `rounded:lg`, `rounded:[3]`                   |
-| `rounded-t:`    | `keyof theme['borderRadii']` | ✅           | `borderTopLeftRadius`, `borderTopRightRadius`       | `rounded-t:lg`, `rounded-t:[3]`               |
-| `rounded-b:`    | `keyof theme['borderRadii']` | ✅           | `borderBottomLeftRadius`, `borderBottomRightRadius` | `rounded-b:lg`, `rounded-b:[3]`               |
-| `rounded-l:`    | `keyof theme['borderRadii']` | ✅           | `borderBottomLeftRadius`, `borderTopLeftRadius`     | `rounded-l:lg`, `rounded-l:[3]`               |
-| `rounded-r:`    | `keyof theme['borderRadii']` | ✅           | `borderBottomRightRadius`, `borderTopRightRadius`   | `rounded-r:lg`, `rounded-r:[3]`               |
+| Prefix          | Argument                                                                | Overridable | Properties Set                                      | Example                                       |
+|-----------------|-------------------------------------------------------------------------|-------------|-----------------------------------------------------|-----------------------------------------------|
+| `border:`       | [`keyof theme['borderSizes']`](./default-theme.md#default-border-sizes) | ✅           | `borderWidth`                                       | `border:hairline`, `border:[3]`               |
+| `border-t:`     | [`keyof theme['borderSizes']`](./default-theme.md#default-border-sizes) | ✅           | `borderTopWidth`                                    | `border-t:hairline`, `border-t:[3]`           |
+| `border-b:`     | [`keyof theme['borderSizes']`](./default-theme.md#default-border-sizes) | ✅           | `borderBottomWidth`                                 | `border-b:hairline`, `border-b:[3]`           |
+| `border-l:`     | [`keyof theme['borderSizes']`](./default-theme.md#default-border-sizes) | ✅           | `borderLeftWidth`                                   | `border-l:hairline`, `border-l:[3]`           |
+| `border-r:`     | [`keyof theme['borderSizes']`](./default-theme.md#default-border-sizes) | ✅           | `borderRightWidth`                                  | `border-r:hairline`, `border-r:[3]`           |
+| `border-color:` | [`keyof theme['colors']`](./default-theme#default-colors)               | ✅           | `borderColor`                                       | `border-color:red-300`, `border-color:[blue]` |
+| `rounded:`      | [`keyof theme['borderRadii']`](./default-theme.md#default-border-radii) | ✅           | `borderRadius`                                      | `rounded:lg`, `rounded:[3]`                   |
+| `rounded-t:`    | [`keyof theme['borderRadii']`](./default-theme.md#default-border-radii) | ✅           | `borderTopLeftRadius`, `borderTopRightRadius`       | `rounded-t:lg`, `rounded-t:[3]`               |
+| `rounded-b:`    | [`keyof theme['borderRadii']`](./default-theme.md#default-border-radii) | ✅           | `borderBottomLeftRadius`, `borderBottomRightRadius` | `rounded-b:lg`, `rounded-b:[3]`               |
+| `rounded-l:`    | [`keyof theme['borderRadii']`](./default-theme.md#default-border-radii) | ✅           | `borderBottomLeftRadius`, `borderTopLeftRadius`     | `rounded-l:lg`, `rounded-l:[3]`               |
+| `rounded-r:`    | [`keyof theme['borderRadii']`](./default-theme.md#default-border-radii) | ✅           | `borderBottomRightRadius`, `borderTopRightRadius`   | `rounded-r:lg`, `rounded-r:[3]`               |
 
 
 ## Flex Properties
@@ -186,33 +186,33 @@ The `z:` classes allow you to set the z-index of an element.
 
 The `text:` classes adjust the font size of your text. Use the `color:` classes to change your text color. Use the `font-weight:` classes to adjust the weight of your text (e.g., bold text). The `italic`, `uppercase`, `lowercase`, `capitalize`, `underline`, and `line-through` classes are one-off classes that apply transforms/decorations to your text. Use `text-align:` classes to align your text.
 
-| Prefix         | Argument                                       | Overridable | Properties Set                           | Example                                       |
-|----------------|------------------------------------------------|-------------|------------------------------------------|-----------------------------------------------|
-| `text:`        | `keyof theme['fontSizes']`                     | ❌           | `fontSize`, `lineHeight`                 | `text:sm`, `text:3xl`                         |
-| `color:`       | `keyof theme['colors']`                        | ✅           | `color`                                  | `color:red-300`, `color:[#ff00ff]`            |
-| `font-weight:` | `keyof theme['fontWeights']`                   | ❌           | `fontWeight`                             | `font-weight:normal`, `font-weight:extrabold` |
-| `italic`       | N/A                                            | ❌           | `{ fontStyle: "italic" }`                | `italic`                                      |
-| `text-align:`  | `"auto", "left", "right", "center", "justify"` | ❌           | `textAlign`                              | `text-align:center`, `text-align:left`        |
-| `uppercase`    | N/A                                            | ❌           | `{ textTransform: "uppercase" }`         | `uppercase`                                   |
-| `lowercase`    | N/A                                            | ❌           | `{ textTransform: "lowercase" }`         | `lowercase`                                   |
-| `capitalize`   | N/A                                            | ❌           | `{ textTransform: "capitalize" }`        | `capitalize`                                  |
-| `underline`    | N/A                                            | ❌           | `{ textDecorationLine: "underline" }`    | `underline`                                   |
-| `line-through` | N/A                                            | ❌           | `{ textDecorationLine: "line-through" }` | `line-through`                                |
+| Prefix         | Argument                                                                | Overridable | Properties Set                           | Example                                       |
+|----------------|-------------------------------------------------------------------------|-------------|------------------------------------------|-----------------------------------------------|
+| `text:`        | [`keyof theme['fontSizes']`](./default-theme.md#default-font-sizes)     | ❌           | `fontSize`, `lineHeight`                 | `text:sm`, `text:3xl`                         |
+| `color:`       | [`keyof theme['colors']`](./default-theme.md#default-colors)            | ✅           | `color`                                  | `color:red-300`, `color:[#ff00ff]`            |
+| `font-weight:` | [`keyof theme['fontWeights']`](./default-theme.md#default-font-weights) | ❌           | `fontWeight`                             | `font-weight:normal`, `font-weight:extrabold` |
+| `italic`       | N/A                                                                     | ❌           | `{ fontStyle: "italic" }`                | `italic`                                      |
+| `text-align:`  | `"auto", "left", "right", "center", "justify"`                          | ❌           | `textAlign`                              | `text-align:center`, `text-align:left`        |
+| `uppercase`    | N/A                                                                     | ❌           | `{ textTransform: "uppercase" }`         | `uppercase`                                   |
+| `lowercase`    | N/A                                                                     | ❌           | `{ textTransform: "lowercase" }`         | `lowercase`                                   |
+| `capitalize`   | N/A                                                                     | ❌           | `{ textTransform: "capitalize" }`        | `capitalize`                                  |
+| `underline`    | N/A                                                                     | ❌           | `{ textDecorationLine: "underline" }`    | `underline`                                   |
+| `line-through` | N/A                                                                     | ❌           | `{ textDecorationLine: "line-through" }` | `line-through`                                |
 
 
 ## Shadows
 
 Shadows are a bit trickier in React Native than on the web, and Android and iOS handle them differently. We provide some default shadows out of the box, but you can configure them yourself if you so please. To use shadows, simply use the `shadow:` classes.
 
-| Prefix    | Argument                 | Overridable | Properties Set                                                                 | Example                  |
-|-----------|--------------------------|-------------|--------------------------------------------------------------------------------|--------------------------|
-| `shadow:` | `keyof theme['shadows']` | ❌           | `elevation` on Android; `shadowOffset`, `shadowRadius`, `shadowOpacity` on iOS | `shadow:sm`, `shadow:lg` |
+| Prefix    | Argument                                                       | Overridable | Properties Set                                                                 | Example                  |
+|-----------|----------------------------------------------------------------|-------------|--------------------------------------------------------------------------------|--------------------------|
+| `shadow:` | [`keyof theme['shadows']`](./default-theme.md#default-shadows) | ❌           | `elevation` on Android; `shadowOffset`, `shadowRadius`, `shadowOpacity` on iOS | `shadow:sm`, `shadow:lg` |
 
 ## Image Styling
 
 React Native has some built-in styling controls for images. Use [the width](#sizing) classes to control sizing. You can control the resize mode with the `resize:` classes. The `tint:` classes allow you to use your color constraints to set the tint color of the image.
 
-| Prefix    | Argument                                            | Overridable | Properties Set | Example                          |
-|-----------|-----------------------------------------------------|-------------|----------------|----------------------------------|
-| `resize:` | `"cover", "contain", "stretch", "repeat", "center"` | ❌           | `resizeMode`   | `resize:cover`, `resize:contain` |
-| `tint:`   | `keyof theme['colors']`                             | ✅           | `tintColor`    | `tint:red-300`, `tint:[#ff00ff]` |
+| Prefix    | Argument                                                     | Overridable | Properties Set | Example                          |
+|-----------|--------------------------------------------------------------|-------------|----------------|----------------------------------|
+| `resize:` | `"cover", "contain", "stretch", "repeat", "center"`          | ❌           | `resizeMode`   | `resize:cover`, `resize:contain` |
+| `tint:`   | [`keyof theme['colors']`](./default-theme.md#default-colors) | ✅           | `tintColor`    | `tint:red-300`, `tint:[#ff00ff]` |
