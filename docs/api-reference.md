@@ -25,7 +25,7 @@ const {
   makeStyledComponent,
   theme
 } = createStyleBuilder({
-  theme,
+  overrideTheme,
   extendTheme,
   extraHandlers,
 });
@@ -33,7 +33,7 @@ const {
 
 ### Options
 
-- `theme?: ThemeConstraints`
+- `overrideTheme?: ThemeConstraints`
   - Allows you to override specific sets of theme constraints. E.g., can provide your own colors and overwrite the default colors.
   - See [`ThemeConstraints`](#themeconstraints) for available options.
 - `extendTheme?: ThemeConstraints`
@@ -76,6 +76,21 @@ const colorRange = extractTwColor({ twColor, name });
 ### Returns
 
 Returns an object of the shape `{[key: string]: string}` which should be spread into the `colors` field of `overrideTheme` or `extendTheme` option of `createStyleBuilder`.
+
+### Example
+
+```ts
+import { createStyleBuilder, extractTwColor } from "react-native-zephyr";
+
+const { styles } = createStyleBuilder({
+  extendTheme: {
+		...extractTwColor({ twColor: "blueGray", name: "primary" }),
+  }
+});
+
+// Now have access to blueGray color aliased as `primary`:
+styles("bg:primary-100", "color:primary-800", /* ... */);
+```
 
 ## Types
 

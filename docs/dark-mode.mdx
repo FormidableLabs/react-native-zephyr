@@ -15,7 +15,7 @@ Here's a simple example:
 import { createStyleBuilder } from "react-native-zephyr";
 import { View, Text } from "react-native";
 
-// Setup your Zephyr and helpers
+// Setup your styling helpers
 export const { makeStyledComponent } = createStyleBuilder();
 export const StyledView = makeStyledComponent(View);
 export const StyledText = makeStyledComponent(Text);
@@ -49,7 +49,7 @@ This tiny bit of markup gives us something like the following.
 
 ## A note about `styles`
 
-The `createStyleBuilder().styles` function can be used outside of the React component lifecycle (you can use it anywhere!). Because of this, it is not tuned into the user's color scheme preference – and therefore does not support dark mode features. However, both `useStyles` and `makeStyledComponent` support dark mode, as they are away of this setting.
+The `createStyleBuilder().styles` function can be used outside of the React component lifecycle (you can use it anywhere!). Because of this, it is not tuned into the user's color scheme preference – and therefore does not support dark mode features. However, both `useStyles` and `makeStyledComponent` support dark mode, as they are aware of this setting.
 
 ## Manually setting Color Scheme
 
