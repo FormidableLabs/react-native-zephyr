@@ -8,11 +8,8 @@ const darkCodeTheme = require("prism-react-renderer/themes/okaidia");
 const config = {
   title: "React Native Zephyr",
   tagline: "React Native styling library",
-  url: "https://react-native-zephyr.vercel.app/",
-  baseUrl: "/",
-  // TODO: When ready for formideploy, use the below values.
-  // url: "https://formidable.com",
-  // baseUrl: "/open-source/react-native-zephyr/",
+  url: "https://formidable.com",
+  baseUrl: "/open-source/react-native-zephyr/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
