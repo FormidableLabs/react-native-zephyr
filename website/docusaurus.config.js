@@ -38,6 +38,7 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl:
             "https://github.com/FormidableLabs/react-native-zephyr/tree/master/packages/website",
+          exclude: ["release-guide.md"],
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
