@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@0;1&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 /**
  * Any CSS included here will be global. The classic template
  * bundles Infima by default. Infima is a CSS framework designed to
@@ -6,71 +8,101 @@
 
 /* Override infima variables */
 :root {
-  --ifm-color-primary: #f04d21;
-  --ifm-color-primary-dark: #e63d10;
-  --ifm-color-primary-darker: #d93a0f;
-  --ifm-color-primary-darkest: #b3300c;
-  --ifm-color-primary-light: #f2623b;
-  --ifm-color-primary-lighter: #f36c47;
-  --ifm-color-primary-lightest: #f58b6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+	--ifm-color-primary: #5e548e;
+	--ifm-color-primary-dark: #554c80;
+	--ifm-color-primary-darker: #504779;
+	--ifm-color-primary-darkest: #423b63;
+	--ifm-color-primary-light: #675c9c;
+	--ifm-color-primary-lighter: #6d62a2;
+	--ifm-color-primary-lightest: #8177af;
 
-  /* Spacing */
-  --ifm-spacing-horizontal: 2rem;
+	/* Fonts */
+	--ifm-font-family-base: Roboto, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+	--ifm-font-family-monospace: 'Roboto Mono', SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+
+	/* FORMIDABLE ~BRAND COLORS */
+	/*--ifm-color-primary: #f04d21;*/
+	/*--ifm-color-primary-dark: #e63d10;*/
+	/*--ifm-color-primary-darker: #d93a0f;*/
+	/*--ifm-color-primary-darkest: #b3300c;*/
+	/*--ifm-color-primary-light: #f2623b;*/
+	/*--ifm-color-primary-lighter: #f36c47;*/
+	/*--ifm-color-primary-lightest: #f58b6e;*/
+
+	--ifm-code-font-size: 95%;
+	--docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+	/* Spacing */
+	--ifm-spacing-horizontal: 2rem;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #f2623b;
-  --ifm-color-primary-dark: #f04b1f;
-  --ifm-color-primary-darker: #ef4011;
-  --ifm-color-primary-darkest: #c6340d;
-  --ifm-color-primary-light: #f47957;
-  --ifm-color-primary-lighter: #f58465;
-  --ifm-color-primary-lightest: #f8a690;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+	--ifm-color-primary: #be95c4;
+	--ifm-color-primary-dark: #b07fb8;
+	--ifm-color-primary-darker: #aa74b1;
+	--ifm-color-primary-darkest: #92569b;
+	--ifm-color-primary-light: #ccabd0;
+	--ifm-color-primary-lighter: #d2b6d7;
+	--ifm-color-primary-lightest: #e7d7e9;
+
+	/* FORMIDABLE ~BRAND COLORS */
+	/*--ifm-color-primary: #f2623b;*/
+	/*--ifm-color-primary-dark: #f04b1f;*/
+	/*--ifm-color-primary-darker: #ef4011;*/
+	/*--ifm-color-primary-darkest: #c6340d;*/
+	/*--ifm-color-primary-light: #f47957;*/
+	/*--ifm-color-primary-lighter: #f58465;*/
+	/*--ifm-color-primary-lightest: #f8a690;*/
+
+	--docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
 .header-github-link::before {
-  content: '';
-  width: 24px;
-  height: 24px;
-  display: flex;
-  background-color: #1c1e21;
-  mask: url("/img/github.svg");
-  mask-repeat: no-repeat;
-  mask-size: contain;
-  transition: background-color var(--fm-transition-fast);
+	content: '';
+	width: 24px;
+	height: 24px;
+	display: flex;
+	background-color: #1c1e21;
+	mask: url("/img/github.svg");
+	mask-repeat: no-repeat;
+	mask-size: contain;
+	transition: background-color var(--fm-transition-fast);
 }
+
 [data-theme='dark'] .header-github-link::before {
-  background-color: white;
+	background-color: white;
 }
+
 .header-github-link:hover::before {
-  background-color: #6e5494;
+	background-color: #6e5494;
 }
+
 [data-theme='dark'] .header-github-link:hover::before {
-  background-color: #6e5494;
+	background-color: #6e5494;
 }
 
 
 .header-formidable-link::before {
-  content: '';
-  width: 26px;
-  height: 26px;
-  display: flex;
-  background-color: #1c1e21;
-  mask: url("/img/formidable-icon.svg");
-  mask-repeat: no-repeat;
-  mask-size: contain;
-  transition: background-color var(--ifm-transition-fast);
+	content: '';
+	width: 26px;
+	height: 26px;
+	display: flex;
+	background-color: #1c1e21;
+	mask: url("/img/formidable-icon.svg");
+	mask-repeat: no-repeat;
+	mask-size: contain;
+	transition: background-color var(--ifm-transition-fast);
 }
+
 .header-formidable-link:hover::before {
-  background-color: var(--ifm-color-primary);
+	background-color: var(--ifm-color-primary);
 }
+
 [data-theme='dark'] .header-formidable-link::before {
-  background-color: white;
+	background-color: white;
 }
+
 [data-theme='dark'] .header-formidable-link:hover::before {
-  background-color: var(--ifm-color-primary);
+	background-color: var(--ifm-color-primary);
 }
