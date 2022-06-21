@@ -1,13 +1,13 @@
 import * as React from "react";
 import { StyledText, StyledView, styles } from "../styled";
 import { SafeAreaView } from "react-native";
-import { DefaultConstraints } from "react-native-zephyr";
+import { DefaultTheme } from "react-native-zephyr";
 
 export const DefaultOpacities = () => {
   return (
     <StyledView classes={["flex:1", "bg:gray-300"]}>
       <SafeAreaView style={styles("flex:1", "flex:row")}>
-        {Object.keys(DefaultConstraints.opacities).map((key) => (
+        {Object.keys(DefaultTheme.opacities).map((key) => (
           <StyledView
             key={key}
             style={styles(

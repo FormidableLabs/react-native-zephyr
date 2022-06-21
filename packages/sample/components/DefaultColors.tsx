@@ -1,15 +1,15 @@
 import * as React from "react";
-import { DefaultConstraints } from "react-native-zephyr";
+import { DefaultTheme } from "react-native-zephyr";
 import { ScrollView } from "react-native";
 import { useStyles, StyledView, StyledText } from "../styled";
 
 const getColors = (key: string) => {
   const r = new RegExp(`${key}`);
-  return Object.keys(DefaultConstraints.colors)
+  return Object.keys(DefaultTheme.colors)
     .filter((k) => r.test(k))
     .map((k) => [
       k,
-      DefaultConstraints.colors[k as keyof typeof DefaultConstraints.colors],
+      DefaultTheme.colors[k as keyof typeof DefaultTheme.colors],
     ]);
 };
 

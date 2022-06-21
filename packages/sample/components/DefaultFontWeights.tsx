@@ -1,13 +1,13 @@
 import * as React from "react";
 import { SafeAreaView, View, Text, ScrollView } from "react-native";
-import { DefaultConstraints } from "react-native-zephyr";
+import { DefaultTheme } from "react-native-zephyr";
 import { styles } from "../styled";
 
 export const DefaultFontWeights = () => {
   return (
     <SafeAreaView style={styles()}>
       <ScrollView>
-        {Object.keys(DefaultConstraints.fontWeights).map((key) => (
+        {Object.keys(DefaultTheme.fontWeights).map((key) => (
           <View
             key={key}
             style={styles("px:2", "py:2", "flex:grow", "overflow:hidden")}

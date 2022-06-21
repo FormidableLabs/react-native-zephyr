@@ -1,6 +1,6 @@
 import * as React from "react";
 import { StyledView, StyledText } from "../styled";
-import { DefaultConstraints } from "react-native-zephyr";
+import { DefaultTheme } from "react-native-zephyr";
 
 export const DefaultBorderSizes = () => {
   return (
@@ -13,7 +13,7 @@ export const DefaultBorderSizes = () => {
         "px:20",
       ]}
     >
-      {Object.keys(DefaultConstraints.borderSizes).map((key) => (
+      {Object.keys(DefaultTheme.borderSizes).map((key) => (
         <StyledView key={key} classes={["items:center"]}>
           <StyledText classes={["text:sm", "color:gray-600"]}>
             border:{key}
