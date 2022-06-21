@@ -1,10 +1,7 @@
 import * as React from "react";
 import { StyledImage, StyledText, StyledView } from "./styled";
-import { DefaultTracking } from "./components/DefaultTracking";
-import { DefaultLeading } from "./components/DefaultLeading";
 
 export const AppBody = () => {
-  return <DefaultLeading />;
   return (
     <StyledView classes={["flex:1", "justify:center", "items:center"]}>
       <StyledImage

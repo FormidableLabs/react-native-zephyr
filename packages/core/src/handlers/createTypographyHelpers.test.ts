@@ -12,7 +12,6 @@ const { styles } = createStyleBuilder();
 const FW = DefaultTheme.fontWeights;
 const FS = DefaultTheme.fontSizes;
 const LS = DefaultTheme.letterSpacing;
-const LH = DefaultTheme.lineHeights;
 
 describe("createTypographyHelpers", () => {
   const cases: [Parameters<typeof styles>[0], object][] = [
