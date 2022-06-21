@@ -155,6 +155,14 @@ export const createDefaultTheme = ({
       wider: 0.05 * baseFontSize,
       widest: 0.1 * baseFontSize,
     } as const,
+    lineHeights: {
+      none: "x1",
+      tight: "x1.25",
+      snug: "x1.375",
+      normal: "x1.5",
+      relaxed: "x1.625",
+      loose: "x2",
+    },
   } as const);
 
 export const DefaultTheme = createDefaultTheme();

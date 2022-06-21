@@ -9,6 +9,9 @@ export type StyleHandlerSet = {
 export type NonSymbol<T> = Exclude<T, symbol>;
 
 export type BgOpacityRecord = { "--bg-opacity"?: number };
+export type LineHeightRecord = {
+  "--line-height"?: number | `x${number}`;
+};
 
 export type ClassName<P extends StyleHandlerSet> = ValueOf<{
   [K in keyof P]: Parameters<P[K]>[0] extends undefined
@@ -34,6 +37,7 @@ export type ThemeConstraints = {
   fontSizes?: Record<NumOrString, readonly [number, number]>;
   fontWeights?: Record<NumOrString, TextStyle["fontWeight"]>;
   letterSpacing?: Record<NumOrString, number>;
+  lineHeights?: Record<NumOrString, number | `x${number}`>;
 };
 
 export type NonOptional<T> = { [Key in keyof T]-?: T[Key] };

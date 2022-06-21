@@ -119,6 +119,11 @@ export const createStyleBuilder = <
     DefaultTheme["letterSpacing"],
     ThemeExt["letterSpacing"]
   >;
+  type LineHeightKey = GetKey<
+    Theme["lineHeights"],
+    DefaultTheme["lineHeights"],
+    ThemeExt["lineHeights"]
+  >;
 
   type Cn =
     // Margins
@@ -231,6 +236,7 @@ export const createStyleBuilder = <
     | `text:${FontSizeKey}`
     | `font-weight:${FontWeightKey}`
     | `tracking:${LetterSpacingKey}`
+    | `leading:${LineHeightKey}`
     | (typeof extraHandlers extends undefined
         ? never
         : ClassName<NonNullable<typeof extraHandlers>>);
@@ -323,6 +329,7 @@ export const createStyleBuilder = <
       fontSizes: mergedTheme.fontSizes,
       fontWeights: mergedTheme.fontWeights,
       letterSpacing: mergedTheme.letterSpacing,
+      lineHeights: mergedTheme.lineHeights,
     }),
 
     // And add in the extra handlers at the end, which can overwrite the default ones
@@ -366,6 +373,23 @@ export const createStyleBuilder = <
       styles.backgroundColor = `rgba(${r}, ${g}, ${b}, ${styles["--bg-opacity"]})`;
     }
     delete styles["--bg-opacity"];
+
+    // Massage for line-height
+    const __lineHeight = styles["--line-height"];
+    if (__lineHeight !== undefined) {
+      if (typeof __lineHeight === "number") {
+        styles["lineHeight"] = __lineHeight;
+      }
+      if (typeof __lineHeight === "string") {
+        const a = __lineHeight.match(RelativeLineHeightRegExp)?.[1];
+        if (a) {
+          const fs = +styles["fontSize"] || baseFontSize;
+          styles["lineHeight"] = +a * fs;
+        }
+      }
+
+      delete styles["--line-height"];
+    }
 
     // Add in the cache
     cache.set(cacheKey, styles);
@@ -428,3 +452,4 @@ export const createStyleBuilder = <
 };
 
 const HandlerArgRegExp = /^(.+):(.+)$/;
+const RelativeLineHeightRegExp = /^x(.+)$/;

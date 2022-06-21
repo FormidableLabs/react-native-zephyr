@@ -1,9 +1,10 @@
 import * as React from "react";
 import { StyledImage, StyledText, StyledView } from "./styled";
 import { DefaultTracking } from "./components/DefaultTracking";
+import { DefaultLeading } from "./components/DefaultLeading";
 
 export const AppBody = () => {
-  return <DefaultTracking />;
+  return <DefaultLeading />;
   return (
     <StyledView classes={["flex:1", "justify:center", "items:center"]}>
       <StyledImage
@@ -20,8 +21,9 @@ export const AppBody = () => {
           "bg-opacity:50",
         ]}
       >
-        <StyledText classes={["text:5xl", "color:gray-200"]}>
-          Hello world!
+        <StyledText classes={["text:lg", "color:gray-200", "leading:loose"]}>
+          Hello world! This text is going to be long because the quick brown fox
+          jumped over the lazy dog
         </StyledText>
         <StyledText
           classes={["color:gray-200", "text:tiny", "tracking:widest"]}
