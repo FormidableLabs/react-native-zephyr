@@ -131,7 +131,7 @@ Here's a visual representation of that scale.
 
 ## Default Font Sizes
 
-The `fontSizes` constraint applies to [the font size classes](./default-classes.md#text-styling). The scale is based off of [the base font size](./extending-the-theme.md#changing-the-base-font-size) for the default constraints, which is `baseFontSize = 14`. The scale is as follows:
+The `fontSizes` constraint applies to [the font size classes](./default-classes.md#typography). The scale is based off of [the base font size](./extending-the-theme.md#changing-the-base-font-size) for the default constraints, which is `baseFontSize = 14`. The scale is as follows:
 
 | Name   | Size                                          |
 |--------|-----------------------------------------------|
@@ -155,7 +155,7 @@ Here's a visual representation of that scale.
 
 ## Default Font Weights
 
-The `fontWeights` constraint applies to [the font weight classes](./default-classes.md#text-styling). The scale for this is:
+The `fontWeights` constraint applies to [the font weight classes](./default-classes.md#typography). The scale for this is:
 
 | Name         | Value |
 |--------------|-------|
@@ -175,7 +175,7 @@ Here's a visual representation of that scale.
 
 ## Default Letter Spacing
 
-The `letterSpacing` constraint applies to [the `tracking:` classes](./default-classes.md#text-styling). The scale for this is:
+The `letterSpacing` constraint applies to [the `tracking:` classes](./default-classes.md#typography). The scale for this is:
 
 | Name      | Value                   |
 |-----------|-------------------------|
@@ -189,6 +189,23 @@ The `letterSpacing` constraint applies to [the `tracking:` classes](./default-cl
 Here's a visual representation of that scale.
 
 ![A screenshot of the default letter spacing scale shown in a simulator](./img/DefaultLetterSpacing.png)
+
+## Default Line Heights
+
+The `lineHeights` constraint applies to [the `leading:` classes](./default-classes.md#typography). The scale for this is as follows, where `currentFontSize` represents the font size of the text element that the class is being applied to.
+
+| Name      | Value                     | 
+|-----------|---------------------------|
+| `none`    | `1 * currentFontSize`     |
+| `tight`   | `1.25 * currentFontSize`  |
+| `snug`    | `1.375 * currentFontSize` |
+| `normal`  | `1.5 * currentFontSize`   |
+| `relaxed` | `1.625 * currentFontSize` | 
+| `loose`   | `2 * currentFontSize`     |
+
+Here's a visual representation of that scale.
+
+![A screenshot of the default lineHeights scale shown in a simulator](./img/DefaultLineHeights.png)
 
 ## Default Shadows
 

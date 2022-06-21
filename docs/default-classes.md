@@ -182,9 +182,9 @@ The `z:` classes allow you to set the z-index of an element.
 
 
 
-## Text Styling
+## Typography
 
-The `text:` classes adjust the font size of your text. Use the `color:` classes to change your text color. Use the `font-weight:` classes to adjust the weight of your text (e.g., bold text). Use `tracking:` classes to adjust the letter-spacing of your text. The `italic`, `uppercase`, `lowercase`, `capitalize`, `underline`, and `line-through` classes are one-off classes that apply transforms/decorations to your text. Use `text-align:` classes to align your text.
+The `text:` classes adjust the font size of your text. Use the `color:` classes to change your text color. Use the `font-weight:` classes to adjust the weight of your text (e.g., bold text). Use `tracking:` classes to adjust the letter-spacing of your text. Use the `leading:` classes to adjust the (relative) line-height of your text. The `italic`, `uppercase`, `lowercase`, `capitalize`, `underline`, and `line-through` classes are one-off classes that apply transforms/decorations to your text. Use `text-align:` classes to align your text.
 
 | Prefix         | Argument                                                                    | Overridable | Properties Set                           | Example                                       |
 |----------------|-----------------------------------------------------------------------------|-------------|------------------------------------------|-----------------------------------------------|
@@ -192,6 +192,7 @@ The `text:` classes adjust the font size of your text. Use the `color:` classes 
 | `color:`       | [`keyof theme['colors']`](./default-theme.md#default-colors)                | ✅           | `color`                                  | `color:red-300`, `color:[#ff00ff]`            |
 | `font-weight:` | [`keyof theme['fontWeights']`](./default-theme.md#default-font-weights)     | ❌           | `fontWeight`                             | `font-weight:normal`, `font-weight:extrabold` |
 | `tracking:`    | [`keyof theme['letterSpacing']`](./default-theme.md#default-letter-spacing) | ❌           | `letterSpacing`                          | `tracking:tight`                              |
+| `leading:`     | [`keyof theme['lineHeights']`](./default-theme.md#default-letter-spacing)   | ❌           | `letterSpacing`                          | `tracking:tight`                              |
 | `italic`       | N/A                                                                         | ❌           | `{ fontStyle: "italic" }`                | `italic`                                      |
 | `text-align:`  | `"auto", "left", "right", "center", "justify"`                              | ❌           | `textAlign`                              | `text-align:center`, `text-align:left`        |
 | `uppercase`    | N/A                                                                         | ❌           | `{ textTransform: "uppercase" }`         | `uppercase`                                   |
