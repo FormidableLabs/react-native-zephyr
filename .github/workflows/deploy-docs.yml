@@ -53,7 +53,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy docs (staging)
-        if: github.ref != 'refs/heads/main'
+        if: github.ref != 'refs/heads/master'
         run: yarn deploy:stage
         working-directory: ./website
         env:
