@@ -18,8 +18,14 @@ export const AppBody = () => {
           "bg-opacity:50",
         ]}
       >
-        <StyledText classes={["text:5xl", "color:gray-200"]}>
-          Hello world!
+        <StyledText classes={["text:lg", "color:gray-200", "leading:loose"]}>
+          Hello world! This text is going to be long because the quick brown fox
+          jumped over the lazy dog
+        </StyledText>
+        <StyledText
+          classes={["color:gray-200", "text:tiny", "tracking:widest"]}
+        >
+          Subcaption
         </StyledText>
       </StyledView>
     </StyledView>

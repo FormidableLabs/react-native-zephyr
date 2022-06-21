@@ -1,11 +1,16 @@
 import { TextStyle } from "react-native";
+import { LineHeightRecord } from "../types";
 
 export const createTypographyHandlers = <
   FontSizeKey extends string | number,
-  FontWeightKey extends string | number
+  FontWeightKey extends string | number,
+  LetterSpacingKey extends string | number,
+  LineHeightKey extends string | number
 >(constraints: {
   fontSizes: Record<FontSizeKey, readonly [number, number]>;
   fontWeights: Record<FontWeightKey, TextStyle["fontWeight"]>;
+  letterSpacing: Record<LetterSpacingKey, number>;
+  lineHeights: Record<LineHeightKey, number | `x${number}`>;
 }) => {
   return {
     italic: () => <TextStyle>{ fontStyle: "italic" },
@@ -28,6 +33,21 @@ export const createTypographyHandlers = <
     "font-weight": (inp: FontWeightKey) => {
       const fontWeight = constraints.fontWeights[inp];
       return <TextStyle>{ fontWeight };
+    },
+    tracking: (inp: LetterSpacingKey): TextStyle => {
+      const val = constraints.letterSpacing[inp];
+      if (typeof val === "undefined") return {};
+
+      return {
+        letterSpacing: val,
+      };
+    },
+    leading: (inp: LineHeightKey): LineHeightRecord => {
+      const val = constraints.lineHeights[inp];
+      if (typeof val === "undefined") return {};
+      return {
+        "--line-height": val,
+      };
     },
   };
 };

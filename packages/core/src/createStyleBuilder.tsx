@@ -11,7 +11,7 @@ import {
 import { StyleContext } from "./StyleProvider";
 import { colorStringToRgb } from "./utils/colorStringToRgb";
 import { SimpleConstrainedCache } from "./utils/SimpleConstrainedCache";
-import { DefaultConstraints } from "./theme";
+import { createDefaultTheme } from "./theme";
 import { FlexStyle, ImageStyle, TextStyle } from "react-native";
 import { mergeThemes } from "./utils/mergeThemes";
 import { createColorHandlers } from "./handlers/createColorHandlers";
@@ -36,14 +36,28 @@ export const createStyleBuilder = <
   extraHandlers,
   overrideTheme,
   extendTheme,
+  baseFontSize = 14,
 }: {
   extraHandlers?: ExtraStyleHandlers;
-  overrideTheme?: Theme;
-  extendTheme?: ThemeExt;
+  overrideTheme?: Theme | ((args: { baseFontSize: number }) => Theme);
+  extendTheme?: ThemeExt | ((args: { baseFontSize: number }) => ThemeExt);
+  baseFontSize?: number;
 } = {}) => {
   const cache = new SimpleConstrainedCache({ maxNumRecords: 400 });
-  const mergedTheme = mergeThemes({ overrideTheme, extendTheme });
+  const baseTheme = createDefaultTheme({ baseFontSize });
+  const mergedTheme = mergeThemes({
+    baseTheme,
+    overrideTheme:
+      typeof overrideTheme === "function"
+        ? overrideTheme({ baseFontSize })
+        : overrideTheme,
+    extendTheme:
+      typeof extendTheme === "function"
+        ? extendTheme({ baseFontSize })
+        : extendTheme,
+  });
 
+  type DefaultTheme = typeof baseTheme;
   type GetKey<
     UserThemeConstraints,
     DefaultThemeConstraints,
@@ -57,48 +71,58 @@ export const createStyleBuilder = <
 
   type SpacingKey = GetKey<
     Theme["spacing"],
-    typeof DefaultConstraints.spacing,
+    DefaultTheme["spacing"],
     ThemeExt["spacing"]
   >;
   type AspectRatioKey = GetKey<
     Theme["aspectRatios"],
-    typeof DefaultConstraints.aspectRatios,
+    DefaultTheme["aspectRatios"],
     ThemeExt["aspectRatios"]
   >;
   type ColorKey = GetKey<
     Theme["colors"],
-    typeof DefaultConstraints.colors,
+    DefaultTheme["colors"],
     ThemeExt["colors"]
   >;
   type OpacityKey = GetKey<
     Theme["opacities"],
-    typeof DefaultConstraints.opacities,
+    DefaultTheme["opacities"],
     ThemeExt["opacities"]
   >;
   type BorderSizeKey = GetKey<
     Theme["borderSizes"],
-    typeof DefaultConstraints.borderSizes,
+    DefaultTheme["borderSizes"],
     ThemeExt["borderSizes"]
   >;
   type BorderRadiiKey = GetKey<
     Theme["borderRadii"],
-    typeof DefaultConstraints.borderRadii,
+    DefaultTheme["borderRadii"],
     ThemeExt["borderRadii"]
   >;
   type ShadowKey = GetKey<
     Theme["shadows"],
-    typeof DefaultConstraints.shadows,
+    DefaultTheme["shadows"],
     ThemeExt["shadows"]
   >;
   type FontSizeKey = GetKey<
     Theme["fontSizes"],
-    typeof DefaultConstraints.fontSizes,
+    DefaultTheme["fontSizes"],
     ThemeExt["fontSizes"]
   >;
   type FontWeightKey = GetKey<
     Theme["fontWeights"],
-    typeof DefaultConstraints.fontWeights,
+    DefaultTheme["fontWeights"],
     ThemeExt["fontWeights"]
+  >;
+  type LetterSpacingKey = GetKey<
+    Theme["letterSpacing"],
+    DefaultTheme["letterSpacing"],
+    ThemeExt["letterSpacing"]
+  >;
+  type LineHeightKey = GetKey<
+    Theme["lineHeights"],
+    DefaultTheme["lineHeights"],
+    ThemeExt["lineHeights"]
   >;
 
   type Cn =
@@ -211,6 +235,8 @@ export const createStyleBuilder = <
     | `text-align:${NonNullable<TextStyle["textAlign"]>}`
     | `text:${FontSizeKey}`
     | `font-weight:${FontWeightKey}`
+    | `tracking:${LetterSpacingKey}`
+    | `leading:${LineHeightKey}`
     | (typeof extraHandlers extends undefined
         ? never
         : ClassName<NonNullable<typeof extraHandlers>>);
@@ -302,6 +328,8 @@ export const createStyleBuilder = <
     ...createTypographyHandlers({
       fontSizes: mergedTheme.fontSizes,
       fontWeights: mergedTheme.fontWeights,
+      letterSpacing: mergedTheme.letterSpacing,
+      lineHeights: mergedTheme.lineHeights,
     }),
 
     // And add in the extra handlers at the end, which can overwrite the default ones
@@ -345,6 +373,23 @@ export const createStyleBuilder = <
       styles.backgroundColor = `rgba(${r}, ${g}, ${b}, ${styles["--bg-opacity"]})`;
     }
     delete styles["--bg-opacity"];
+
+    // Massage for line-height
+    const __lineHeight = styles["--line-height"];
+    if (__lineHeight !== undefined) {
+      if (typeof __lineHeight === "number") {
+        styles["lineHeight"] = __lineHeight;
+      }
+      if (typeof __lineHeight === "string") {
+        const a = __lineHeight.match(RelativeLineHeightRegExp)?.[1];
+        if (a) {
+          const fs = +styles["fontSize"] || baseFontSize;
+          styles["lineHeight"] = +a * fs;
+        }
+      }
+
+      delete styles["--line-height"];
+    }
 
     // Add in the cache
     cache.set(cacheKey, styles);
@@ -407,3 +452,4 @@ export const createStyleBuilder = <
 };
 
 const HandlerArgRegExp = /^(.+):(.+)$/;
+const RelativeLineHeightRegExp = /^x(.+)$/;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Text, View } from "react-native";
 import { styles } from "../styled";
-import { DefaultConstraints } from "react-native-zephyr";
+import { DefaultTheme } from "react-native-zephyr";
 
 export const DefaultAspectRatios: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ export const DefaultAspectRatios: React.FC = () => {
         "px:10"
       )}
     >
-      {Object.keys(DefaultConstraints.aspectRatios).map((key) => (
+      {Object.keys(DefaultTheme.aspectRatios).map((key) => (
         <View key={key} style={styles("items:center")}>
           <Text style={styles("text:sm", "color:gray-600", "font-weight:bold")}>
             aspect:{key}
