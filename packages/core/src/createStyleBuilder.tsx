@@ -100,6 +100,11 @@ export const createStyleBuilder = <
     typeof DefaultConstraints.fontWeights,
     ThemeExt["fontWeights"]
   >;
+  type LetterSpacingKey = GetKey<
+    Theme["letterSpacing"],
+    typeof DefaultConstraints.letterSpacing,
+    ThemeExt["letterSpacing"]
+  >;
 
   type Cn =
     // Margins
@@ -211,6 +216,7 @@ export const createStyleBuilder = <
     | `text-align:${NonNullable<TextStyle["textAlign"]>}`
     | `text:${FontSizeKey}`
     | `font-weight:${FontWeightKey}`
+    | `tracking:${LetterSpacingKey}`
     | (typeof extraHandlers extends undefined
         ? never
         : ClassName<NonNullable<typeof extraHandlers>>);
@@ -302,6 +308,7 @@ export const createStyleBuilder = <
     ...createTypographyHandlers({
       fontSizes: mergedTheme.fontSizes,
       fontWeights: mergedTheme.fontWeights,
+      letterSpacing: mergedTheme.letterSpacing,
     }),
 
     // And add in the extra handlers at the end, which can overwrite the default ones

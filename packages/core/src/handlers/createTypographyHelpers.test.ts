@@ -11,6 +11,7 @@ vi.mock("react-native", () => ({
 const { styles } = createStyleBuilder();
 const FW = DefaultConstraints.fontWeights;
 const FS = DefaultConstraints.fontSizes;
+const LS = DefaultConstraints.letterSpacing;
 
 describe("createTypographyHelpers", () => {
   const cases: [Parameters<typeof styles>[0], object][] = [
@@ -33,6 +34,9 @@ describe("createTypographyHelpers", () => {
     ["font-weight:bold", { fontWeight: FW.bold }],
     ["font-weight:black", { fontWeight: FW.black }],
     ["font-weight:semibold", { fontWeight: FW.semibold }],
+    ["tracking:tight", { letterSpacing: LS.tight }],
+    ["tracking:normal", { letterSpacing: LS.normal }],
+    ["tracking:widest", { letterSpacing: LS.widest }],
   ];
 
   it.each(cases)("builder(%s) equals %s", (className, expectedOutput) => {

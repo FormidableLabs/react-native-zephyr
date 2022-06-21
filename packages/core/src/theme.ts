@@ -143,4 +143,12 @@ export const DefaultConstraints = {
     extrabold: "800",
     black: "900",
   } as const,
+  letterSpacing: {
+    tighter: -0.05 * BASE_FONT_SIZE,
+    tight: -0.25 * BASE_FONT_SIZE,
+    normal: 0,
+    wide: 0.025 * BASE_FONT_SIZE,
+    wider: 0.05 * BASE_FONT_SIZE,
+    widest: 0.1 * BASE_FONT_SIZE,
+  } as const,
 } as const;

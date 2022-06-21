@@ -33,6 +33,7 @@ export type ThemeConstraints = {
   >;
   fontSizes?: Record<NumOrString, readonly [number, number]>;
   fontWeights?: Record<NumOrString, TextStyle["fontWeight"]>;
+  letterSpacing?: Record<NumOrString, number>;
 };
 
 export type NonOptional<T> = { [Key in keyof T]-?: T[Key] };

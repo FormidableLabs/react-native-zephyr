@@ -2,10 +2,12 @@ import { TextStyle } from "react-native";
 
 export const createTypographyHandlers = <
   FontSizeKey extends string | number,
-  FontWeightKey extends string | number
+  FontWeightKey extends string | number,
+  LetterSpacingKey extends string | number
 >(constraints: {
   fontSizes: Record<FontSizeKey, readonly [number, number]>;
   fontWeights: Record<FontWeightKey, TextStyle["fontWeight"]>;
+  letterSpacing: Record<LetterSpacingKey, number>;
 }) => {
   return {
     italic: () => <TextStyle>{ fontStyle: "italic" },
@@ -28,6 +30,14 @@ export const createTypographyHandlers = <
     "font-weight": (inp: FontWeightKey) => {
       const fontWeight = constraints.fontWeights[inp];
       return <TextStyle>{ fontWeight };
+    },
+    tracking: (inp: LetterSpacingKey): TextStyle => {
+      const val = constraints.letterSpacing[inp];
+      if (typeof val === "undefined") return {};
+
+      return {
+        letterSpacing: val,
+      };
     },
   };
 };
