@@ -33,11 +33,13 @@ const {
 
 ### Options
 
-- `overrideTheme?: ThemeConstraints`
+- `overrideTheme?: ThemeConstraints | ((args: { baseFontSize: number }) => ThemeConstraints)`
   - Allows you to override specific sets of theme constraints. E.g., can provide your own colors and overwrite the default colors.
+  - Can provide a function, giving you access to `baseFontSize` for deriving values based on the base font size.
   - See [`ThemeConstraints`](#themeconstraints) for available options.
-- `extendTheme?: ThemeConstraints`
+- `extendTheme?: ThemeConstraints | ((args: { baseFontSize: number }) => ThemeConstraints)`
   - Allows you to _extend_ specific sets of theme constraints. E.g., can add your own colors on top of the default color palette.
+  - Can provide a function, giving you access to `baseFontSize` for deriving values based on the base font size.
   - See [`ThemeConstraints`](#themeconstraints) for available options.
 - `extraHandlers?: {[key: string]: (...args: any[]) => object}`
   - Allows you to provide your own additional style handlers. 
