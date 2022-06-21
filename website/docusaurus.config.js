@@ -122,6 +122,14 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      announcementBar: {
+        id: "almost_there",
+        content:
+          "We're almost to v1! Until then, be prepared for minor changes to the API.",
+        backgroundColor: "var(--ifm-color-warning-contrast-background)",
+        textColor: "var(--ifm-color-warning-contrast-foreground)",
+        isCloseable: false,
+      },
     }),
 };
 
