@@ -1,5 +1,10 @@
 # React Native Zephyr Changelog
 
+# 0.2.1
+
+- Docs updates.
+- Remove `twColors` from root export.
+
 # 0.2.0
 
 - Allow configuration of `baseFontSize`.
