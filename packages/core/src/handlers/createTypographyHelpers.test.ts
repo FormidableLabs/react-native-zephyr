@@ -1,6 +1,6 @@
 import { vi, describe, it, expect } from "vitest";
 import { createStyleBuilder } from "../createStyleBuilder";
-import { DefaultConstraints } from "../theme";
+import { DefaultTheme } from "../theme";
 
 vi.mock("react-native", () => ({
   StyleSheet: {
@@ -9,8 +9,8 @@ vi.mock("react-native", () => ({
 }));
 
 const { styles } = createStyleBuilder();
-const FW = DefaultConstraints.fontWeights;
-const FS = DefaultConstraints.fontSizes;
+const FW = DefaultTheme.fontWeights;
+const FS = DefaultTheme.fontSizes;
 
 describe("createTypographyHelpers", () => {
   const cases: [Parameters<typeof styles>[0], object][] = [

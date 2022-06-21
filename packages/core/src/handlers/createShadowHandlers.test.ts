@@ -1,6 +1,6 @@
 import { vi, describe, it, expect } from "vitest";
 import { createStyleBuilder } from "../createStyleBuilder";
-import { DefaultConstraints } from "../theme";
+import { DefaultTheme } from "../theme";
 
 let platform = "android";
 
@@ -15,7 +15,7 @@ vi.mock("react-native", () => ({
 }));
 
 const { styles } = createStyleBuilder({});
-const C = DefaultConstraints.shadows;
+const C = DefaultTheme.shadows;
 
 describe("createShadowHandlers", () => {
   it("handles shadows, platform specific", () => {
@@ -60,7 +60,7 @@ describe("createShadowHandlers", () => {
       },
     });
 
-    const md = DefaultConstraints.shadows.md.ios;
+    const md = DefaultTheme.shadows.md.ios;
     expect(styles("shadow:md")).toEqual({
       shadowOffset: { width: md[0], height: md[1] },
       shadowRadius: md[2],

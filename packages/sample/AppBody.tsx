@@ -21,6 +21,7 @@ export const AppBody = () => {
         <StyledText classes={["text:5xl", "color:gray-200"]}>
           Hello world!
         </StyledText>
+        <StyledText classes={["color:gray-200"]}>Subcaption</StyledText>
       </StyledView>
     </StyledView>
   );

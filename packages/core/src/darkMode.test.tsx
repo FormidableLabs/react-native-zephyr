@@ -4,7 +4,7 @@ import { createStyleBuilder } from "./createStyleBuilder";
 import { StyleProvider } from "./StyleProvider";
 import { PropsWithChildren, ComponentProps } from "react";
 import { renderHook } from "@testing-library/react-hooks";
-import { DefaultConstraints } from "./theme";
+import { DefaultTheme } from "./theme";
 
 let colorScheme = "light";
 vi.mock("react-native", () => ({
@@ -55,8 +55,8 @@ describe("Dark mode support", () => {
     );
 
     expect(result.current).toEqual({
-      padding: DefaultConstraints.spacing["3"],
-      margin: DefaultConstraints.spacing["3"],
+      padding: DefaultTheme.spacing["3"],
+      margin: DefaultTheme.spacing["3"],
     });
   });
 
@@ -89,7 +89,7 @@ describe("Dark mode support", () => {
 
     expect(result.current).toEqual({
       padding: 0,
-      margin: DefaultConstraints.spacing["3"],
+      margin: DefaultTheme.spacing["3"],
     });
   });
 });

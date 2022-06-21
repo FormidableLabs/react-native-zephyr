@@ -11,7 +11,7 @@ import {
 import { StyleContext } from "./StyleProvider";
 import { colorStringToRgb } from "./utils/colorStringToRgb";
 import { SimpleConstrainedCache } from "./utils/SimpleConstrainedCache";
-import { DefaultConstraints } from "./theme";
+import { createDefaultTheme } from "./theme";
 import { FlexStyle, ImageStyle, TextStyle } from "react-native";
 import { mergeThemes } from "./utils/mergeThemes";
 import { createColorHandlers } from "./handlers/createColorHandlers";
@@ -36,14 +36,22 @@ export const createStyleBuilder = <
   extraHandlers,
   overrideTheme,
   extendTheme,
+  baseFontSize,
 }: {
   extraHandlers?: ExtraStyleHandlers;
   overrideTheme?: Theme;
   extendTheme?: ThemeExt;
+  baseFontSize?: number;
 } = {}) => {
   const cache = new SimpleConstrainedCache({ maxNumRecords: 400 });
-  const mergedTheme = mergeThemes({ overrideTheme, extendTheme });
+  const baseTheme = createDefaultTheme({ baseFontSize });
+  const mergedTheme = mergeThemes({
+    baseTheme,
+    overrideTheme,
+    extendTheme,
+  });
 
+  type DefaultTheme = typeof baseTheme;
   type GetKey<
     UserThemeConstraints,
     DefaultThemeConstraints,
@@ -57,47 +65,47 @@ export const createStyleBuilder = <
 
   type SpacingKey = GetKey<
     Theme["spacing"],
-    typeof DefaultConstraints.spacing,
+    DefaultTheme["spacing"],
     ThemeExt["spacing"]
   >;
   type AspectRatioKey = GetKey<
     Theme["aspectRatios"],
-    typeof DefaultConstraints.aspectRatios,
+    DefaultTheme["aspectRatios"],
     ThemeExt["aspectRatios"]
   >;
   type ColorKey = GetKey<
     Theme["colors"],
-    typeof DefaultConstraints.colors,
+    DefaultTheme["colors"],
     ThemeExt["colors"]
   >;
   type OpacityKey = GetKey<
     Theme["opacities"],
-    typeof DefaultConstraints.opacities,
+    DefaultTheme["opacities"],
     ThemeExt["opacities"]
   >;
   type BorderSizeKey = GetKey<
     Theme["borderSizes"],
-    typeof DefaultConstraints.borderSizes,
+    DefaultTheme["borderSizes"],
     ThemeExt["borderSizes"]
   >;
   type BorderRadiiKey = GetKey<
     Theme["borderRadii"],
-    typeof DefaultConstraints.borderRadii,
+    DefaultTheme["borderRadii"],
     ThemeExt["borderRadii"]
   >;
   type ShadowKey = GetKey<
     Theme["shadows"],
-    typeof DefaultConstraints.shadows,
+    DefaultTheme["shadows"],
     ThemeExt["shadows"]
   >;
   type FontSizeKey = GetKey<
     Theme["fontSizes"],
-    typeof DefaultConstraints.fontSizes,
+    DefaultTheme["fontSizes"],
     ThemeExt["fontSizes"]
   >;
   type FontWeightKey = GetKey<
     Theme["fontWeights"],
-    typeof DefaultConstraints.fontWeights,
+    DefaultTheme["fontWeights"],
     ThemeExt["fontWeights"]
   >;
 

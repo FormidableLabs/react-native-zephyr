@@ -1,6 +1,6 @@
 import { vi, describe, it, expect } from "vitest";
 import { createStyleBuilder } from "./createStyleBuilder";
-import { DefaultConstraints } from "./theme";
+import { DefaultTheme } from "./theme";
 
 vi.mock("react-native", () => ({
   StyleSheet: {
@@ -8,7 +8,7 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const C = DefaultConstraints.spacing;
+const C = DefaultTheme.spacing;
 
 describe("createStyleBuilder", () => {
   it("creates builder with default constraints/handlers", () => {
