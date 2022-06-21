@@ -36,19 +36,25 @@ export const createStyleBuilder = <
   extraHandlers,
   overrideTheme,
   extendTheme,
-  baseFontSize,
+  baseFontSize = 14,
 }: {
   extraHandlers?: ExtraStyleHandlers;
-  overrideTheme?: Theme;
-  extendTheme?: ThemeExt;
+  overrideTheme?: Theme | ((args: { baseFontSize: number }) => Theme);
+  extendTheme?: ThemeExt | ((args: { baseFontSize: number }) => ThemeExt);
   baseFontSize?: number;
 } = {}) => {
   const cache = new SimpleConstrainedCache({ maxNumRecords: 400 });
   const baseTheme = createDefaultTheme({ baseFontSize });
   const mergedTheme = mergeThemes({
     baseTheme,
-    overrideTheme,
-    extendTheme,
+    overrideTheme:
+      typeof overrideTheme === "function"
+        ? overrideTheme({ baseFontSize })
+        : overrideTheme,
+    extendTheme:
+      typeof extendTheme === "function"
+        ? extendTheme({ baseFontSize })
+        : extendTheme,
   });
 
   type DefaultTheme = typeof baseTheme;

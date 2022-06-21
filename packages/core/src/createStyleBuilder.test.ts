@@ -72,4 +72,30 @@ describe("createStyleBuilder", () => {
       padding: C["4"],
     });
   });
+
+  it("allows for extendTheme to be a function", () => {
+    const { styles } = createStyleBuilder({
+      baseFontSize: 16,
+      extendTheme: ({ baseFontSize }) => ({
+        spacing: {
+          tiny: 0.5 * baseFontSize,
+        },
+      }),
+    });
+
+    expect(styles("m:tiny")).toEqual({ margin: 0.5 * 16 });
+  });
+
+  it("allows for overrideTheme to be a function", () => {
+    const { styles } = createStyleBuilder({
+      baseFontSize: 16,
+      overrideTheme: ({ baseFontSize }) => ({
+        spacing: {
+          tiny: 0.5 * baseFontSize,
+        },
+      }),
+    });
+
+    expect(styles("m:tiny")).toEqual({ margin: 0.5 * 16 });
+  });
 });
