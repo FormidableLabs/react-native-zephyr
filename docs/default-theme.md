@@ -173,6 +173,23 @@ Here's a visual representation of that scale.
 
 ![A screenshot of the default font weights scale shown in a simulator](./img/DefaultFontWeights.png)
 
+## Default Letter Spacing
+
+The `letterSpacing` constraint applies to [the `tracking:` classes](./default-classes.md#text-styling). The scale for this is:
+
+| Name      | Value                   |
+|-----------|-------------------------|
+| `tighter` | `-0.05 * baseFontSize`  |
+| `tight`   | `-0.025 * baseFontSize` |
+| `normal`  | `0`                     |
+| `wide`    | `0.025 * baseFontSize`  |
+| `wider`   | `0.05 * baseFontSize`   |
+| `widest`  | `0.1 * baseFontSize`    |
+
+Here's a visual representation of that scale.
+
+![A screenshot of the default letter spacing scale shown in a simulator](./img/DefaultLetterSpacing.png)
+
 ## Default Shadows
 
 The `shadows` constraint applies to [the shadow classes](./default-classes.md#shadows). The scale for this is:

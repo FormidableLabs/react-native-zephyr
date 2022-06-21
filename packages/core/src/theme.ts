@@ -149,7 +149,7 @@ export const createDefaultTheme = ({
     } as const,
     letterSpacing: {
       tighter: -0.05 * baseFontSize,
-      tight: -0.25 * baseFontSize,
+      tight: -0.025 * baseFontSize,
       normal: 0,
       wide: 0.025 * baseFontSize,
       wider: 0.05 * baseFontSize,

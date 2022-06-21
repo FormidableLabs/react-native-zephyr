@@ -7,10 +7,10 @@ export const { makeStyledComponent, styles, useStyles } = createStyleBuilder({
       ...extractTwColor({ twColor: "fuchsia", name: "brown" }),
     },
     fontSizes: {
-      tiny: [0.9 * baseFontSize, 1 * baseFontSize],
+      tiny: [0.7 * baseFontSize, 1 * baseFontSize],
     },
   }),
-  baseFontSize: 20,
+  // baseFontSize: 20,
 });
 
 export const StyledView = makeStyledComponent(View);

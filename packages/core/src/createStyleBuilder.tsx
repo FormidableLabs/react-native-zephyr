@@ -116,7 +116,7 @@ export const createStyleBuilder = <
   >;
   type LetterSpacingKey = GetKey<
     Theme["letterSpacing"],
-    typeof DefaultConstraints.letterSpacing,
+    DefaultTheme["letterSpacing"],
     ThemeExt["letterSpacing"]
   >;
 
