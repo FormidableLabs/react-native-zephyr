@@ -1,7 +1,7 @@
 import * as React from "react";
 import { View, Text } from "react-native";
 import { styles } from "../styled";
-import { DefaultConstraints } from "react-native-zephyr";
+import { DefaultTheme } from "react-native-zephyr";
 
 export const DefaultBorderRadii = () => {
   return (
@@ -14,7 +14,7 @@ export const DefaultBorderRadii = () => {
         "px:10"
       )}
     >
-      {Object.keys(DefaultConstraints.borderRadii).map((key) => (
+      {Object.keys(DefaultTheme.borderRadii).map((key) => (
         <View key={key} style={styles("items:center")}>
           <Text style={styles("text:sm", "color:gray-600")}>rounded:{key}</Text>
           <View

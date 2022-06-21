@@ -1,6 +1,6 @@
 import { vi, describe, it, expect } from "vitest";
 import { createStyleBuilder } from "./createStyleBuilder";
-import { DefaultConstraints } from "./theme";
+import { DefaultTheme } from "./theme";
 
 vi.mock("react-native", () => ({
   StyleSheet: {
@@ -8,7 +8,7 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const C = DefaultConstraints.spacing;
+const C = DefaultTheme.spacing;
 
 describe("createStyleBuilder", () => {
   it("creates builder with default constraints/handlers", () => {
@@ -71,5 +71,31 @@ describe("createStyleBuilder", () => {
       margin: C["3"],
       padding: C["4"],
     });
+  });
+
+  it("allows for extendTheme to be a function", () => {
+    const { styles } = createStyleBuilder({
+      baseFontSize: 16,
+      extendTheme: ({ baseFontSize }) => ({
+        spacing: {
+          tiny: 0.5 * baseFontSize,
+        },
+      }),
+    });
+
+    expect(styles("m:tiny")).toEqual({ margin: 0.5 * 16 });
+  });
+
+  it("allows for overrideTheme to be a function", () => {
+    const { styles } = createStyleBuilder({
+      baseFontSize: 16,
+      overrideTheme: ({ baseFontSize }) => ({
+        spacing: {
+          tiny: 0.5 * baseFontSize,
+        },
+      }),
+    });
+
+    expect(styles("m:tiny")).toEqual({ margin: 0.5 * 16 });
   });
 });

@@ -110,19 +110,19 @@ Here's a visual representation of that scale.
 
 ## Default Border Radii
 
-The `borderRadii` constraint applies to [the border radius classes](./default-classes.md#borders-width-color-radius). The scale is based off of the base font size for the default constraints, which is `const BASE_FONT_SIZE = 14`. The scale is as follows:
+The `borderRadii` constraint applies to [the border radius classes](./default-classes.md#borders-width-color-radius). The scale is based off of [the base font size](./extending-the-theme.md#changing-the-base-font-size) for the default constraints, which is `baseFontSize = 14`. The scale is as follows:
 
-| Name   | Size                     |
-|--------|--------------------------|
-| `none` | `0`                      |
-| `sm`   | `0.125 * BASE_FONT_SIZE` |
-| `base` | `0.25 * BASE_FONT_SIZE`  |
-| `md`   | `0.375 * BASE_FONT_SIZE` |
-| `lg`   | `0.5 * BASE_FONT_SIZE`   |
-| `xl`   | `0.75 * BASE_FONT_SIZE`  |
-| `2xl`  | `BASE_FONT_SIZE`         |
-| `3xl`  | `1.5 * BASE_FONT_SIZE`   |
-| `full` | `999`                    |
+| Name   | Size                   |
+|--------|------------------------|
+| `none` | `0`                    |
+| `sm`   | `0.125 * baseFontSize` |
+| `base` | `0.25 * baseFontSize`  |
+| `md`   | `0.375 * baseFontSize` |
+| `lg`   | `0.5 * baseFontSize`   |
+| `xl`   | `0.75 * baseFontSize`  |
+| `2xl`  | `baseFontSize`         |
+| `3xl`  | `1.5 * baseFontSize`   |
+| `full` | `999`                  |
 
 Here's a visual representation of that scale.
 
@@ -131,23 +131,23 @@ Here's a visual representation of that scale.
 
 ## Default Font Sizes
 
-The `fontSizes` constraint applies to [the font size classes](./default-classes.md#text-styling). The scale is based off of the base font size for the default constraints, which is `const BASE_FONT_SIZE = 14`. The scale is as follows:
+The `fontSizes` constraint applies to [the font size classes](./default-classes.md#text-styling). The scale is based off of [the base font size](./extending-the-theme.md#changing-the-base-font-size) for the default constraints, which is `baseFontSize = 14`. The scale is as follows:
 
-| Name   | Size                                              |
-|--------|---------------------------------------------------|
-| `xs`   | `[0.75 * BASE_FONT_SIZE, BASE_FONT_SIZE]`         |
-| `sm`   | `[0.875 * BASE_FONT_SIZE, 1.25 * BASE_FONT_SIZE]` |
-| `base` | `[BASE_FONT_SIZE, 1.5 * BASE_FONT_SIZE]`          |
-| `lg`   | `[1.125 * BASE_FONT_SIZE, 1.75 * BASE_FONT_SIZE]` |
-| `xl`   | `[1.25 * BASE_FONT_SIZE, 1.75 * BASE_FONT_SIZE]`  |
-| `2xl`  | `[1.5 * BASE_FONT_SIZE, 2 * BASE_FONT_SIZE]`      |
-| `3xl`  | `[1.875 * BASE_FONT_SIZE, 2.25 * BASE_FONT_SIZE]` |
-| `4xl`  | `[2.25 * BASE_FONT_SIZE, 2.5 * BASE_FONT_SIZE]`   |
-| `5xl`  | `[3 * BASE_FONT_SIZE, 3 * BASE_FONT_SIZE]`        |
-| `6xl`  | `[3.75 * BASE_FONT_SIZE, 3.75 * BASE_FONT_SIZE]`  |
-| `7xl`  | `[4.5 * BASE_FONT_SIZE, 4.5 * BASE_FONT_SIZE]`    |
-| `8xl`  | `[6 * BASE_FONT_SIZE, 6 * BASE_FONT_SIZE]`        |
-| `9xl`  | `[8 * BASE_FONT_SIZE, 8 * BASE_FONT_SIZE]`        |
+| Name   | Size                                          |
+|--------|-----------------------------------------------|
+| `xs`   | `[0.75 * baseFontSize, baseFontSize]`         |
+| `sm`   | `[0.875 * baseFontSize, 1.25 * baseFontSize]` |
+| `base` | `[baseFontSize, 1.5 * baseFontSize]`          |
+| `lg`   | `[1.125 * baseFontSize, 1.75 * baseFontSize]` |
+| `xl`   | `[1.25 * baseFontSize, 1.75 * baseFontSize]`  |
+| `2xl`  | `[1.5 * baseFontSize, 2 * baseFontSize]`      |
+| `3xl`  | `[1.875 * baseFontSize, 2.25 * baseFontSize]` |
+| `4xl`  | `[2.25 * baseFontSize, 2.5 * baseFontSize]`   |
+| `5xl`  | `[3 * baseFontSize, 3 * baseFontSize]`        |
+| `6xl`  | `[3.75 * baseFontSize, 3.75 * baseFontSize]`  |
+| `7xl`  | `[4.5 * baseFontSize, 4.5 * baseFontSize]`    |
+| `8xl`  | `[6 * baseFontSize, 6 * baseFontSize]`        |
+| `9xl`  | `[8 * baseFontSize, 8 * baseFontSize]`        |
 
 Here's a visual representation of that scale.
 

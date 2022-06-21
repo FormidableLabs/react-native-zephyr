@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Text, View } from "react-native";
 import { styles } from "../styled";
-import { DefaultConstraints } from "react-native-zephyr";
+import { DefaultTheme } from "react-native-zephyr";
 
 export const DefaultShadows: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ export const DefaultShadows: React.FC = () => {
         // "bg:purple-100"
       )}
     >
-      {Object.keys(DefaultConstraints.shadows).map((key) => (
+      {Object.keys(DefaultTheme.shadows).map((key) => (
         <View key={key} style={styles("items:center")}>
           <Text style={styles("text:sm", "color:gray-600")}>shadow:{key}</Text>
           <View
