@@ -47,15 +47,15 @@ const {
 
 ### Returns
 
-- `styles: (...classes: ClassName[]) => Record<string, any>`
+- `styles: (...classes: ClassNameArg[]) => Record<string, any>`
   - A method to build a React Native style object based on the classes you pass it. 
-  - `ClassName` type is dynamic based on the options you pass to the `createStyleBuilder` function.
+  - `ClassNameArg` type is dynamic based on the options you pass to the `createStyleBuilder` function. See [dynamic class name lists](./dynamic-classname-list.md) for more details on arguments.
   - No reliance on React APIs, can be used anywhere.
   - Does **not** support dark mode.
-- `useStyles: ({ classes: ClassName[]; darkClasses: ClassName[] }) => Record<string, any>`
+- `useStyles: ({ classes: ClassNameArg[]; darkClasses: ClassNameArg[] }) => Record<string, any>`
   - React hook-wrapper around `styles` that accepts a list of baseline `classes`, and `darkClasses` to apply on top of `classes` when in dark mode.
   - Must be used in React function component or hook.
-- `makeStyledComponent: <Props>(Component: React.Component<Props>) => React.Component<Props & { classes?: ClassName[]; darkClasses?: ClassName[] }>`
+- `makeStyledComponent: <Props>(Component: React.Component<Props>) => React.Component<Props & { classes?: ClassNameArg[]; darkClasses?: ClassNameArg[] }>`
   - A function to turn a component (with a `style` prop) into a "styled" component that has `classes` and `darkClasses` props that will be applied to the style of the underline component.
   - Example: `const StyledView = makeStyledComponent(View)` where `View` is from React Native.
 - `theme?: ThemeConstraints`
