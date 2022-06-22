@@ -125,9 +125,9 @@ const config = {
       announcementBar: {
         id: "almost_there",
         content:
-          "We're almost to v1! Until then, be prepared for minor changes to the API.",
-        backgroundColor: "var(--ifm-color-warning-contrast-background)",
-        textColor: "var(--ifm-color-warning-contrast-foreground)",
+          "v1 is live! Check it out, and report any issues you might happen upon.",
+        backgroundColor: "var(--ifm-background-surface-color)",
+        textColor: "var(--ifm-color-primary)",
         isCloseable: false,
       },
     }),

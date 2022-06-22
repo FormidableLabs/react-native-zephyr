@@ -40,7 +40,7 @@ See the [Installation guide](./installation.mdx) for more details on installatio
 
 ## Step 2: Wrap your app in a `StyleProvider`
 
-Then wrap your app in a `StyleProvider` instance, which is used by Zephyr under the hood (for things such as dark mode support).
+Then wrap your app in a [`StyleProvider`](./api-reference.md#styleprovider) instance, which is used by Zephyr under the hood (for things such as dark mode support).
 
 ```tsx title="App.tsx"
 import { StyleProvider } from "react-native-zephyr";
@@ -56,7 +56,7 @@ export const App = () => {
 
 ## Step 3: Create a Style Builder
 
-Then use the `createStyleBuilder` method to generate styling helpers. We recommend you have a single Zephyr instance for your entire app, so it's best to create your buddy in a dedicated file and export what you need for the rest of your app to consume.
+Then use the [`createStyleBuilder`](./api-reference.md#createstylebuilder) method to generate styling helpers. We recommend you have a single Zephyr instance for your entire app, so it's best to create your styling utilities in a dedicated file and export what you need for the rest of your app to consume.
 
 ```ts title="styles.ts"
 import { createStyleBuilder } from "react-native-zephyr";
@@ -84,7 +84,7 @@ These new, wrapped components (`StyledView` and `StyledText`) expose `classes` a
 
 ## Step 4: Start styling!
 
-With your new style helpers (see [Default Classes](./default-classes.md) for more info on style classes you get out of the box), you can quickly style elements.
+With your new style helpers (see [Default Classes](./default-classes.md) and [Default Theme](./default-theme.md) for more info on style classes you get out of the box), you can quickly style elements.
 
 ```tsx title="MyComponent.tsx"
 import * as React from "react";
@@ -99,7 +99,7 @@ export const MyComponent = () => {
     >
       <StyledText
         classes={["text:5xl", "color:gray-800"]}
-        darkClasses={["text:6xl", "color:gray-100"]}
+        darkClasses={["color:gray-100"]}
       >
         // highlight-end
         Hey world
@@ -121,12 +121,12 @@ The `createStyleBuilder` function returns three core utilities that you can use 
 - `useStyles` is a React hook that allows you to pass style classes for the baseline case as well as for dark mode, and returns a React Native style object. You can then apply the returned style to an element in your component.
 - `makeStyledComponent` is a HOC that turns a component into a "styled" component. The wrapped component will then have `classes` and `darkClasses` props that you can use to apply style classes.
 
-We recommend using `makeStyledComponent` to export reusable styled components (such as `StyledView` above), but the additional `styles` and `useStyles` offer you additional flexibility if you do not want to wrap your components.
+We recommend using `makeStyledComponent` to export reusable styled components (such as `StyledView` above), but the additional `styles` and `useStyles` offer you additional flexibility if you do not want to wrap your components. Check out [the API reference](./api-reference.md#createstylebuilder) for more details.
 
 
 ## Step 5: Customizing your theme
 
-Zephyr ships with a suite of [default style classes](./default-classes.md) that use the [default theme](./default-theme.md) to create the applicable style "classes" (such as `"w:4"`). This default theme is overridable and extendable. To override the default theme constraints, you can pass a `overrideTheme` argument to `createStyleBuilder`.
+Zephyr ships with a suite of [default style classes](./default-classes.md) that use the [default theme](./default-theme.md) to create the applicable style "classes" (such as `"w:4"`). This default theme is overridable and extendable. To override the default theme constraints, you can pass an `overrideTheme` argument to `createStyleBuilder`.
 
 ```ts
 import { createStyleBuilder } from "react-native-zephyr";
@@ -156,23 +156,12 @@ const { styles } = createStyleBuilder({
 styles("color:red-300", "bg:brand");
 ```
 
-## Step 6: Adding style handlers
+## Step 6: See what else there is to offer!
 
-Zephyr allows you to add your own custom style handlers, so you can break free from the default classes and add your own if you so desire.
+Zephyr has a lot more to offer! Here are some things to check out:
 
-Each custom handler of the form `f: x => y` will generate a set of style classes of the form `f:x`; each handler of the form `f: () => y` will generate a single style class `f`.
-
-```ts
-import { createStyleBuilder } from "react-native-zephyr";
-
-const { styles } = createStyleBuilder({
-  // Add some extra handlers
-  extraHandlers: {
-    size: (x: "small" | "big") => ({ width: x === "small" ? 8 : 64 }),
-    foo: () => ({ backgroundColor: "brown" })
-  }
-});
-
-// You now have some additional style classes, along with the default ones
-styles("size:small", "size:large", "foo");
-```
+- Check out the [default classes](./default-classes.md) and [default theme](./default-theme.md) to see what styles come for free out of the box.
+- Learn more about how to [extend the default theme](./extending-the-theme.md).
+- Learn about the [dark-mode support](./dark-mode.mdx) that comes _for free_.
+- Learn about the [clsx-like syntax](./dynamic-classname-list.md) for apply dynamic class names to an element.
+- Learn about adding [extra style handlers](./extra-style-handlers.md) to extend the default style classes even further.

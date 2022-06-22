@@ -22,6 +22,8 @@ type ThemeConstraints = {
   >;
   fontSizes?: Record<NumOrString, readonly [number, number]>;
   fontWeights?: Record<NumOrString, TextStyle["fontWeight"]>;
+  letterSpacing?: Record<NumOrString, number>;
+  lineHeights?: Record<NumOrString, number | `x${number}`>;
 };
 
 type NumOrString = number | string;
