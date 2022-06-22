@@ -89,7 +89,7 @@ export const MakeStyledComponentExample = () => {
         Hello world!
       </StyledText>
     </StyledView>
-  )
+  );
 }
 ```
 
@@ -112,7 +112,7 @@ export const StyledExample = () => {
     <Wrapper>
       <Title>Hello world!</Title>
     </Wrapper>
-  )
+  );
 }
 ```
 
@@ -136,13 +136,13 @@ export const StyledExample = () => {
     <Wrapper>
       <Title>Hello world!</Title>
     </Wrapper>
-  )
+  );
 }
 ```
 
 ### Props-driven classes
 
-The `styled` method also allows you to add additional props to your wrapped component to "drive" what classes are added. Instead of passing `ClassNameArg[]` to the configuration object, pass a function of the shape `(props: Props) => ClassNameArg[]`. This is best portrayed with an example.
+The `styled` method also allows you to add additional props to your wrapped component to "drive" what classes are added. Instead of passing `ClassNameArg[]` to the configuration object, pass a function of the shape `(props: ComponentProps & ExtraProps) => ClassNameArg[]`. This is best portrayed with an example.
 
 ```tsx title="StyledExample.tsx"
 import { styled } from "./styles";
@@ -167,6 +167,6 @@ export const StyledExample = () => {
     <Wrapper>
       <Title>Hello world!</Title>
     </Wrapper>
-  )
+  );
 }
 ```
