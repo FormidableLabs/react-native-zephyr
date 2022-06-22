@@ -1,5 +1,5 @@
 import * as React from "react";
-import { View, Text } from "react-native";
+import { Text } from "react-native";
 import { styled, StyledImage, StyledText, StyledView } from "./styled";
 
 export const AppBody = () => {

@@ -12,9 +12,9 @@ import { createStyleBuilder } from "react-native-zephyr";
 export const { styles, useStyles, makeStyledComponent, styled } = createStyleBuilder();
 ```
 
-## The `styles` function
+## The `styles` method
 
-The `styles` function is the heart of Zephyr, and transforms a list of style classes into a React Native style object. Its signature is:
+The `styles` method is the heart of Zephyr, and transforms a list of style classes into a React Native style object. Its signature is:
 
 ```ts
 styles: (...classes: ClassNameArg[]) => Record<string, any>
@@ -22,7 +22,7 @@ styles: (...classes: ClassNameArg[]) => Record<string, any>
 
 where `ClassNameArg` is a class name derived from your theme and handlers.
 
-This function has no ties to the React component lifecycle, and therefore can be used anywhere. However, it is not aware of color scheme preference, and therefore does not support dark-mode classes out of the box. _Use this if you need a one-off style object and don't need dark-mode support._
+This method has no ties to the React component lifecycle, and therefore can be used anywhere. However, it is not aware of color scheme preference, and therefore does not support dark-mode classes out of the box. _Use this if you need a one-off style object and don't need dark-mode support._
 
 ```tsx title="StylesExample.tsx"
 import { styles } from "./styles";
@@ -35,7 +35,7 @@ export const UseStylesExample = () => {
 
 ## The `useStyles` hook
 
-The `useStyles` hook is a wrapper around the `styles` function, but has support for dark mode.  
+The `useStyles` hook is a wrapper around the `styles` method, but has support for dark mode.  
 
 ```ts
 useStyles: ({ classes: ClassNameArg[]; darkClasses: ClassNameArg[] }) => Record<string, any>
@@ -59,7 +59,7 @@ export const UseStylesExample = () => {
 
 ## The `makeStyledComponent` component wrapper
 
-The `makeStyledComponent` function wraps a component and adds `classes` and `darkClasses` props to the wrapped component, to which you pass style classes to and it will take care of transforming those classes into a style. With this approach, we recommend you exporting single instances of wrapped components:
+The `makeStyledComponent` method wraps a component and adds `classes` and `darkClasses` props to the wrapped component, to which you pass style classes to and it will take care of transforming those classes into a style. With this approach, we recommend you exporting single instances of wrapped components:
 
 ```ts title="styles.ts"
 import { createStyleBuilder } from "react-native-zephyr";
@@ -95,3 +95,78 @@ export const MakeStyledComponentExample = () => {
 
 ## The `styled` component wrapper
 
+Zephyr provides an API similar to [Styled Components](https://styled-components.com/) via the `styled` method. With the `styled` method, you pass in a component and a list of classes, and `styled` returns a new wrapped component. This can be useful if you want to avoid defining class arrays inline (which creates new arrays each re-render).
+
+This method is best portrayed with an example.
+
+```tsx title="StyledExample.tsx"
+import { styled } from "./styles";
+import { View, Text } from "react-native";
+
+// Make a few styled components
+const Wrapper = styled(View)("flex:1", "justify:center", "items:center");
+const Title = styled(Text)("text:5xl", "font-weight:bold", "color:blue-800");
+
+export const StyledExample = () => {
+  return (
+    <Wrapper>
+      <Title>Hello world!</Title>
+    </Wrapper>
+  )
+}
+```
+
+### Dark mode support
+
+The `styled` method supports dark-mode out of the box. Instead of passing a list of classes to `styled()`, pass a configuration object with a shape of `{ classes: ClassNameArg[]; darkClasses: ClassNameArg[] }`, where `ClassNameArg` is the type of the classes derived from your theme configuration.
+
+```tsx title="StyledExample.tsx"
+import { styled } from "./styles";
+import { View, Text } from "react-native";
+
+const Wrapper = styled(View)("flex:1", "justify:center", "items:center");
+// 👇 now has dark-mode support. 
+const Title = styled(Text)({
+  classes: ["text:5xl", "font-weight:bold", "color:blue-800"],
+  darkClasses: ["color:blue-200"]
+});
+
+export const StyledExample = () => {
+  return (
+    <Wrapper>
+      <Title>Hello world!</Title>
+    </Wrapper>
+  )
+}
+```
+
+### Props-driven classes
+
+The `styled` method also allows you to add additional props to your wrapped component to "drive" what classes are added. Instead of passing `ClassNameArg[]` to the configuration object, pass a function of the shape `(props: Props) => ClassNameArg[]`. This is best portrayed with an example.
+
+```tsx title="StyledExample.tsx"
+import { styled } from "./styles";
+import { View, Text } from "react-native";
+
+// Add an optional `isRounded` prop that drives the rounded:lg class
+const Wrapper = styled(View)<{ isRounded?: boolean; }>({
+  classes: ({ isRounded }) => [
+    "flex:1",
+    "justify:center",
+    "items:center",
+    isRounded && "rounded:lg"
+  ],
+});
+const Title = styled(Text)({
+  classes: ["text:5xl", "font-weight:bold", "color:blue-800"],
+  darkClasses: ["color:blue-200"]
+});
+
+export const StyledExample = () => {
+  return (
+    <Wrapper>
+      <Title>Hello world!</Title>
+    </Wrapper>
+  )
+}
+```

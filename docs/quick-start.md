@@ -114,7 +114,12 @@ This small amount of React will generate the following (left: in light mode, rig
 ![Hello world example](./img/hello-world.png)
 
 :::tip
-The `createStyleBuilder` function returns multiple core utilities that you can use for styling. We recommend you check out [the Styling Methods](./styling-methods.md) to learn about the different ways you can use Zephyr to style UI elements.
+**IMPORTANT!** The `createStyleBuilder` function returns multiple core utilities that you can use for styling. We recommend you check out [the Styling Methods](./styling-methods.md) to learn about the different ways you can use Zephyr to style UI elements. These include:
+
+- A raw function `styles` that transforms a list of classes to a style object.
+- A hook `useStyles` that wraps `styles` and provides dark-mode support.
+- The `makeStyledComponent` function shown here.
+- A `styled` method that provides an API similar to [Styled Components](https://styled-components.com/) (but for React Native). 
 :::
 
 ## Step 5: Customizing your theme
