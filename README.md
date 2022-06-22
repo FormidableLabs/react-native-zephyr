@@ -5,10 +5,6 @@
 [![docs][docs-image]][docs-url]
 [![Maintenance Status][maintenance-image]](#maintenance-status)
 
-### STATUS: In development
-
-This project is actively under development. We're approaching v1.0.0, in which the API will be stable and non-breaking. Until then, there are *no guarantees* that the API will not undergo minor changes.
-
 ## Overview
 
 React Native Zephyr is a [TailwindCSS](https://tailwindcss.com)-inspired styling library for React Native.
