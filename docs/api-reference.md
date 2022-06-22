@@ -58,7 +58,12 @@ const {
 - `makeStyledComponent: <Props>(Component: React.Component<Props>) => React.Component<Props & { classes?: ClassNameArg[]; darkClasses?: ClassNameArg[] }>`
   - A function to turn a component (with a `style` prop) into a "styled" component that has `classes` and `darkClasses` props that will be applied to the style of the underline component.
   - Example: `const StyledView = makeStyledComponent(View)` where `View` is from React Native.
-- `theme?: ThemeConstraints`
+
+- `styled: <BaseProps>(Component: React.Component<BaseProps>) => <ExtraProps>(...classes: Args<ExtraProps>) => React.Component<BaseProps & ExtraProps>`
+  - A method to wrap a component and apply styles based on the classes provided. See [Styling Methods](./styling-methods.md#the-styled-component-wrapper) for some illustrative examples.
+  - Provides a [Styled Components](https://styled-components.com/)-like API based on the theme.
+  - Example: `const Wrapper = styled(View)("flex:1", "bg:gray-100")`
+- `theme: ThemeConstraints`
   - The final theme after overrides/extensions have been made.
   - This allows you to manually use your theme constraints if need-be, e.g. `color={theme.colors["green-500"]}`.
 
