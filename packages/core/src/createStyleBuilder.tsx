@@ -446,37 +446,70 @@ export const createStyleBuilder = <
     return ComponentWithStyles;
   };
 
+  // Util for use in styled-utility
+  const areArgsConfigObject = <T, P>(
+    args: T[] | [ConfigObject<T, P>]
+  ): args is [ConfigObject<T, P>] => {
+    return (
+      typeof args[0] === "object" &&
+      "classes" in args[0] &&
+      (Array.isArray(args[0].classes) || typeof args[0].classes === "function")
+    );
+  };
+
   /**
    * `styled` wrapper to move classnames out of render-cycle, e.g.
    *    const Container = styled(View)("flex:1", "bg:red-300");
    *  Supports just a list of classnames (no dark-mode support)
    *    or a config object like { classes, darkClasses }
    */
-  const styled = <Props extends { style?: unknown }, Ref>(
-    WrappedComponent: JSXElementConstructor<Props>
+  const styled = <BaseProps extends { style?: unknown }, Ref = unknown>(
+    WrappedComponent: JSXElementConstructor<BaseProps>
   ) => {
-    return (
-      ...args: [{ classes: CnArg[]; darkClasses: CnArg[] }] | CnArg[]
+    return <ExtraProps,>(
+      ...args: [ConfigObject<CnArg, BaseProps & ExtraProps>] | CnArg[]
     ) => {
       // Aggregate classes/darkClasses based on the args passed
       let classes: CnArg[] = [];
       let darkClasses: CnArg[] = [];
+      let classesFn = null as
+        | null
+        | ((props: BaseProps & ExtraProps) => CnArg[]);
+      let darkClassesFn = null as
+        | null
+        | ((props: BaseProps & ExtraProps) => CnArg[]);
+
       if (areArgsConfigObject(args)) {
-        classes = args[0].classes;
+        if (typeof args[0].classes === "function") {
+          classesFn = args[0].classes;
+        } else {
+          classes = args[0].classes;
+        }
+
         if (args[0].darkClasses) {
-          darkClasses = args[0].darkClasses;
+          if (typeof args[0].darkClasses === "function") {
+            darkClassesFn = args[0].darkClasses;
+          } else {
+            darkClasses = args[0].darkClasses;
+          }
         }
       } else {
         classes = args;
       }
 
       // Return a component that uses useStyles with fixed classes/darkClasses
-      const Component = React.forwardRef<Ref, Props>(
-        ({ style, ...rest }, ref) => {
+      const Component = React.forwardRef<Ref, BaseProps & ExtraProps>(
+        (props, ref) => {
           const addedStyles = useStyles({
-            classes,
-            darkClasses,
+            classes:
+              typeof classesFn === "function" ? classesFn(props) : classes,
+            darkClasses:
+              typeof darkClassesFn === "function"
+                ? darkClassesFn(props)
+                : darkClasses,
           });
+
+          const { style, ...rest } = props;
 
           return (
             // @ts-ignore
@@ -499,13 +532,7 @@ export const createStyleBuilder = <
 const HandlerArgRegExp = /^(.+):(.+)$/;
 const RelativeLineHeightRegExp = /^x(.+)$/;
 
-// Util for use in styled-utility
-const areArgsConfigObject = <T,>(
-  args: T[] | [{ classes: T[]; darkClasses?: T[] }]
-): args is [{ classes: T[]; darkClasses?: T[] }] => {
-  return (
-    typeof args[0] === "object" &&
-    "classes" in args[0] &&
-    Array.isArray(args[0].classes)
-  );
+type ConfigObject<T, P> = {
+  classes: T[] | ((props: P) => T[]);
+  darkClasses?: T[] | ((props: P) => T[]);
 };

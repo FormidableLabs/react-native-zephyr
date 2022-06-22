@@ -1,5 +1,6 @@
 import * as React from "react";
-import { StyledImage, StyledText, StyledView } from "./styled";
+import { View, Text } from "react-native";
+import { styled, StyledImage, StyledText, StyledView } from "./styled";
 
 export const AppBody = () => {
   return (
@@ -22,12 +23,16 @@ export const AppBody = () => {
           Hello world! This text is going to be long because the quick brown fox
           jumped over the lazy dog
         </StyledText>
-        <StyledText
-          classes={["color:gray-200", "text:tiny", "tracking:widest"]}
-        >
-          Subcaption
-        </StyledText>
+        <MyText isPrimary={true} numberOfLines={3}>
+          Hello world! This text is going to be long because the quick brown fox
+          jumped over the lazy dog
+        </MyText>
       </StyledView>
     </StyledView>
   );
 };
+
+const MyText = styled(Text)<{ isPrimary?: boolean }>({
+  classes: ({ isPrimary }) => ["text:4xl", isPrimary && "color:red-200"],
+  darkClasses: ({ isPrimary }) => [isPrimary && "color:red-800"],
+});
