@@ -446,17 +446,6 @@ export const createStyleBuilder = <
     return ComponentWithStyles;
   };
 
-  // Util for use in styled-utility
-  const areArgsConfigObject = <T, P>(
-    args: T[] | [ConfigObject<T, P>]
-  ): args is [ConfigObject<T, P>] => {
-    return (
-      typeof args[0] === "object" &&
-      "classes" in args[0] &&
-      (Array.isArray(args[0].classes) || typeof args[0].classes === "function")
-    );
-  };
-
   /**
    * `styled` wrapper to move classnames out of render-cycle, e.g.
    *    const Container = styled(View)("flex:1", "bg:red-300");
@@ -467,7 +456,7 @@ export const createStyleBuilder = <
     WrappedComponent: JSXElementConstructor<BaseProps>
   ) => {
     return <ExtraProps,>(
-      ...args: [ConfigObject<CnArg, BaseProps & ExtraProps>] | CnArg[]
+      ...args: [StyledConfigObject<CnArg, BaseProps & ExtraProps>] | CnArg[]
     ) => {
       // Aggregate classes/darkClasses based on the args passed
       let classes: CnArg[] = [];
@@ -532,7 +521,18 @@ export const createStyleBuilder = <
 const HandlerArgRegExp = /^(.+):(.+)$/;
 const RelativeLineHeightRegExp = /^x(.+)$/;
 
-type ConfigObject<T, P> = {
+type StyledConfigObject<T, P> = {
   classes: T[] | ((props: P) => T[]);
   darkClasses?: T[] | ((props: P) => T[]);
+};
+
+// Util for use in styled-utility
+const areArgsConfigObject = <T, P>(
+  args: T[] | [StyledConfigObject<T, P>]
+): args is [StyledConfigObject<T, P>] => {
+  return (
+    typeof args[0] === "object" &&
+    "classes" in args[0] &&
+    (Array.isArray(args[0].classes) || typeof args[0].classes === "function")
+  );
 };
