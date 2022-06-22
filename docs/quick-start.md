@@ -159,6 +159,7 @@ styles("color:red-300", "bg:brand");
 Zephyr has a lot more to offer! Here are some things to check out:
 
 - Check out the [default classes](./default-classes.md) and [default theme](./default-theme.md) to see what styles come for free out of the box.
+- Check out the [styling methods](./styling-methods.md) that are available.
 - Learn more about how to [extend the default theme](./extending-the-theme.md).
 - Learn about the [dark-mode support](./dark-mode.mdx) that comes _for free_.
 - Learn about the [clsx-like syntax](./dynamic-classname-list.md) for apply dynamic class names to an element.

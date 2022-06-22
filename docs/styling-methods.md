@@ -20,7 +20,7 @@ The `styles` method is the heart of Zephyr, and transforms a list of style class
 styles: (...classes: ClassNameArg[]) => Record<string, any>
 ```
 
-where `ClassNameArg` is a class name derived from your theme and handlers.
+where `ClassNameArg` is a class name derived from your theme and handlers. (See [Dynamic ClassName List](./dynamic-classname-list.md) for more information on passing dynamic classname lists.)
 
 This method has no ties to the React component lifecycle, and therefore can be used anywhere. However, it is not aware of color scheme preference, and therefore does not support dark-mode classes out of the box. _Use this if you need a one-off style object and don't need dark-mode support._
 
@@ -59,7 +59,7 @@ export const UseStylesExample = () => {
 
 ## The `makeStyledComponent` component wrapper
 
-The `makeStyledComponent` method wraps a component and adds `classes` and `darkClasses` props to the wrapped component, to which you pass style classes to and it will take care of transforming those classes into a style. With this approach, we recommend you exporting single instances of wrapped components:
+The `makeStyledComponent` method wraps a component and adds `classes` and `darkClasses` props to the wrapped component, to which you pass style classes to and it will take care of transforming those classes into a style. With this approach, we recommend you export single instances of wrapped components:
 
 ```ts title="styles.ts"
 import { createStyleBuilder } from "react-native-zephyr";
@@ -170,3 +170,8 @@ export const StyledExample = () => {
   );
 }
 ```
+
+In this example:
+- the `styled(View)` indicates you want to wrap the `View` component;
+- the `<{ isRounded?: boolean; }>` indicates the additional props you want to add;
+- the `classes:` field is a function with access to the additional props as an argument, and classes can be dynamic based on those props.
