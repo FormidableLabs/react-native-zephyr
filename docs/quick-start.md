@@ -71,7 +71,7 @@ import { createStyleBuilder } from "react-native-zephyr";
 // highlight-next-line
 import { View, Text } from "react-native";
 
-export const { styles, useStyles, makeStyledComponent } = createStyleBuilder();
+export const { styles, useStyles, makeStyledComponent, styled } = createStyleBuilder();
 
 // Export some styled components
 // highlight-start
@@ -113,16 +113,9 @@ This small amount of React will generate the following (left: in light mode, rig
 
 ![Hello world example](./img/hello-world.png)
 
-### Using `styles` and `useStyles`
-
-The `createStyleBuilder` function returns three core utilities that you can use for styling:
-
-- `styles` is a function with no reliance on React's component lifecycle, and can be used to generate a React Native style object based on the style classes you provided it. However, it does not support dark-mode (since it is not tuned into your React app).
-- `useStyles` is a React hook that allows you to pass style classes for the baseline case as well as for dark mode, and returns a React Native style object. You can then apply the returned style to an element in your component.
-- `makeStyledComponent` is a HOC that turns a component into a "styled" component. The wrapped component will then have `classes` and `darkClasses` props that you can use to apply style classes.
-
-We recommend using `makeStyledComponent` to export reusable styled components (such as `StyledView` above), but the additional `styles` and `useStyles` offer you additional flexibility if you do not want to wrap your components. Check out [the API reference](./api-reference.md#createstylebuilder) for more details.
-
+:::tip
+The `createStyleBuilder` function returns multiple core utilities that you can use for styling. We recommend you check out [the Styling Methods](./styling-methods.md) to learn about the different ways you can use Zephyr to style UI elements.
+:::
 
 ## Step 5: Customizing your theme
 
