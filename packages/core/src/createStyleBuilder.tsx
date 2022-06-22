@@ -408,12 +408,10 @@ export const createStyleBuilder = <
     darkClasses?: CnArg[];
   }) => {
     const { isDarkMode } = React.useContext(StyleContext);
-    const allClasses = flattenClassNameArgs<Cn>(...classes).concat(
-      isDarkMode ? flattenClassNameArgs<Cn>(...darkClasses) : []
-    );
-    const cacheKey = allClasses.join(",");
-
-    return React.useMemo(() => styles(...allClasses), [cacheKey]);
+    return React.useMemo(() => {
+      const allClasses = [...classes].concat(isDarkMode ? darkClasses : []);
+      return styles(...allClasses);
+    }, [classes, darkClasses, isDarkMode]);
   };
 
   /**
@@ -448,8 +446,66 @@ export const createStyleBuilder = <
     return ComponentWithStyles;
   };
 
-  return { styles, useStyles, makeStyledComponent, theme: mergedTheme };
+  /**
+   * `styled` wrapper to move classnames out of render-cycle, e.g.
+   *    const Container = styled(View)("flex:1", "bg:red-300");
+   *  Supports just a list of classnames (no dark-mode support)
+   *    or a config object like { classes, darkClasses }
+   */
+  const styled = <Props extends { style?: unknown }, Ref>(
+    WrappedComponent: JSXElementConstructor<Props>
+  ) => {
+    return (
+      ...args: [{ classes: CnArg[]; darkClasses: CnArg[] }] | CnArg[]
+    ) => {
+      // Aggregate classes/darkClasses based on the args passed
+      let classes: CnArg[] = [];
+      let darkClasses: CnArg[] = [];
+      if (areArgsConfigObject(args)) {
+        classes = args[0].classes;
+        if (args[0].darkClasses) {
+          darkClasses = args[0].darkClasses;
+        }
+      } else {
+        classes = args;
+      }
+
+      // Return a component that uses useStyles with fixed classes/darkClasses
+      const Component = React.forwardRef<Ref, Props>(
+        ({ style, ...rest }, ref) => {
+          const addedStyles = useStyles({
+            classes,
+            darkClasses,
+          });
+
+          return (
+            // @ts-ignore
+            <WrappedComponent
+              ref={ref}
+              {...rest}
+              style={[addedStyles, ...[Array.isArray(style) ? style : [style]]]}
+            />
+          );
+        }
+      );
+
+      return Component;
+    };
+  };
+
+  return { styles, styled, useStyles, makeStyledComponent, theme: mergedTheme };
 };
 
 const HandlerArgRegExp = /^(.+):(.+)$/;
 const RelativeLineHeightRegExp = /^x(.+)$/;
+
+// Util for use in styled-utility
+const areArgsConfigObject = <T,>(
+  args: T[] | [{ classes: T[]; darkClasses?: T[] }]
+): args is [{ classes: T[]; darkClasses?: T[] }] => {
+  return (
+    typeof args[0] === "object" &&
+    "classes" in args[0] &&
+    Array.isArray(args[0].classes)
+  );
+};
