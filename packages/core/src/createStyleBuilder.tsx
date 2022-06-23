@@ -487,7 +487,7 @@ export const createStyleBuilder = <
       }
 
       // Return a component that uses useStyles with fixed classes/darkClasses
-      const WrappedComponent = React.forwardRef<Ref, BaseProps & ExtraProps>(
+      const ComponentWithStyles = React.forwardRef<Ref, BaseProps & ExtraProps>(
         (props, ref) => {
           // We call useStyles and pass classes/darkClasses based on whether or not
           //  a fn was passed to each.
@@ -513,10 +513,10 @@ export const createStyleBuilder = <
       );
 
       if ("displayName" in WrappedComponent) {
-        WrappedComponent["displayName"] = WrappedComponent["displayName"];
+        ComponentWithStyles["displayName"] = WrappedComponent["displayName"];
       }
 
-      return WrappedComponent;
+      return ComponentWithStyles;
     };
   };
 
