@@ -6,6 +6,7 @@ import { Text } from "react-native";
 import { render } from "@testing-library/react-native";
 import { StyleProvider } from "./StyleProvider";
 import { PropsWithChildren } from "react";
+import { renderHook } from "@testing-library/react-hooks";
 
 let colorScheme = "light";
 const MockText = vi.fn();
@@ -107,6 +108,73 @@ describe("createStyleBuilder", () => {
     });
 
     expect(styles("m:tiny")).toEqual({ margin: 0.5 * 16 });
+  });
+});
+
+describe("createStyleBuilder().useStyles", () => {
+  beforeEach(() => {
+    colorScheme = "light";
+  });
+
+  it("should return styles based on `classes` property", () => {
+    const { useStyles } = createStyleBuilder();
+    const { result } = renderHook(() => useStyles({ classes: ["bg:red-100"] }));
+    expect(result.current).toEqual({
+      backgroundColor: DefaultTheme.colors["red-100"],
+    });
+  });
+
+  it("should add darkMode styles if in dark mode", () => {
+    const { useStyles } = createStyleBuilder();
+    colorScheme = "dark";
+    const { result } = renderHook(
+      () =>
+        useStyles({ classes: ["bg:red-100"], darkClasses: ["color:blue-100"] }),
+      { wrapper: Wrapper }
+    );
+
+    expect(result.current).toEqual({
+      backgroundColor: DefaultTheme.colors["red-100"],
+      color: DefaultTheme.colors["blue-100"],
+    });
+  });
+});
+
+describe("createStyleBuilder().makeStyledComponent", () => {
+  beforeEach(() => {
+    colorScheme = "light";
+  });
+
+  it("creates a wrapped component with additional classes/darkClasses props", () => {
+    const { makeStyledComponent } = createStyleBuilder();
+    const StyledText = makeStyledComponent(Text);
+    render(<StyledText classes={["bg:red-100"]}>Hello world</StyledText>);
+
+    // @ts-expect-error HALP. How do I type this mock?
+    expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({
+      backgroundColor: DefaultTheme.colors["red-100"],
+    });
+    // @ts-expect-error HALP. How do I type this mock?
+    expect(MockText.calls?.at(-1)?.[0].children).toEqual("Hello world");
+  });
+
+  it("creates a wrapped component that supports dark mode", () => {
+    const { makeStyledComponent } = createStyleBuilder();
+    const StyledText = makeStyledComponent(Text);
+    colorScheme = "dark";
+    render(
+      <StyledText classes={["bg:red-100"]} darkClasses={["bg:blue-100"]}>
+        Hello world
+      </StyledText>,
+      { wrapper: Wrapper }
+    );
+
+    // @ts-expect-error HALP. How do I type this mock?
+    expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({
+      backgroundColor: DefaultTheme.colors["blue-100"],
+    });
+    // @ts-expect-error HALP. How do I type this mock?
+    expect(MockText.calls?.at(-1)?.[0].children).toEqual("Hello world");
   });
 });
 
