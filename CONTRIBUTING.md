@@ -6,7 +6,7 @@ Thank you for contributing!
   <img alt="Maintenance Status" src="https://img.shields.io/badge/maintenance-active-green.svg" />
 </a>
 
-Spectacle is actively maintained by @[gksander][] from within [@FormidableLabs][formidable-github].
+React Native Zephyr is actively maintained by @[gksander][] from within [@FormidableLabs][formidable-github].
 
 ## Development
 
@@ -187,11 +187,7 @@ available at [https://www.contributor-covenant.org/version/2/0][cc-latest-versio
 
 <!-- Links -->
 
-[carlos-kelly]: https://www.github.com/carlos-kelly
+[gksander]: https://www.github.com/gksander
 [cc-homepage]: http://contributor-covenant.org
 [cc-latest-version]: https://www.contributor-covenant.org/version/2/0/code_of_conduct
 [formidable-github]: https://www.github.com/FormidableLabs
-[kale-stew]: https://www.github.com/kale-stew
-[mdx]: https://mdxjs.com/
-[spectacle-cli]: https://www.github.com/FormidableLabs/spectacle-cli
-[yarn-docs]: https://yarnpkg.com/en/docs/getting-started
