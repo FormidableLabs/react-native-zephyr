@@ -26,7 +26,13 @@ This will install the dependencies required to build the core and to run the sam
 
 ## Start the development server(s)
 
-To start development, run the following from the root of the repo.
+If you want to work on just the core of Zephyr, run the following to start up the TSC development server:
+
+```shell
+yarn dev:core
+```
+
+If you want to run both the core development server _and_ the sample Expo application, ensure you have `expo-cli` installed globally (`npm i -g expo-cli`) and then run:
 
 ```shell
 yarn dev
