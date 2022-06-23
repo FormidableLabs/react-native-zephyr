@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Release Guide
 
 This guide is for those with proper access to the GH repo and NPM registry package, and outlines the steps for publishing a new release. Follow the below instructions, running all commands from the root of the repository.

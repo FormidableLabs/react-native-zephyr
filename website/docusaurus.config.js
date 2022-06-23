@@ -38,7 +38,6 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl:
             "https://github.com/FormidableLabs/react-native-zephyr/tree/master/packages/website",
-          exclude: ["release-guide.md"],
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -57,12 +56,6 @@ const config = {
           src: "img/formidable-f.svg",
         },
         items: [
-          // {
-          //   type: "doc",
-          //   docId: "overview",
-          //   position: "left",
-          //   label: "Documentation",
-          // },
           {
             href: "https://github.com/FormidableLabs/react-native-zephyr",
             className: "header-github-link",
@@ -79,56 +72,11 @@ const config = {
       },
       footer: {
         style: "dark",
-        // links: [
-        //   {
-        //     title: "Docs",
-        //     items: [
-        //       {
-        //         label: "Quick Start",
-        //         to: "/quick-start",
-        //       },
-        //     ],
-        //   },
-        //   // {
-        //   //   title: "Community",
-        //   //   items: [
-        //   //     {
-        //   //       label: "Stack Overflow",
-        //   //       href: "https://stackoverflow.com/questions/tagged/docusaurus",
-        //   //     },
-        //   //     {
-        //   //       label: "Discord",
-        //   //       href: "https://discordapp.com/invite/docusaurus",
-        //   //     },
-        //   //     {
-        //   //       label: "Twitter",
-        //   //       href: "https://twitter.com/docusaurus",
-        //   //     },
-        //   //   ],
-        //   // },
-        //   {
-        //     title: "More",
-        //     items: [
-        //       {
-        //         label: "GitHub",
-        //         href: "https://github.com/FormidableLabs/react-native-zephyr",
-        //       },
-        //     ],
-        //   },
-        // ],
         copyright: `Copyright © ${new Date().getFullYear()} Formidable`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-      },
-      announcementBar: {
-        id: "almost_there",
-        content:
-          "v1 is live! Check it out, and report any issues you might happen upon.",
-        backgroundColor: "var(--ifm-background-surface-color)",
-        textColor: "var(--ifm-color-primary)",
-        isCloseable: false,
       },
     }),
 };

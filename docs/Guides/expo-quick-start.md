@@ -1,3 +1,7 @@
+---
+sidebar_position: 1
+---
+
 # Expo Quick Start
 
 If you want to kick the tires, [Expo](https://expo.dev/) is a great option. You can spin up a React Native project with very little setup.
