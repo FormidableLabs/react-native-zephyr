@@ -1,5 +1,14 @@
 # React Native Zephyr Changelog
 
+# 1.1.0
+
+- Adds styled-components-like API for moving classname list out of render cycle via #20.
+- Docs improvements.
+
+# 1.0.0
+
+- First major release!
+
 # 0.2.1
 
 - Docs updates.
