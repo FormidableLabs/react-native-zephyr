@@ -71,7 +71,7 @@ import { createStyleBuilder } from "react-native-zephyr";
 // highlight-next-line
 import { View, Text } from "react-native";
 
-export const { styles, useStyles, makeStyledComponent } = createStyleBuilder();
+export const { styles, useStyles, makeStyledComponent, styled } = createStyleBuilder();
 
 // Export some styled components
 // highlight-start
@@ -113,16 +113,14 @@ This small amount of React will generate the following (left: in light mode, rig
 
 ![Hello world example](./img/hello-world.png)
 
-### Using `styles` and `useStyles`
+:::tip
+**IMPORTANT!** The `createStyleBuilder` function returns multiple core utilities that you can use for styling. We recommend you check out [the Styling Methods](./styling-methods.md) to learn about the different ways you can use Zephyr to style UI elements. These include:
 
-The `createStyleBuilder` function returns three core utilities that you can use for styling:
-
-- `styles` is a function with no reliance on React's component lifecycle, and can be used to generate a React Native style object based on the style classes you provided it. However, it does not support dark-mode (since it is not tuned into your React app).
-- `useStyles` is a React hook that allows you to pass style classes for the baseline case as well as for dark mode, and returns a React Native style object. You can then apply the returned style to an element in your component.
-- `makeStyledComponent` is a HOC that turns a component into a "styled" component. The wrapped component will then have `classes` and `darkClasses` props that you can use to apply style classes.
-
-We recommend using `makeStyledComponent` to export reusable styled components (such as `StyledView` above), but the additional `styles` and `useStyles` offer you additional flexibility if you do not want to wrap your components. Check out [the API reference](./api-reference.md#createstylebuilder) for more details.
-
+- A raw function `styles` that transforms a list of classes to a style object.
+- A hook `useStyles` that wraps `styles` and provides dark-mode support.
+- The `makeStyledComponent` function shown here.
+- A `styled` method that provides an API similar to [Styled Components](https://styled-components.com/) (but for React Native). 
+:::
 
 ## Step 5: Customizing your theme
 
@@ -161,6 +159,7 @@ styles("color:red-300", "bg:brand");
 Zephyr has a lot more to offer! Here are some things to check out:
 
 - Check out the [default classes](./default-classes.md) and [default theme](./default-theme.md) to see what styles come for free out of the box.
+- Check out the [styling methods](./styling-methods.md) that are available.
 - Learn more about how to [extend the default theme](./extending-the-theme.md).
 - Learn about the [dark-mode support](./dark-mode.mdx) that comes _for free_.
 - Learn about the [clsx-like syntax](./dynamic-classname-list.md) for apply dynamic class names to an element.
