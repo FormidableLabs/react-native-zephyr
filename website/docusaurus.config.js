@@ -38,7 +38,6 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl:
             "https://github.com/FormidableLabs/react-native-zephyr/tree/master/packages/website",
-          exclude: ["release-guide.md"],
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
@@ -62,6 +61,12 @@ const config = {
           //   docId: "overview",
           //   position: "left",
           //   label: "Documentation",
+          // },
+          // {
+          //   type: "doc",
+          //   docId: "quick-start",
+          //   position: "left",
+          //   label: "Quick Start",
           // },
           {
             href: "https://github.com/FormidableLabs/react-native-zephyr",
@@ -121,14 +126,6 @@ const config = {
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
-      },
-      announcementBar: {
-        id: "almost_there",
-        content:
-          "v1 is live! Check it out, and report any issues you might happen upon.",
-        backgroundColor: "var(--ifm-background-surface-color)",
-        textColor: "var(--ifm-color-primary)",
-        isCloseable: false,
       },
     }),
 };
