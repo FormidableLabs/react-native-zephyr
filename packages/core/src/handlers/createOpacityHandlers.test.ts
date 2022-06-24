@@ -11,7 +11,14 @@ vi.mock("react-native", () => ({
 const { styles } = createStyleBuilder({
   extendTheme: {
     colors: {
-      hex6: "#3c5e2d",
+      rgb: "rgb(10, 20, 30)",
+      rgba: "rgb(10, 20, 30, 0.3)",
+      hsl: "hsl(200, 50%, 50%)",
+      hsla: "hsl(200, 50%, 50%, 0.3)",
+      hrgb: "#f0f",
+      hrgba: "#f0f2",
+      hrrggbb: "#ff00ff",
+      hrrggbbaa: "#ff00ff22",
     },
   },
 });
@@ -24,12 +31,18 @@ describe("createOpacityHandlers", () => {
     [["opacity:0"], { opacity: C["0"] }],
     [["opacity:[.33]"], { opacity: 0.33 }],
     // bg-opacity:
+    [["bg:red-100", "bg-opacity:50"], { backgroundColor: "#fee2e280" }],
+    [["bg:rgb", "bg-opacity:50"], { backgroundColor: "rgba(10,20,30,0.5)" }],
+    [["bg:rgba", "bg-opacity:50"], { backgroundColor: "rgba(10,20,30,0.15)" }],
+    [["bg:hsl", "bg-opacity:50"], { backgroundColor: "hsla(200,50%,50%,0.5)" }],
     [
-      ["bg:red-100", "bg-opacity:50"],
-      { backgroundColor: "rgba(254, 226, 226, 0.5)" },
+      ["bg:hsla", "bg-opacity:50"],
+      { backgroundColor: "hsla(200,50%,50%,0.15)" },
     ],
-    // TODO:
-    // [["bg:hex6", "bg-opacity:50"], { backgroundColor: "#3c5e2d" }],
+    [["bg:hrgb", "bg-opacity:50"], { backgroundColor: "#ff00ff80" }],
+    [["bg:hrgba", "bg-opacity:50"], { backgroundColor: "#ff00ff11" }],
+    [["bg:hrrggbb", "bg-opacity:50"], { backgroundColor: "#ff00ff80" }],
+    [["bg:hrrggbbaa", "bg-opacity:50"], { backgroundColor: "#ff00ff11" }],
   ];
 
   it.each(cases)("styles(...%s) equals %s", (cns, expectedOutput) => {
@@ -45,7 +58,7 @@ describe("createOpacityHandlers", () => {
 
     expect(styles("opacity:notmuch")).toEqual({ opacity: 0.05 });
     expect(styles("bg:red-300", "bg-opacity:half")).toEqual({
-      backgroundColor: "rgba(252, 165, 165, 0.5)",
+      backgroundColor: "#fca5a580",
     });
     // @ts-expect-error
     expect(styles("opacity:50")).toEqual({});
