@@ -8,7 +8,13 @@ vi.mock("react-native", () => ({
   },
 }));
 
-const { styles } = createStyleBuilder({});
+const { styles } = createStyleBuilder({
+  extendTheme: {
+    colors: {
+      hex6: "#3c5e2d",
+    },
+  },
+});
 const C = DefaultTheme.opacities;
 
 describe("createOpacityHandlers", () => {
@@ -22,6 +28,8 @@ describe("createOpacityHandlers", () => {
       ["bg:red-100", "bg-opacity:50"],
       { backgroundColor: "rgba(254, 226, 226, 0.5)" },
     ],
+    // TODO:
+    // [["bg:hex6", "bg-opacity:50"], { backgroundColor: "#3c5e2d" }],
   ];
 
   it.each(cases)("styles(...%s) equals %s", (cns, expectedOutput) => {
