@@ -1,3 +1,4 @@
+import { isNamedColor, namedColors } from "./namedColors";
 /**
  * Apply a given opacity (between 0 and 1) to a color string.
  */
@@ -12,6 +13,10 @@ export const applyOpacityToColor = (color: string, opacity: number) => {
 
   if (hexReg.test(trimmedColor))
     return applyOpacityToHex(trimmedColor, opacity);
+
+  if (isNamedColor(trimmedColor)) {
+    return applyOpacityToHex(namedColors[trimmedColor], opacity);
+  }
 
   return trimmedColor;
 };

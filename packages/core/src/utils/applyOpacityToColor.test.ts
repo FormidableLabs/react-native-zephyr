@@ -32,11 +32,20 @@ describe("applyOpacityToColor", () => {
     ["#ff00ff", 1, "#ff00ffff"],
     ["#ff00ff", 0.5, "#ff00ff80"],
     ["#ff00ff", 0, "#ff00ff00"],
-    /// #rrggbbaa
+    // #rrggbbaa
     ["#ff00ff22", 1, "#ff00ff22"],
     ["#ff00ff22", 0.5, "#ff00ff11"],
     ["#ff00ff22", 0.2, "#ff00ff07"],
     ["#ff00ff22", 0, "#ff00ff00"],
+    // named colors
+    ["limegreen", 1, "#32cd32ff"],
+    ["limegreen", 0.5, "#32cd3280"],
+    ["limegreen", 0.2, "#32cd3233"],
+    ["limegreen", 0, "#32cd3200"],
+    ["transparent", 1, "#00000000"],
+    ["transparent", 0.5, "#00000000"],
+    ["transparent", 0.2, "#00000000"],
+    ["transparent", 0, "#00000000"],
   ];
 
   it.each(cases)(
