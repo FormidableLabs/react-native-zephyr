@@ -9,7 +9,6 @@ import {
   ThemeConstraints,
 } from "./types";
 import { StyleContext } from "./StyleProvider";
-import { colorStringToRgb } from "./utils/colorStringToRgb";
 import { SimpleConstrainedCache } from "./utils/SimpleConstrainedCache";
 import { createDefaultTheme } from "./theme";
 import { FlexStyle, ImageStyle, TextStyle } from "react-native";
@@ -24,6 +23,7 @@ import { createShadowHandlers } from "./handlers/createShadowHandlers";
 import { cleanMaybeNumberString } from "./utils/cleanMaybeNumberString";
 import { createTypographyHandlers } from "./handlers/createTypographyHandlers";
 import { flattenClassNameArgs } from "./utils/flattenClassNameArgs";
+import { applyOpacityToColor } from "./utils/applyOpacityToColor";
 
 /**
  * Core builder fn. Takes in a set of handlers, and gives back a hook and component-builder.
@@ -369,8 +369,10 @@ export const createStyleBuilder = <
 
     // Massage for bg-opacity
     if (typeof styles["--bg-opacity"] === "number" && styles?.backgroundColor) {
-      const { r, g, b } = colorStringToRgb(styles.backgroundColor);
-      styles.backgroundColor = `rgba(${r}, ${g}, ${b}, ${styles["--bg-opacity"]})`;
+      styles.backgroundColor = applyOpacityToColor(
+        styles.backgroundColor,
+        styles["--bg-opacity"]
+      );
     }
     delete styles["--bg-opacity"];
 
