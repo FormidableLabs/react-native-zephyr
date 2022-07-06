@@ -8,10 +8,9 @@ import {
   StyleHandlerSet,
   ThemeConstraints,
 } from "./types";
-import { StyleContext } from "./StyleProvider";
 import { SimpleConstrainedCache } from "./utils/SimpleConstrainedCache";
 import { createDefaultTheme } from "./theme";
-import { FlexStyle, ImageStyle, TextStyle } from "react-native";
+import { Appearance, FlexStyle, ImageStyle, TextStyle } from "react-native";
 import { mergeThemes } from "./utils/mergeThemes";
 import { createColorHandlers } from "./handlers/createColorHandlers";
 import { createSpacingHandlers } from "./handlers/createSpacingHandlers";
@@ -24,6 +23,7 @@ import { cleanMaybeNumberString } from "./utils/cleanMaybeNumberString";
 import { createTypographyHandlers } from "./handlers/createTypographyHandlers";
 import { flattenClassNameArgs } from "./utils/flattenClassNameArgs";
 import { applyOpacityToColor } from "./utils/applyOpacityToColor";
+import { SimpleStore } from "./utils/SimpleStore";
 
 /**
  * Core builder fn. Takes in a set of handlers, and gives back a hook and component-builder.
@@ -31,22 +31,20 @@ import { applyOpacityToColor } from "./utils/applyOpacityToColor";
 export const createStyleBuilder = <
   Theme extends ThemeConstraints,
   ThemeExt extends ThemeConstraints,
-  Breakpoints extends Record<string, number>,
   ExtraStyleHandlers extends StyleHandlerSet | undefined = undefined
 >({
   extraHandlers,
   overrideTheme,
   extendTheme,
   baseFontSize = 14,
-  breakpoints,
+  colorScheme = "auto",
 }: {
   extraHandlers?: ExtraStyleHandlers;
   overrideTheme?: Theme | ((args: { baseFontSize: number }) => Theme);
   extendTheme?: ThemeExt | ((args: { baseFontSize: number }) => ThemeExt);
   baseFontSize?: number;
-  breakpoints?: Breakpoints;
+  colorScheme?: "light" | "dark" | "auto";
 } = {}) => {
-  console.log(breakpoints);
   const cache = new SimpleConstrainedCache({ maxNumRecords: 400 });
   const baseTheme = createDefaultTheme({ baseFontSize });
   const mergedTheme = mergeThemes({
@@ -59,6 +57,20 @@ export const createStyleBuilder = <
       typeof extendTheme === "function"
         ? extendTheme({ baseFontSize })
         : extendTheme,
+  });
+
+  /**
+   * Internal state for dark mode
+   */
+  let systemColorScheme = Appearance.getColorScheme();
+  const isDarkModeStore = new SimpleStore(
+    () =>
+      colorScheme === "dark" ||
+      (colorScheme === "auto" && systemColorScheme === "dark")
+  );
+  const { remove } = Appearance.addChangeListener((r) => {
+    systemColorScheme = r.colorScheme;
+    isDarkModeStore.reeval();
   });
 
   type DefaultTheme = typeof baseTheme;
@@ -406,17 +418,14 @@ export const createStyleBuilder = <
   /**
    * Core hook to apply styles based on props/style object
    */
-  type ResponsiveClasses = {
-    [Key in `${NonSymbol<keyof Breakpoints>}Classes`]?: CnArg[];
-  };
   const useStyles = ({
     classes = [],
     darkClasses = [],
   }: {
     classes?: CnArg[];
     darkClasses?: CnArg[];
-  } & ResponsiveClasses) => {
-    const { isDarkMode } = React.useContext(StyleContext);
+  }) => {
+    const isDarkMode = isDarkModeStore.useStoreValue();
     return React.useMemo(() => {
       const allClasses = [...classes].concat(isDarkMode ? darkClasses : []);
       return styles(...allClasses);
@@ -529,7 +538,18 @@ export const createStyleBuilder = <
     };
   };
 
-  return { styles, styled, useStyles, makeStyledComponent, theme: mergedTheme };
+  const teardown = () => {
+    remove();
+  };
+
+  return {
+    styles,
+    styled,
+    useStyles,
+    makeStyledComponent,
+    theme: mergedTheme,
+    teardown,
+  };
 };
 
 const HandlerArgRegExp = /^(.+):(.+)$/;

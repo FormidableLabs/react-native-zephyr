@@ -2,12 +2,6 @@ import { vi, describe, it, expect } from "vitest";
 import { createStyleBuilder } from "../createStyleBuilder";
 import { DefaultTheme } from "../theme";
 
-vi.mock("react-native", () => ({
-  StyleSheet: {
-    hairlineWidth: 0.5,
-  },
-}));
-
 const { styles } = createStyleBuilder({
   extendTheme: {
     colors: {

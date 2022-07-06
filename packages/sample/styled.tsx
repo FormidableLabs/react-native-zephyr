@@ -3,12 +3,9 @@ import { View, Text, TouchableOpacity, Animated, Image } from "react-native";
 
 export const { makeStyledComponent, styles, styled, useStyles } =
   createStyleBuilder({
-    extendTheme: ({ baseFontSize }) => ({
+    extendTheme: () => ({
       colors: {
         ...extractTwColor({ twColor: "fuchsia", name: "brown" }),
-      },
-      fontSizes: {
-        tiny: [0.7 * baseFontSize, 1 * baseFontSize],
       },
     }),
     breakpoints: {
