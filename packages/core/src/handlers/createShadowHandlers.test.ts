@@ -4,8 +4,6 @@ import { DefaultTheme } from "../theme";
 
 let platform = "android";
 
-console.log(vi.importMock("react-native"));
-
 vi.mock("react-native", async () => ({
   // TODO: dedup this.
   Appearance: {
