@@ -70,7 +70,7 @@ export const createStyleBuilder = <
   );
   const { remove } = Appearance.addChangeListener((r) => {
     systemColorScheme = r.colorScheme;
-    isDarkModeStore.reeval();
+    isDarkModeStore.emitUpdatedValue();
   });
 
   type DefaultTheme = typeof baseTheme;
