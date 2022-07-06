@@ -5,7 +5,7 @@ type StyleProviderProps = {
 };
 
 /**
- * TODO: Deprecate this. No longer needed, but leaving for now.
+ * @deprecated this. No longer needed, but leaving for now.
  */
 export const StyleProvider = ({
   children,
