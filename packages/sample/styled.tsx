@@ -11,6 +11,11 @@ export const { makeStyledComponent, styles, styled, useStyles } =
         tiny: [0.7 * baseFontSize, 1 * baseFontSize],
       },
     }),
+    breakpoints: {
+      sm: 300,
+      md: 450,
+      lg: 600,
+    },
     // baseFontSize: 20,
   });
 
@@ -20,3 +25,14 @@ export const StyledTouchableOpacity = makeStyledComponent(
   Animated.createAnimatedComponent(TouchableOpacity)
 );
 export const StyledImage = makeStyledComponent(Image);
+
+export const MyComp = () => {
+  const styles = useStyles({
+    classes: ["p:1"],
+    smClasses: ["p:2"],
+    mdClasses: ["p:4"],
+    lgClasses: ["p:40"],
+  });
+
+  return <View style={styles} />;
+};

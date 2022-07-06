@@ -31,18 +31,22 @@ import { applyOpacityToColor } from "./utils/applyOpacityToColor";
 export const createStyleBuilder = <
   Theme extends ThemeConstraints,
   ThemeExt extends ThemeConstraints,
+  Breakpoints extends Record<string, number>,
   ExtraStyleHandlers extends StyleHandlerSet | undefined = undefined
 >({
   extraHandlers,
   overrideTheme,
   extendTheme,
   baseFontSize = 14,
+  breakpoints,
 }: {
   extraHandlers?: ExtraStyleHandlers;
   overrideTheme?: Theme | ((args: { baseFontSize: number }) => Theme);
   extendTheme?: ThemeExt | ((args: { baseFontSize: number }) => ThemeExt);
   baseFontSize?: number;
+  breakpoints?: Breakpoints;
 } = {}) => {
+  console.log(breakpoints);
   const cache = new SimpleConstrainedCache({ maxNumRecords: 400 });
   const baseTheme = createDefaultTheme({ baseFontSize });
   const mergedTheme = mergeThemes({
@@ -402,13 +406,16 @@ export const createStyleBuilder = <
   /**
    * Core hook to apply styles based on props/style object
    */
+  type ResponsiveClasses = {
+    [Key in `${NonSymbol<keyof Breakpoints>}Classes`]?: CnArg[];
+  };
   const useStyles = ({
     classes = [],
     darkClasses = [],
   }: {
     classes?: CnArg[];
     darkClasses?: CnArg[];
-  }) => {
+  } & ResponsiveClasses) => {
     const { isDarkMode } = React.useContext(StyleContext);
     return React.useMemo(() => {
       const allClasses = [...classes].concat(isDarkMode ? darkClasses : []);
