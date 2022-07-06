@@ -6,23 +6,37 @@ import { SimpleEventEmitter } from "./SimpleEventEmitter";
  *  - Used to hold state (like colorScheme preference), which can be updated from a single
  *    event listener, and have those updates emitted out to multiple hook-usages.
  */
-export class SimpleStore<S> {
-  #getValue!: () => S;
-  #ee = new SimpleEventEmitter<S>();
+export class SimpleStore<InitialValue, OutputValue = InitialValue> {
+  #value!: OutputValue;
+  #ee = new SimpleEventEmitter<OutputValue>();
+  #transformer!: (val: InitialValue) => OutputValue;
 
-  constructor(getValue: () => S) {
-    this.#getValue = getValue;
+  constructor({
+    initialValue,
+    transformer,
+  }: {
+    initialValue: InitialValue;
+    transformer: (val: InitialValue) => OutputValue;
+  }) {
+    this.#value = transformer(initialValue);
+    if (transformer) {
+      this.#transformer = transformer;
+    }
   }
 
-  emitUpdatedValue() {
-    this.#ee.emit(this.#getValue());
-  }
+  updateValue = (newValue: InitialValue) => {
+    const _newValue = this.#transformer(newValue);
+    if (_newValue !== this.#value) {
+      this.#value = _newValue;
+      this.#ee.emit(this.#value);
+    }
+  };
 
   /**
    * Custom hook that taps into this store.
    */
   useStoreValue = () => {
-    const [val, setVal] = React.useState(() => this.#getValue());
+    const [val, setVal] = React.useState(() => this.#value);
 
     React.useEffect(() => {
       const { unsubscribe } = this.#ee.subscribe((v) => {

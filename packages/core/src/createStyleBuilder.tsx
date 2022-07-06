@@ -62,15 +62,13 @@ export const createStyleBuilder = <
   /**
    * Internal state for dark mode
    */
-  let systemColorScheme = Appearance.getColorScheme();
-  const isDarkModeStore = new SimpleStore(
-    () =>
-      colorScheme === "dark" ||
-      (colorScheme === "auto" && systemColorScheme === "dark")
-  );
+  const isDarkModeStore = new SimpleStore({
+    initialValue: Appearance.getColorScheme(),
+    transformer: (s) =>
+      colorScheme === "dark" || (colorScheme === "auto" && s === "dark"),
+  });
   const { remove } = Appearance.addChangeListener((r) => {
-    systemColorScheme = r.colorScheme;
-    isDarkModeStore.emitUpdatedValue();
+    isDarkModeStore.updateValue(r.colorScheme);
   });
 
   type DefaultTheme = typeof baseTheme;
