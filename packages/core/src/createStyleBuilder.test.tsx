@@ -2,10 +2,9 @@ import * as React from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { createStyleBuilder } from "./createStyleBuilder";
 import { DefaultTheme } from "./theme";
-import { StyleSheet, Text } from "react-native";
+import { Text } from "react-native";
 import { render } from "@testing-library/react-native";
 import { renderHook } from "@testing-library/react-hooks";
-import create = StyleSheet.create;
 
 let colorScheme = "light";
 const MockText = vi.fn();

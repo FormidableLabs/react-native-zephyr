@@ -1,4 +1,4 @@
-import { vitest, it, expect, describe } from "vitest";
+import { describe, expect, it } from "vitest";
 import { SimpleStore } from "./SimpleStore";
 import { renderHook } from "@testing-library/react-hooks";
 
