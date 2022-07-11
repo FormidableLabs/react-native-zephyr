@@ -30,6 +30,7 @@ export function ColorPaletteReference({
         if (typeof colorVariant !== "object") return null;
         const palette = Object.keys(colorVariant).map((variant) => ({
           name: variant,
+          // @ts-ignore
           value: colorPalette?.[color]?.[variant],
         }));
         return (
@@ -96,7 +97,7 @@ export function ColorPaletteReference({
                           display: "flex",
                           flexWrap: "wrap",
                           justifyContent: "space-between",
-                          flexDirection: "colomn",
+                          flexDirection: "column",
                           marginTop: "0.375rem",
                           paddingLeft: "0.125rem",
                           paddingRight: "0.125rem",
@@ -112,7 +113,7 @@ export function ColorPaletteReference({
                             textTransform: "lowercase",
                           }}
                         >
-                          {value?.replace(/^#[a-f0-9]+/gi, (m) =>
+                          {value?.replace(/^#[a-f0-9]+/gi, (m: string) =>
                             m.toUpperCase()
                           )}
                         </div>
