@@ -15,13 +15,13 @@ const { styles } = createStyleBuilder({
   extendTheme: {
     colors: {
       // Add amber to your palette, named as `primary`
-      ...extractTwColor({ twColor: "amber", name: "primary" })
-    }
-  }
+      ...extractTwColor({ twColor: "amber", name: "primary" }),
+    },
+  },
 });
 
 // Can now use `primary-50` and so on as a color
-styles("bg:primary-100", "color:primary-800", /* ... */);
+styles("bg:primary-100", "color:primary-800" /* ... */);
 ```
 
 The full list of available colors can be found [here](https://github.com/FormidableLabs/react-native-zephyr/blob/master/packages/core/src/handlers/twColors.ts).
