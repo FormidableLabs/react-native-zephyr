@@ -97,7 +97,6 @@ export function ColorPaletteReference({
                           display: "flex",
                           flexWrap: "wrap",
                           justifyContent: "space-between",
-                          flexDirection: "column",
                           marginTop: "0.375rem",
                           paddingLeft: "0.125rem",
                           paddingRight: "0.125rem",
