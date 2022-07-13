@@ -64,7 +64,7 @@ The default colors consist of `white: #fff`, `black: #000`, and the following co
 
 ![Default theme colors](./img/DefaultColors.png)
 
-Check out the [Extending the Color Palette](./extending-color-palette.md) for information on how to extend this color palette with other pre-defined colors borrowed from TailwindCSS's palette.
+Check out the [Extending the Color Palette](./extending-color-palette.mdx) for information on how to extend this color palette with other pre-defined colors borrowed from TailwindCSS's palette.
 
 ## Default Opacities
 

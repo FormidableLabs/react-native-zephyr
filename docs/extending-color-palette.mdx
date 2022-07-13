@@ -2,6 +2,8 @@
 sidebar_position: 7
 ---
 
+import { ColorPaletteReference } from "./components/ColorPaletteReference";
+
 # Extending the Color Palette
 
 TailwindCSS has [a beautiful color palette](https://tailwindcss.com/docs/customizing-colors). We have used that same color palette for Zephyr, but we only ship a select handful of these colors in the default theme.
@@ -15,13 +17,17 @@ const { styles } = createStyleBuilder({
   extendTheme: {
     colors: {
       // Add amber to your palette, named as `primary`
-      ...extractTwColor({ twColor: "amber", name: "primary" })
-    }
-  }
+      ...extractTwColor({ twColor: "amber", name: "primary" }),
+    },
+  },
 });
 
 // Can now use `primary-50` and so on as a color
-styles("bg:primary-100", "color:primary-800", /* ... */);
+styles("bg:primary-100", "color:primary-800" /* ... */);
 ```
 
-The full list of available colors can be found [here](https://github.com/FormidableLabs/react-native-zephyr/blob/master/packages/core/src/handlers/twColors.ts).
+The full list of available colors can be found [here](https://github.com/FormidableLabs/react-native-zephyr/blob/master/packages/core/src/handlers/twColors.ts) and viewed below.
+
+<!-- Can pass `colors` array prop to component to display an abridged list of colors -->
+
+<ColorPaletteReference />
