@@ -4,7 +4,16 @@ import { DefaultTheme } from "../theme";
 
 let platform = "android";
 
-vi.mock("react-native", () => ({
+vi.mock("react-native", async () => ({
+  // TODO: dedup this.
+  Appearance: {
+    getColorScheme: () => "dark",
+    addChangeListener: () => ({
+      remove: () => {
+        /* ... */
+      },
+    }),
+  },
   StyleSheet: {
     hairlineWidth: 0.5,
   },
