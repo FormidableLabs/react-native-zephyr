@@ -1,4 +1,5 @@
 # React Native Zephyr
+
 [![github][github-static-analysis-image]][github-url]
 [![github][github-unit-test-image]][github-url]
 [![npm][npm-image]][npm-url]
@@ -20,6 +21,24 @@ React Native Zephyr, out of the box, provides:
 - [clsx-like syntax](./docs/dynamic-classname-list.md) for applying dynamic style classes.
 
 Head over to [the docs](https://formidable.com/open-source/react-native-zephyr/) to learn more.
+
+## Installation
+
+In your React Native or Expo project, install `react-native-zephyr` using your favorite package registry tool such as npm, yarn, or pnpm.
+
+```shell
+npm install react-native-zephyr
+```
+
+```shell
+yarn add react-native-zephyr
+```
+
+```shell
+pnpm add react-native-zephyr
+```
+
+There is no further installation as react-native-zephyr is a pure JS library with no native dependencies. See our [Quick Start](https://formidable.com/open-source/react-native-zephyr/quick-start#step-2-wrap-your-app-in-a-styleprovider) guide to get stated with configuration.
 
 [github-unit-test-image]: https://github.com/FormidableLabs/react-native-zephyr/workflows/Unit%20Test/badge.svg
 [github-static-analysis-image]: https://github.com/FormidableLabs/react-native-zephyr/workflows/Static%20Analysis/badge.svg
