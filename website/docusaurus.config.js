@@ -37,7 +37,7 @@ const config = {
           path: "../docs",
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl:
-            "https://github.com/FormidableLabs/react-native-zephyr/tree/master/packages/website",
+            "https://github.com/FormidableLabs/react-native-zephyr/tree/master/website",
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
