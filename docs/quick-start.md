@@ -80,7 +80,7 @@ export const StyledText = makeStyledComponent(Text);
 // highlight-end
 ```
 
-These new, wrapped components (`StyledView` and `StyledText`) expose `classes` and `darkClasses` props that allow you to pass in baseline style classes, as well as style classes to be merged in in dark mode. 
+These new, wrapped components (`StyledView` and `StyledText`) expose `classes` and `darkClasses` props that allow you to pass in baseline style classes, as well as style classes to be merged in dark mode.
 
 ## Step 4: Start styling!
 
