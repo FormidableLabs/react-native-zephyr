@@ -38,7 +38,7 @@ yarn add react-native-zephyr
 pnpm add react-native-zephyr
 ```
 
-There is no further installation as react-native-zephyr is a pure JS library with no native dependencies. See our [Quick Start](https://formidable.com/open-source/react-native-zephyr/quick-start#step-2-wrap-your-app-in-a-styleprovider) guide to get stated with configuration.
+There is no further installation as react-native-zephyr is a pure JS library with no native dependencies. See our [Quick Start](https://formidable.com/open-source/react-native-zephyr/quick-start#step-2-wrap-your-app-in-a-styleprovider) guide to get started with configuration.
 
 [github-unit-test-image]: https://github.com/FormidableLabs/react-native-zephyr/workflows/Unit%20Test/badge.svg
 [github-static-analysis-image]: https://github.com/FormidableLabs/react-native-zephyr/workflows/Static%20Analysis/badge.svg
