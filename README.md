@@ -1,4 +1,4 @@
-# React Native Zephyr
+[![React Native Zephyr — Formidable, We build the modern web](./react-native-zephyr-Hero.png)](https://formidable.com/open-source/)
 
 [![github][github-static-analysis-image]][github-url]
 [![github][github-unit-test-image]][github-url]
