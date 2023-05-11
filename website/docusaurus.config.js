@@ -9,7 +9,10 @@ const config = {
   title: "React Native Zephyr",
   tagline: "React Native styling library",
   url: "https://formidable.com",
-  baseUrl: "/open-source/react-native-zephyr/",
+  baseUrl:
+    process.env.VERCEL_ENV === "preview"
+      ? "/"
+      : "/open-source/react-native-zephyr/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
