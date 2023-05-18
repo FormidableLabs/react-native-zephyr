@@ -72,7 +72,6 @@ If you want to run the CI static analysis/unit test suite locally on your machin
 yarn check:ci
 ```
 
-
 ### Documentation Website
 
 The documentation site for Zephyr is contained in this repo, but not part of the Yarn workspaces (to keep the dependencies isolated). If you want to spin up the docs site locally, run the following:
@@ -87,7 +86,6 @@ The `website` folder contains all of the [Docusaurus](https://docusaurus.io/)-re
 
 The `docs` directory contains all of the actual content for the docs site. If you want to make content changes to the docs, make them in the `docs` directory.
 
-
 ### Before submitting a PR
 
 Thanks for taking the time to help us make React Native Zephyr even better! Before you go
@@ -96,7 +94,51 @@ ahead and submit a PR, make sure that you have done the following:
 - Run all checks using `yarn check:ci`.
 - Everything else included in our [pull request checklist](.github/PULL_REQUEST_TEMPLATE.md).
 
-### Releasing a new version to NPM
+### Using changesets
+
+Our official release path is to use automation to perform the actual publishing of our packages. The steps are to:
+
+1. A human developer adds a changeset. Ideally this is as a part of a PR that will have a version impact on a package.
+2. On merge of a PR our automation system opens a "Version Packages" PR.
+3. On merging the "Version Packages" PR, the automation system publishes the packages.
+
+Here are more details:
+
+### Add a changeset
+
+When you would like to add a changeset (which creates a file indicating the type of change), in your branch/PR issue this command:
+
+```sh
+$ yarn changeset
+```
+
+to produce an interactive menu. Navigate the packages with arrow keys and hit `<space>` to select 1+ packages. Hit `<return>` when done. Select semver versions for packages and add appropriate messages. From there, you'll be prompted to enter a summary of the change. Some tips for this summary:
+
+1. Aim for a single line, 1+ sentences as appropriate.
+2. Include issue links in GH format (e.g. `#123`).
+3. You don't need to reference the current pull request or whatnot, as that will be added later automatically.
+
+After this, you'll see a new uncommitted file in `.changesets` like:
+
+```sh
+$ git status
+# ....
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.changeset/flimsy-pandas-marry.md
+```
+
+Review the file, make any necessary adjustments, and commit it to source. When we eventually do a package release, the changeset notes and version will be incorporated!
+
+### Creating versions
+
+On a merge of a feature PR, the changesets GitHub action will open a new PR titled `"Version Packages"`. This PR is automatically kept up to date with additional PRs with changesets. So, if you're not ready to publish yet, just keep merging feature PRs and then merge the version packages PR later.
+
+### Publishing packages
+
+On the merge of a version packages PR, the changesets GitHub action will publish the packages to npm.
+
+### Manually Releasing a new version to NPM
 
 <details>
 <summary>
@@ -106,10 +148,10 @@ ahead and submit a PR, make sure that you have done the following:
 This guide is for those with proper access to the GH repo and NPM registry package, and outlines the steps for publishing a new release. Follow the below instructions, running all commands from the root of the repository.
 
 1. Update `CHANGELOG.md`, following the format of the previous versions.
-  1. Commit as `Changes for version ${VERSION}`
-2. Run `yarn run version patch` (or `minor|major`) to tag a new version.
-3. Run `yarn publish:core` to publish the package to NPM.
-4. Run `git push && git push --tags`
+1. Commit as `Changes for version ${VERSION}`
+1. Run `yarn run version patch` (or `minor|major`) to tag a new version.
+1. Run `yarn publish:core` to publish the package to NPM.
+1. Run `git push && git push --tags`
 
 </details>
 
