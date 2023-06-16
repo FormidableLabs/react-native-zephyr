@@ -9,7 +9,7 @@ import { PropsWithChildren } from "react";
 import { renderHook } from "@testing-library/react-hooks";
 
 let colorScheme = "light";
-const MockText = vi.fn();
+const MockText = vi.fn(() => 0);
 
 vi.mock("react-native", () => ({
   StyleSheet: {
@@ -25,7 +25,7 @@ describe("createStyleBuilder", () => {
   it("creates builder with default constraints/handlers", () => {
     const { styles } = createStyleBuilder();
     expect(styles("p:1")).toEqual({ padding: C["1"] });
-    // @ts-expect-error
+    // @ts-expect-error // Testing incorrect type
     expect(styles("nope?")).toEqual({});
   });
 
@@ -43,14 +43,13 @@ describe("createStyleBuilder", () => {
   it("allows overriding theme values", () => {
     const { styles } = createStyleBuilder({
       overrideTheme: {
-        spacing: { sm: 4, md: 8 },
+        spacing: { sm: 4, md: 8, 0: 0 },
       },
     });
 
     expect(styles("p:sm")).toEqual({ padding: 4 });
     expect(styles("p:md")).toEqual({ padding: 8 });
-    // @ts-expect-error
-    expect(styles("p:0")).toEqual({});
+    expect(styles("p:0")).toEqual({ padding: 0 });
   });
 
   it("allows extending theme values", () => {
@@ -150,11 +149,10 @@ describe("createStyleBuilder().makeStyledComponent", () => {
     const StyledText = makeStyledComponent(Text);
     render(<StyledText classes={["bg:red-100"]}>Hello world</StyledText>);
 
-    // @ts-expect-error HALP. How do I type this mock?
     expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({
       backgroundColor: DefaultTheme.colors["red-100"],
     });
-    // @ts-expect-error HALP. How do I type this mock?
+    // @ts-expect-error //Vitest missing types
     expect(MockText.calls?.at(-1)?.[0].children).toEqual("Hello world");
   });
 
@@ -169,11 +167,11 @@ describe("createStyleBuilder().makeStyledComponent", () => {
       { wrapper: Wrapper }
     );
 
-    // @ts-expect-error HALP. How do I type this mock?
+    // @ts-expect-error //Vitest missing types
     expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({
       backgroundColor: DefaultTheme.colors["blue-100"],
     });
-    // @ts-expect-error HALP. How do I type this mock?
+    // @ts-expect-error //Vitest missing types
     expect(MockText.calls?.at(-1)?.[0].children).toEqual("Hello world");
   });
 });
@@ -188,7 +186,7 @@ describe("createStyleBuilder().styled", () => {
     const MyText = styled(Text)("color:red-100");
     render(<MyText>Hey world</MyText>);
 
-    // @ts-expect-error HALP. How do I type this mock?
+    // @ts-expect-error //Vitest missing types
     expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({
       color: DefaultTheme.colors["red-100"],
     });
@@ -199,8 +197,7 @@ describe("createStyleBuilder().styled", () => {
       classes: ["color:red-200"],
     });
     render(<MyText>Hey world</MyText>);
-
-    // @ts-expect-error HALP. How do I type this mock?
+    // @ts-expect-error //Vitest missing types
     expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({
       color: DefaultTheme.colors["red-200"],
     });
@@ -213,14 +210,14 @@ describe("createStyleBuilder().styled", () => {
     });
 
     render(<MyText>Hey world</MyText>, { wrapper: Wrapper });
-    // @ts-expect-error HALP. How do I type this mock?
+    // @ts-expect-error //Vitest missing types
     expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({
       color: DefaultTheme.colors["red-100"],
     });
 
     colorScheme = "dark";
     render(<MyText>Hey world</MyText>, { wrapper: Wrapper });
-    // @ts-expect-error HALP. How do I type this mock?
+    // @ts-expect-error //Vitest missing types
     expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({
       color: DefaultTheme.colors["blue-100"],
     });
@@ -234,12 +231,12 @@ describe("createStyleBuilder().styled", () => {
 
     // no isItalic prop
     render(<MyText>Hello world</MyText>, { wrapper: Wrapper });
-    // @ts-expect-error HALP. How do I type this mock?
+    // @ts-expect-error //Vitest missing types
     expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({});
 
     // with isItalic prop
     render(<MyText isItalic>Hello world</MyText>, { wrapper: Wrapper });
-    // @ts-expect-error HALP. How do I type this mock?
+    // @ts-expect-error //Vitest missing types
     expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({
       fontStyle: "italic",
     });
@@ -247,7 +244,7 @@ describe("createStyleBuilder().styled", () => {
     // Dark mode
     colorScheme = "dark";
     render(<MyText isItalic>Hello world</MyText>, { wrapper: Wrapper });
-    // @ts-expect-error HALP. How do I type this mock?
+    // @ts-expect-error //Vitest missing types
     expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({
       fontStyle: "italic",
       color: DefaultTheme.colors["red-100"],
