@@ -1,11 +1,5 @@
-import { vi, describe, it, expect } from "vitest";
+import { describe, it, expect } from "vitest";
 import { createStyleBuilder } from "../createStyleBuilder";
-
-vi.mock("react-native", () => ({
-  StyleSheet: {
-    hairlineWidth: 0.5,
-  },
-}));
 
 describe("imageHandlers", () => {
   const { styles } = createStyleBuilder();

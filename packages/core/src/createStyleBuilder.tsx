@@ -8,10 +8,9 @@ import {
   StyleHandlerSet,
   ThemeConstraints,
 } from "./types";
-import { StyleContext } from "./StyleProvider";
 import { SimpleConstrainedCache } from "./utils/SimpleConstrainedCache";
 import { createDefaultTheme } from "./theme";
-import { FlexStyle, ImageStyle, TextStyle } from "react-native";
+import { Appearance, FlexStyle, ImageStyle, TextStyle } from "react-native";
 import { mergeThemes } from "./utils/mergeThemes";
 import { createColorHandlers } from "./handlers/createColorHandlers";
 import { createSpacingHandlers } from "./handlers/createSpacingHandlers";
@@ -24,6 +23,7 @@ import { cleanMaybeNumberString } from "./utils/cleanMaybeNumberString";
 import { createTypographyHandlers } from "./handlers/createTypographyHandlers";
 import { flattenClassNameArgs } from "./utils/flattenClassNameArgs";
 import { applyOpacityToColor } from "./utils/applyOpacityToColor";
+import { SimpleStore } from "./utils/SimpleStore";
 
 /**
  * Core builder fn. Takes in a set of handlers, and gives back a hook and component-builder.
@@ -37,11 +37,13 @@ export const createStyleBuilder = <
   overrideTheme,
   extendTheme,
   baseFontSize = 14,
+  colorScheme = "auto",
 }: {
   extraHandlers?: ExtraStyleHandlers;
   overrideTheme?: Theme | ((args: { baseFontSize: number }) => Theme);
   extendTheme?: ThemeExt | ((args: { baseFontSize: number }) => ThemeExt);
   baseFontSize?: number;
+  colorScheme?: "light" | "dark" | "auto";
 } = {}) => {
   const cache = new SimpleConstrainedCache({ maxNumRecords: 400 });
   const baseTheme = createDefaultTheme({ baseFontSize });
@@ -55,6 +57,18 @@ export const createStyleBuilder = <
       typeof extendTheme === "function"
         ? extendTheme({ baseFontSize })
         : extendTheme,
+  });
+
+  /**
+   * Internal state for dark mode
+   */
+  const isDarkModeStore = new SimpleStore({
+    initialValue: Appearance.getColorScheme(),
+    transformer: (s) =>
+      colorScheme === "dark" || (colorScheme === "auto" && s === "dark"),
+  });
+  const { remove } = Appearance.addChangeListener((r) => {
+    isDarkModeStore.updateValue(r.colorScheme);
   });
 
   type DefaultTheme = typeof baseTheme;
@@ -409,7 +423,7 @@ export const createStyleBuilder = <
     classes?: CnArg[];
     darkClasses?: CnArg[];
   }) => {
-    const { isDarkMode } = React.useContext(StyleContext);
+    const isDarkMode = isDarkModeStore.useStoreValue();
     return React.useMemo(() => {
       const allClasses = [...classes].concat(isDarkMode ? darkClasses : []);
       return styles(...allClasses);
@@ -522,7 +536,18 @@ export const createStyleBuilder = <
     };
   };
 
-  return { styles, styled, useStyles, makeStyledComponent, theme: mergedTheme };
+  const teardown = () => {
+    remove();
+  };
+
+  return {
+    styles,
+    styled,
+    useStyles,
+    makeStyledComponent,
+    theme: mergedTheme,
+    teardown,
+  };
 };
 
 const HandlerArgRegExp = /^(.+):(.+)$/;

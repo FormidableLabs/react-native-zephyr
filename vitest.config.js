@@ -3,5 +3,6 @@ export default {
     deps: {
       inline: ["react-native"],
     },
+    setupFiles: ["./vitest.setup.ts"],
   },
 };

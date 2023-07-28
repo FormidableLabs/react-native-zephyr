@@ -1,22 +1,27 @@
 import * as React from "react";
-import { vi, describe, it, expect, beforeEach } from "vitest";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { createStyleBuilder } from "./createStyleBuilder";
 import { DefaultTheme } from "./theme";
 import { Text } from "react-native";
 import { render } from "@testing-library/react-native";
-import { StyleProvider } from "./StyleProvider";
-import { PropsWithChildren } from "react";
 import { renderHook } from "@testing-library/react-hooks";
 
 let colorScheme = "light";
 const MockText = vi.fn();
 
 vi.mock("react-native", () => ({
+  Appearance: {
+    getColorScheme: () => colorScheme,
+    addChangeListener: () => ({
+      remove: () => {
+        /* ... */
+      },
+    }),
+  },
   StyleSheet: {
     hairlineWidth: 0.5,
   },
   Text: (...args: unknown[]) => MockText(...args),
-  useColorScheme: () => colorScheme,
 }));
 
 const C = DefaultTheme.spacing;
@@ -125,12 +130,10 @@ describe("createStyleBuilder().useStyles", () => {
   });
 
   it("should add darkMode styles if in dark mode", () => {
-    const { useStyles } = createStyleBuilder();
     colorScheme = "dark";
-    const { result } = renderHook(
-      () =>
-        useStyles({ classes: ["bg:red-100"], darkClasses: ["color:blue-100"] }),
-      { wrapper: Wrapper }
+    const { useStyles } = createStyleBuilder();
+    const { result } = renderHook(() =>
+      useStyles({ classes: ["bg:red-100"], darkClasses: ["color:blue-100"] })
     );
 
     expect(result.current).toEqual({
@@ -159,14 +162,13 @@ describe("createStyleBuilder().makeStyledComponent", () => {
   });
 
   it("creates a wrapped component that supports dark mode", () => {
+    colorScheme = "dark";
     const { makeStyledComponent } = createStyleBuilder();
     const StyledText = makeStyledComponent(Text);
-    colorScheme = "dark";
     render(
       <StyledText classes={["bg:red-100"]} darkClasses={["bg:blue-100"]}>
         Hello world
-      </StyledText>,
-      { wrapper: Wrapper }
+      </StyledText>
     );
 
     // @ts-expect-error HALP. How do I type this mock?
@@ -179,12 +181,12 @@ describe("createStyleBuilder().makeStyledComponent", () => {
 });
 
 describe("createStyleBuilder().styled", () => {
-  const { styled } = createStyleBuilder();
   beforeEach(() => {
     colorScheme = "light";
   });
 
   it("wraps a component and adds style.", () => {
+    const { styled } = createStyleBuilder();
     const MyText = styled(Text)("color:red-100");
     render(<MyText>Hey world</MyText>);
 
@@ -195,6 +197,7 @@ describe("createStyleBuilder().styled", () => {
   });
 
   it("accepts configuration object", () => {
+    const { styled } = createStyleBuilder();
     const MyText = styled(Text)({
       classes: ["color:red-200"],
     });
@@ -207,19 +210,22 @@ describe("createStyleBuilder().styled", () => {
   });
 
   it("handles dark-mode classes", () => {
-    const MyText = styled(Text)({
-      classes: ["color:red-100"],
-      darkClasses: ["color:blue-100"],
-    });
+    const getMyText = () =>
+      createStyleBuilder().styled(Text)({
+        classes: ["color:red-100"],
+        darkClasses: ["color:blue-100"],
+      });
+    const MyText = getMyText();
 
-    render(<MyText>Hey world</MyText>, { wrapper: Wrapper });
+    render(<MyText>Hey world</MyText>);
     // @ts-expect-error HALP. How do I type this mock?
     expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({
       color: DefaultTheme.colors["red-100"],
     });
 
     colorScheme = "dark";
-    render(<MyText>Hey world</MyText>, { wrapper: Wrapper });
+    const MyText2 = getMyText();
+    render(<MyText2>Hey world</MyText2>);
     // @ts-expect-error HALP. How do I type this mock?
     expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({
       color: DefaultTheme.colors["blue-100"],
@@ -227,18 +233,20 @@ describe("createStyleBuilder().styled", () => {
   });
 
   it("handles function as an argument to classes and darkClasses", () => {
-    const MyText = styled(Text)<{ isItalic?: boolean }>({
-      classes: ({ isItalic }) => [isItalic && "italic"],
-      darkClasses: ({ isItalic }) => [isItalic && "color:red-100"],
-    });
+    const getMyText = () =>
+      createStyleBuilder().styled(Text)<{ isItalic?: boolean }>({
+        classes: ({ isItalic }) => [isItalic && "italic"],
+        darkClasses: ({ isItalic }) => [isItalic && "color:red-100"],
+      });
+    const MyText = getMyText();
 
     // no isItalic prop
-    render(<MyText>Hello world</MyText>, { wrapper: Wrapper });
+    render(<MyText>Hello world</MyText>);
     // @ts-expect-error HALP. How do I type this mock?
     expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({});
 
     // with isItalic prop
-    render(<MyText isItalic>Hello world</MyText>, { wrapper: Wrapper });
+    render(<MyText isItalic>Hello world</MyText>);
     // @ts-expect-error HALP. How do I type this mock?
     expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({
       fontStyle: "italic",
@@ -246,7 +254,8 @@ describe("createStyleBuilder().styled", () => {
 
     // Dark mode
     colorScheme = "dark";
-    render(<MyText isItalic>Hello world</MyText>, { wrapper: Wrapper });
+    const MyText2 = getMyText();
+    render(<MyText2 isItalic>Hello world</MyText2>);
     // @ts-expect-error HALP. How do I type this mock?
     expect(MockText.calls?.at(-1)?.[0].style[0]).toEqual({
       fontStyle: "italic",
@@ -254,7 +263,3 @@ describe("createStyleBuilder().styled", () => {
     });
   });
 });
-
-const Wrapper = ({ children }: PropsWithChildren) => (
-  <StyleProvider>{children}</StyleProvider>
-);
